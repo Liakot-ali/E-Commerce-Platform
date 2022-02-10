@@ -1,22 +1,4 @@
 <resources>
     <string name="app_name">E-Commerce</string>
 
-    <!--Dimen for the app -->
-    <dimen name="toolbar_text">20sp</dimen>
-    <dimen name="normal_text">18sp</dimen>
-    <dimen name="small_text">16sp</dimen>
-    <dimen name="headline_text">24sp</dimen>
-    <dimen name="button_text">17sp</dimen>
-
-    <dimen name="toolbar_icon">20sp</dimen>
-    <dimen name="body_icon">30sp</dimen>
-    <dimen name="product_picture">45sp</dimen>
-    <dimen name="user_picture">40sp</dimen>
-    <dimen name="toolbar_width">?attr/actionBarSize</dimen>
-
-    <dimen name="inner_pad">5sp</dimen>
-    <dimen name="layout_pad">10sp</dimen>
-
-    <dimen name="border_width">2sp</dimen>
-
 </resources>
