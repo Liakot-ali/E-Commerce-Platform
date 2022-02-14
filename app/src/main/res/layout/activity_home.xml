@@ -20,7 +20,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/homeLogInBtn"
@@ -29,7 +29,7 @@
                 android:layout_gravity="left"
                 android:layout_marginLeft="@dimen/layout_pad"
                 android:text="Log In"
-                android:textSize="@dimen/button_text"/>
+                android:textSize="@dimen/button_text" />
 
             <ImageView
                 android:id="@+id/homeSearchNonUser"
@@ -47,7 +47,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homeProfilePicture"
