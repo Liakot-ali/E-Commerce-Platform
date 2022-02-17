@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".ActivityMyProduct"
-            android:exported="false"/>
-        <activity
-            android:name=".ActivityMyProfile"
+            android:name=".ActivityCustomerDetails"
             android:exported="false" />
         <activity
-            android:name=".ActivityUserProfile"
+            android:name=".ActivityMyProduct"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMyProfile"
             android:exported="false" />
         <activity
             android:name=".ActivityNotification"

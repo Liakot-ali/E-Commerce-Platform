@@ -65,16 +65,15 @@
                 android:id="@+id/myProfileNameLayout"
                 style="@style/textInputLayoutStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:helperText="*">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/myProfileName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="User Name"
-                    android:textSize="@dimen/normal_text">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:textSize="@dimen/normal_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -90,20 +89,21 @@
                     android:hint="Phone No"
                     android:inputType="number"
                     android:textSize="@dimen/normal_text" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/myProfileEmailLayout"
                 style="@style/textInputLayoutStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                app:helperText="*">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/myProfileEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:textSize="@dimen/normal_text" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -116,20 +116,78 @@
                     android:id="@+id/myProfileAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="User Address"
+                    android:hint="Address"
                     android:textSize="@dimen/normal_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/myProfileUpdateBtn"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/myProfileSellerId"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Update"
-                android:textSize="@dimen/button_text" />
+                android:textSize="@dimen/headline_text"
+                android:text="Seller Id : "
+                android:paddingBottom="@dimen/layout_pad"
+                android:paddingLeft="@dimen/layout_pad"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/inner_pad"
+                android:paddingRight="@dimen/inner_pad"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/myProfileUpdateBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/inner_pad"
+                    android:layout_gravity="center"
+                    android:text="Update"
+                    android:textSize="@dimen/button_text" />
+
+                <Button
+                    android:id="@+id/myOrderBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/inner_pad"
+                    android:layout_weight="1"
+                    android:text="My Orders"
+                    android:textSize="@dimen/button_text"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:paddingLeft="@dimen/inner_pad"
+                android:paddingRight="@dimen/inner_pad"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/UpdateBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/inner_pad"
+                    android:text="My Products"
+                    android:textSize="@dimen/button_text" />
+
+                <Button
+                    android:id="@+id/MyProductBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/inner_pad"
+                    android:gravity="center"
+                    android:text="My Selling"
+                    android:textSize="@dimen/button_text" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
