@@ -4,28 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_home.xml" value="0.27447916666666666" />
-        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_my_product.xml" value="0.2604166666666667" />
-        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_signup.xml" value="0.27447916666666666" />
-        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/item_home_product.xml" value="0.27447916666666666" />
-        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/menu/menu.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-<<<<<<< HEAD
-=======
         <entry key="..\:/Users/baffah_ely/AndroidStudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/baffah_ely/AndroidStudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_login.xml" value="0.16" />
         <entry key="..\:/Users/baffah_ely/AndroidStudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_signup.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_customer_address.xml" value="0.2" />
+        <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_customer_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_home.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_my_product.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_my_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_signup.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_user_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/item_home_product.xml" value="0.17481884057971014" />
->>>>>>> d720003ac07597f4949fbb6eba96663a67493f65
       </map>
     </option>
   </component>
