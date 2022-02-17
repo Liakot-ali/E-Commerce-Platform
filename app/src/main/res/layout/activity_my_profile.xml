@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityMyProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myProfileToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_background"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/MyProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textColor="@color/toolbar_text"
+            android:textSize="@dimen/toolbar_text">
+
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/user_picture"
+            android:layout_height="@dimen/user_picture"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_demo_profile_picture_24"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="@dimen/border_width" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/body_icon"
+            android:layout_height="@dimen/body_icon"
+            android:layout_marginStart="60sp"
+            android:layout_marginTop="60sp"
+            android:src="@drawable/ic_add_a_photo_24" />
+
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/myProfileUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="User Name">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/myProfilePhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="User PhoneNO"
+
+
+                ></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/myProfileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="User Email"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/myProfileAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:hint="User Address"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/UpdateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_pad"
+            android:gravity="center"
+            android:text="Update"
+            android:textSize="@dimen/button_text"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>
