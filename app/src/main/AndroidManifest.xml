@@ -13,9 +13,6 @@
             android:name=".ActivityMyProfile"
             android:exported="false" />
         <activity
-            android:name=".ActivityUserProfile"
-            android:exported="false" />
-        <activity
             android:name=".ActivityNotification"
             android:exported="false" />
         <activity

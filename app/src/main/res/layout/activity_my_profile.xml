@@ -87,7 +87,7 @@
                 android:hint="User PhoneNO"
 
 
-                ></com.google.android.material.textfield.TextInputEditText>
+                android:visibility="visible"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -115,6 +115,25 @@
                 android:layout_marginBottom="20dp"
                 android:hint="User Address"></com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/MyProductBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_pad"
+            android:gravity="center"
+            android:text="My Product"
+            android:visibility="gone"
+            android:textSize="@dimen/button_text"></Button>
+
+        <Button
+            android:id="@+id/myOrderBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_pad"
+            android:gravity="center"
+            android:text="My Order"
+            android:visibility="gone"
+            android:textSize="@dimen/button_text"></Button>
 
         <Button
             android:id="@+id/UpdateBtn"
