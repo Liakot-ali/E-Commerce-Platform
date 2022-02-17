@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
+            android:name=".product_for_buy"
+            android:exported="false" />
+        <activity
+            android:name=".post_product_details"
+            android:exported="false" />
+        <activity
             android:name=".ActivityCustomerDetails"
             android:exported="false" />
         <activity
