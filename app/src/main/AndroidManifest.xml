@@ -11,6 +11,18 @@
         android:theme="@style/Theme.ECommerce">
         <activity
             android:name=".ActivityMyProduct"
+            android:exported="false"/>
+        <activity
+            android:name=".ActivityMyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityNotification"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityCustomerAddress"
             android:exported="false" />
         <activity
             android:name=".ActivitySignup"
