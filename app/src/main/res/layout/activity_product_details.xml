@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".product_for_buy">
-
+    tools:context=".ActivityProductDetails">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/shopProfileToolbar"
+        android:id="@+id/productDetailsToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background"
@@ -17,31 +16,32 @@
         android:theme="?attr/actionBarTheme">
 
         <TextView
+            android:id="@+id/productDetailsToolbarText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:text="Product Details"
             android:textColor="@color/toolbar_text"
             android:textSize="@dimen/toolbar_text" />
     </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70sp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/layout_pad"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="@dimen/layout_pad">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/layout_pad"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ProductForBuyProfilePicture"
+                    android:id="@+id/ProductDetailsSellerPicture"
                     android:layout_width="@dimen/toolbar_icon"
                     android:layout_height="@dimen/toolbar_icon"
                     android:src="@drawable/ic_demo_profile_picture_24"
@@ -49,82 +49,73 @@
                     app:civ_border_width="@dimen/border_width" />
 
                 <TextView
-                    android:id="@+id/ProductForBuyUserName"
+                    android:id="@+id/ProductDetailsSellerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/inner_pad"
-                    android:text="User_Name"
+                    android:text="Seller_Name"
                     android:textColor="@color/toolbar_text"
                     android:textSize="@dimen/toolbar_text" />
-
 
             </LinearLayout>
 
 
             <ImageView
+                android:id="@+id/productDetailsPicture"
                 android:layout_width="@dimen/product_picture"
                 android:layout_height="@dimen/product_picture"
-                android:id="@+id/postproduct_picture"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/layout_pad"
                 android:layout_marginBottom="@dimen/layout_pad"
                 android:padding="@dimen/inner_pad"
-                android:src="@drawable/ic_launcher_background"
-                >
+                android:src="@drawable/ic_product_demo_photo_24" />
 
-            </ImageView>
-
-              <TextView
-                android:id="@+id/ProductForBuyProductName"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/ProductDetailsPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Product Name"
-                android:layout_marginTop="@dimen/layout_pad"
                 android:padding="@dimen/inner_pad"
-                android:layout_margin="@dimen/layout_pad"
+                android:text="Product Price"
+                android:textColor="@color/red"
+                android:textSize="@dimen/headline_text" />
+
+            <TextView
+                android:id="@+id/ProductDetailsProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:text="Product Name"
                 android:textSize="@dimen/normal_text"
-                />
+                android:textColor="@color/black"/>
 
 
             <TextView
-                android:id="@+id/ProductForBuyprice"
-                android:layout_width="match_parent"
+                android:id="@+id/ProductDetailsDescription"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Price"
-                android:layout_marginTop="@dimen/layout_pad"
+                android:text="Description"
                 android:padding="@dimen/inner_pad"
-                android:layout_margin="@dimen/layout_pad"
-                android:textSize="@dimen/normal_text"
-                />
+                android:textSize="@dimen/normal_text" />
 
-
-            <TextView
-                android:id="@+id/ProductForBuydescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Description"
-                android:layout_marginTop="@dimen/layout_pad"
-                android:padding="@dimen/inner_pad"
-                android:layout_margin="@dimen/layout_pad"
-                android:textSize="@dimen/normal_text"
-                />
-
-
-
-            <Button
-                android:id="@+id/postproduct_post"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/layout_pad"
-                android:gravity="center"
-                android:text="Buy Now"
-                android:textSize="@dimen/button_text">
-
-            </Button>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/productDetailsBuyNowBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-60sp"
+        android:layout_marginLeft="@dimen/layout_pad"
+        android:layout_marginRight="@dimen/layout_pad"
+        android:layout_marginBottom="@dimen/layout_pad"
+        android:gravity="center"
+        android:text="Buy Now"
+        android:textSize="@dimen/button_text">
+
+    </Button>
 
 
 </LinearLayout>
