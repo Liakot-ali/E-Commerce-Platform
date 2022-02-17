@@ -25,6 +25,7 @@
     <color name="black_gray">#424242</color>
 
     <color name="product_price">#F01824</color>
+    <color name="edit_text_border">#6B2C01</color>
 
 
 </resources>
