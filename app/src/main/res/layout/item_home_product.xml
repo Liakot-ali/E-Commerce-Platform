@@ -14,15 +14,6 @@
         android:src="@drawable/ic_product_demo_photo_24" />
 
     <TextView
-        android:id="@+id/homeProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product_Price"
-        android:textColor="@color/product_price"
-        android:textSize="@dimen/headline_text"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/homeProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +22,15 @@
         android:text="Product_Name"
         android:textColor="@color/black"
         android:textSize="@dimen/normal_text" />
+
+    <TextView
+        android:id="@+id/homeProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product_Price"
+        android:textColor="@color/product_price"
+        android:textSize="@dimen/headline_text"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/homeSellerName"
