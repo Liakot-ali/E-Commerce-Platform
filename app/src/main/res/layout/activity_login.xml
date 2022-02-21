@@ -52,7 +52,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/signIneEmailLayout"
+                    android:id="@+id/signInEmailLayout"
                     style="@style/textInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,11 +60,12 @@
                     app:helperText="*">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/signInPhoneNumber"
+                        android:id="@+id/signInEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_pad"
                         android:gravity="center_vertical"
-                        android:hint="Phone Number"
+                        android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:textSize="@dimen/normal_text"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -118,6 +119,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/red"
                         android:text="Forget Password?"
                         android:textSize="@dimen/normal_text" />
                 </LinearLayout>
@@ -143,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:text=" Sign Up"
                         android:textColor="@color/purple_500"
-                        android:textSize="@dimen/headline_text"
+                        android:textSize="@dimen/normal_text"
                         android:textStyle="bold" />
                 </LinearLayout>
 

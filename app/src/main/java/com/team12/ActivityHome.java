@@ -2,6 +2,7 @@ package com.team12;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +28,10 @@ import java.util.ArrayList;
 
 public class ActivityHome extends AppCompatActivity {
 
-    TextView emptyText;
+    TextView emptyText, userName;
+    Button logInBtn;
+    Toolbar userToolbar, nonUserToolbar;
+    ImageView notification, userPicture, searchForUser, searchForNonUser;
 
     RecyclerView productView;
     FloatingActionButton postProduct;
@@ -40,8 +46,8 @@ public class ActivityHome extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         InitializeAll();
-        OnClick();
         ShowData();
+        OnClick();
 
         adapter = new AdapterHomeProduct(ActivityHome.this, arrayList);
         productView.setAdapter(adapter);
@@ -84,6 +90,31 @@ public class ActivityHome extends AppCompatActivity {
 
             }
         });
+
+        logInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivityLogin.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivityNotification.class);
+                startActivity(intent);
+            }
+        });
+
+        userPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivityMyProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //------For initialize all things-------------
@@ -93,10 +124,22 @@ public class ActivityHome extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         //------------Initialize id----------
+        userToolbar = findViewById(R.id.homeToolbarUser);
+        nonUserToolbar = findViewById(R.id.homeToolbarNonUser);
+        searchForUser = findViewById(R.id.homeSearchUser);
+        searchForNonUser = findViewById(R.id.homeSearchNonUser);
+
+        userPicture = findViewById(R.id.homeProfilePicture);
+        notification = findViewById(R.id.homeNotification);
+
         productView = findViewById(R.id.homeRecyclerView);
         postProduct = findViewById(R.id.homeAddProductBtn);
+        logInBtn = findViewById(R.id.homeLogInBtn);
+
 
         emptyText = findViewById(R.id.homeEmptyText);
+        userName = findViewById(R.id.homeUserName);
+
 
         arrayList = new ArrayList<ClassAddProduct>();
 

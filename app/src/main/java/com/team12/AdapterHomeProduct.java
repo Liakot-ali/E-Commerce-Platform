@@ -2,6 +2,7 @@ package com.team12;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
                 sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String sellerName, sellerPicture, sellerId;
 
                     }
 
@@ -84,6 +86,14 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
 
                     }
                 });
+                Intent intent = new Intent(activityContext, ActivityProductDetails.class);
+                intent.putExtra("productPicture", arrayList.get(position).getImage());
+                intent.putExtra("productName", arrayList.get(position).getName());
+                intent.putExtra("productPrice", arrayList.get(position).getPrice());
+                intent.putExtra("productDescription", arrayList.get(position).getDescription());
+
+
+
                 Toast.makeText(activityContext, "Under Construction", Toast.LENGTH_SHORT).show();
             }
         });

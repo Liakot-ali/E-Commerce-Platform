@@ -20,7 +20,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/homeLogInBtn"
@@ -47,7 +47,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homeProfilePicture"
