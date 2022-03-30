@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
+
             android:name=".ActivityMyOrder"
             android:exported="false" />
         <activity
@@ -17,6 +18,12 @@
             android:exported="false" />
         <activity
             android:name=".activityMySelling"
+            android:exported="false"
+            />
+        <activity
+
+            android:name=".ActivitySellerProfile"
+
             android:exported="false" />
         <activity
             android:name=".ActivityProductDetails"
