@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
+            android:name=".ActivityMyOrder"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityItemHomeSelling"
+            android:exported="false" />
+        <activity
+            android:name=".activityMySelling"
+            android:exported="false" />
+        <activity
             android:name=".ActivityProductDetails"
             android:exported="false" />
         <activity
