@@ -10,19 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".ActivitySearchList"
-            android:exported="false" />
-        <activity
             android:name=".ActivitySearch"
             android:exported="false" />
         <activity
-            android:name=".ActivityItemHomeMyorder"
-            android:exported="false" />
-        <activity
             android:name=".ActivityMyOrder"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityItemHomeSelling"
             android:exported="false" />
         <activity
             android:name=".activityMySelling"
