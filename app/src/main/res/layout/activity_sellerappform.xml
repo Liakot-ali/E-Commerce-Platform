@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ActivitySellerApplicationForm">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_background"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/inner_pad"
+            android:text="Seller Application Form"
+            android:textColor="@color/toolbar_text"
+            android:textSize="@dimen/toolbar_text" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <EditText
+        android:id="@+id/SellerName"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Seller Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"></EditText>
+
+    <EditText
+
+        android:id="@+id/SellerPhone"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:hint="Seller Phone"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:minHeight="48dp"
+        android:padding="10dp"></EditText>
+
+    <EditText
+
+        android:id="@+id/SellerEmail"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:hint="Seller Email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:padding="10dp"></EditText>
+
+    <EditText
+
+        android:id="@+id/SellerAddress"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Seller Address"
+        android:layout_gravity="center"
+        android:inputType="textPostalAddress"
+        android:minHeight="48dp"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/Description"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Description"
+        android:minHeight="48dp"></EditText>
+    <CheckBox
+        android:id="@+id/TermsandConditions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Agree terms and Conditions"
+        android:textColor="@color/black_gray"
+        android:textSize="@dimen/normal_text" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Submit"
+            android:text="Submit"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+></Button>
+
+
+</LinearLayout>
