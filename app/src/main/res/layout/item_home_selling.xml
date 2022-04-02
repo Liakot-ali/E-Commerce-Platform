@@ -14,7 +14,7 @@
         android:weightSum="10">
 
         <ImageView
-            android:id="@+id/homeProductPicture"
+            android:id="@+id/mySellingProductPicture"
             android:layout_width="@dimen/item_icon"
             android:layout_height="@dimen/item_icon"
             android:layout_gravity="center"
@@ -29,7 +29,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/homeProductName"
+                android:id="@+id/mySellingProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
                 android:textSize="@dimen/normal_text" />
 
             <TextView
-                android:id="@+id/homeCustomerName"
+                android:id="@+id/mySellingCustomerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/homeProductPrice"
+            android:id="@+id/mySellingProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

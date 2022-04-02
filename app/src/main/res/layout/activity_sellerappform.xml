@@ -85,7 +85,6 @@
         android:id="@+id/TermsandConditions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="Agree terms and Conditions"
         android:textColor="@color/black_gray"
         android:textSize="@dimen/normal_text" />
