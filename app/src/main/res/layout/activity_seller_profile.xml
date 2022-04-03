@@ -18,7 +18,7 @@
 
 
         <TextView
-            android:id="@+id/MyProfile"
+            android:id="@+id/SellerProfileToolbarText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Seller Profile"
@@ -56,79 +56,68 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SellerProfileNameLayout"
-                style="@style/textInputLayoutStyle"
+            <TextView
+                android:id="@+id/SellerProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:layout_marginStart="@dimen/inner_pad"
+                android:layout_marginTop="@dimen/inner_pad"
+                android:layout_marginBottom="@dimen/inner_pad"
+                android:text="User Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/headline_text" />
+
+
+            <TextView
+                android:id="@+id/SellerProfilePhoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:text="Phone No"
+                android:layout_marginStart="@dimen/inner_pad"
+                android:layout_marginTop="@dimen/inner_pad"
+                android:layout_marginBottom="@dimen/inner_pad"
+                android:textColor="@color/black"
+                android:textSize="@dimen/headline_text" />
+            <TextView
+                android:id="@+id/SellerProfileEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:text="Email"
+                android:layout_marginStart="@dimen/inner_pad"
+                android:layout_marginTop="@dimen/inner_pad"
+                android:layout_marginBottom="@dimen/inner_pad"
+                android:textColor="@color/black"
+                android:textSize="@dimen/headline_text" />
+            <TextView
+                android:id="@+id/SellerProfileId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:text="Id"
+                android:layout_marginStart="@dimen/inner_pad"
+                android:layout_marginTop="@dimen/inner_pad"
+                android:layout_marginBottom="@dimen/inner_pad"
+                android:textColor="@color/black"
+                android:textSize="@dimen/headline_text" />
+
+
+            <Button
+                android:id="@+id/SellerProfileReportBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:helperText="*">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SellerProfileName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="User Name"
-                    android:textSize="@dimen/normal_text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SellerProfilePhoneNoLayout"
-                style="@style/textInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SellerProfilePhoneNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone No"
-                    android:inputType="number"
-                    android:textSize="@dimen/normal_text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SellerProfileEmailLayout"
-                style="@style/textInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                app:helperText="*">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SellerProfileEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SellerProfileIdLayout"
-                style="@style/textInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SellerProfileId"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Id"
-                    android:textSize="@dimen/normal_text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/SellerProfileRrportBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/inner_pad"
-                    android:layout_marginStart="@dimen/inner_pad"
-                    android:layout_gravity="center"
-                    android:text="Report"
-                    android:textSize="@dimen/button_text" />
-
+                android:layout_marginEnd="@dimen/inner_pad"
+                android:text="Report"
+                android:layout_marginTop="@dimen/inner_pad"
+                android:layout_marginStart="@dimen/inner_pad"
+                android:textSize="@dimen/button_text" />
 
         </LinearLayout>
 
 
     </ScrollView>
+
 
 </LinearLayout>
