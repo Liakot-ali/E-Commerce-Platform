@@ -24,7 +24,7 @@
             android:layout_weight="6"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/homeProductName"
+                android:id="@+id/myOrderProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -36,7 +36,7 @@
                 android:textSize="@dimen/normal_text" />
 
             <TextView
-                android:id="@+id/homeProductPrice"
+                android:id="@+id/myOrderProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Product_Price"
