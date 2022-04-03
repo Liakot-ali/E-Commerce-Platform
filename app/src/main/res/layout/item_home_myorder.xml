@@ -12,7 +12,7 @@
         android:padding="@dimen/inner_pad"
         android:weightSum="8">
         <ImageView
-            android:id="@+id/homeProductPicture"
+            android:id="@+id/myOrderProductPicture"
             android:layout_width="@dimen/item_icon"
             android:layout_height="@dimen/item_icon"
             android:layout_weight="2"
