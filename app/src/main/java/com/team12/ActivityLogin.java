@@ -83,6 +83,8 @@ public class ActivityLogin extends AppCompatActivity {
                                 Toast.makeText(ActivityLogin.this, "Check box clicked", Toast.LENGTH_SHORT).show();
                             }
                             Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
                             signInEmail.setText("");
