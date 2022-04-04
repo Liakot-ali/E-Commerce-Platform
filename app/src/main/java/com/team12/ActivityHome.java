@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,12 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -32,13 +33,17 @@ public class ActivityHome extends AppCompatActivity {
     Button logInBtn;
     Toolbar userToolbar, nonUserToolbar;
     ImageView notification, userPicture, searchForUser, searchForNonUser;
-
-    RecyclerView productView;
     FloatingActionButton postProduct;
-    FirebaseDatabase database;
+    RecyclerView productView;
+
     ArrayList<ClassAddProduct> arrayList;
+
     AdapterHomeProduct adapter;
     RecyclerView.LayoutManager layoutManager;
+
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +53,6 @@ public class ActivityHome extends AppCompatActivity {
         InitializeAll();
         ShowData();
         OnClick();
-
-        adapter = new AdapterHomeProduct(ActivityHome.this, arrayList);
-        productView.setAdapter(adapter);
-
 
     }
 
@@ -72,12 +73,15 @@ public class ActivityHome extends AppCompatActivity {
                     emptyText.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        adapter = new AdapterHomeProduct(ActivityHome.this, arrayList);
+        productView.setAdapter(adapter);
+
     }
 
     //---------For all Click-----------
@@ -122,6 +126,7 @@ public class ActivityHome extends AppCompatActivity {
 
         //---------firebase initialization
         database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         //------------Initialize id----------
         userToolbar = findViewById(R.id.homeToolbarUser);
@@ -140,6 +145,21 @@ public class ActivityHome extends AppCompatActivity {
         emptyText = findViewById(R.id.homeEmptyText);
         userName = findViewById(R.id.homeUserName);
 
+        setSupportActionBar(userToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        userToolbar.setTitle("");
+
+        //---------check user is logged in or not-----------
+        mAuthListener = firebaseAuth -> {
+            if(FirebaseAuth.getInstance().getCurrentUser() == null){
+                nonUserToolbar.setVisibility(View.VISIBLE);
+                userToolbar.setVisibility(View.GONE);
+            }else{
+                nonUserToolbar.setVisibility(View.GONE);
+                userToolbar.setVisibility(View.VISIBLE);
+            }
+        };
+
 
         arrayList = new ArrayList<ClassAddProduct>();
 
@@ -149,9 +169,29 @@ public class ActivityHome extends AppCompatActivity {
         productView.setLayoutManager(layoutManager);
     }
 
+    //---------for show the dotted menu in toolbar-------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
+        return true;
+    }
+
+    //----for selected menu item---------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.homeMenuLogOut){
+            Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        mAuth.addAuthStateListener(mAuthListener);
         ShowData();
     }
 }

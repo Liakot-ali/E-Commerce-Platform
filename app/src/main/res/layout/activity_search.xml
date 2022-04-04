@@ -8,6 +8,7 @@
     tools:context=".ActivitySearch">
 
     <EditText
+        android:id="@+id/searchText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:text=" Search">
@@ -15,6 +16,7 @@
     </EditText>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

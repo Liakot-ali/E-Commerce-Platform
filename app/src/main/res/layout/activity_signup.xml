@@ -36,8 +36,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/signUpAppLogo"
-                android:layout_width="@dimen/product_picture"
-                android:layout_height="@dimen/product_picture"
+                android:layout_width="@dimen/user_picture"
+                android:layout_height="@dimen/user_picture"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/inner_pad"
                 android:src="@drawable/ic_demo_profile_picture_24"

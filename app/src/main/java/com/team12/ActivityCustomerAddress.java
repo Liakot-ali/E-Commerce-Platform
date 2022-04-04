@@ -1,19 +1,24 @@
 package com.team12;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class ActivityCustomerAddress extends AppCompatActivity {
 
-    Toolbar cusToolbar;
-    TextView DeliveryAddToolbar;
-    EditText LayoutName,Name,LayoutPhoneNo,PhoneNo ,LayoutEmail,Email,LayoutDeliveryAdd,DeliveryAdd,LayoutNote,Note;
-    Button ConfirmBtn;
+    Toolbar toolbar;
+    TextView toolbarText;
+    TextInputEditText  name, phoneNo, email, deliveryAddress, note;
+    TextInputLayout nameLayout, phoneNoLayout, emailLayout, deliveryAddressLayout, noteLayout;
+    Button confirmOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,29 +28,26 @@ public class ActivityCustomerAddress extends AppCompatActivity {
     }
 
     private void InitializeAll() {
-        cusToolbar = findViewById(R.id.customerAddressToolbarUser);
 
 
-        DeliveryAddToolbar = findViewById(R.id.CustomerAddressToolbarText);
+        toolbar = findViewById(R.id.customerAddressToolbarUser);
+        toolbarText = findViewById(R.id.CustomerAddressToolbarText);
+
+        name = findViewById(R.id.cusAddressName);
+        phoneNo = findViewById(R.id.cusAddressPhone);
+        email = findViewById(R.id.cusAddressEmail);
+        deliveryAddress = findViewById(R.id.cusAddressDeliveryAddress);
+        note = findViewById(R.id.cusAddressNote);
+
+        nameLayout = findViewById(R.id.cusAddressNameLayout);
+        phoneNoLayout = findViewById(R.id.cusAddressPhoneLayout);
+        emailLayout = findViewById(R.id.cusAddressEmailLayout);
+        deliveryAddressLayout = findViewById(R.id.cusAddressDeliveryAddressLayout);
+        noteLayout = findViewById(R.id.cusAddressNoteLayout);
+
+        confirmOrder = findViewById(R.id.cusAddressConfirmOrderBtn);
 
 
-        LayoutName = findViewById(R.id.cusAddressNameLayout);
-        Name = findViewById(R.id.cusAddressName);
-
-        LayoutPhoneNo = findViewById(R.id.cusAddressPhoneLayout);
-        PhoneNo = findViewById(R.id.cusAddressPhone);
-
-        LayoutEmail = findViewById(R.id.cusAddressEmailLayout);
-        Email = findViewById(R.id.cusAddressEmail);
-
-        LayoutDeliveryAdd = findViewById(R.id.cusAddressDeliveryAddressLayout);
-        DeliveryAdd = findViewById(R.id.cusAddressDeliveryAddress);
-
-        LayoutNote = findViewById(R.id.cusAddressNoteLayout);
-        Note = findViewById(R.id.cusAddressNote);
-
-
-        ConfirmBtn = findViewById(R.id.cusAddressConfirmOrderBtn);
 
     }
 }
