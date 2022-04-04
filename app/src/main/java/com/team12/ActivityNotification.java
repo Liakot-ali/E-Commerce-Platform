@@ -18,6 +18,7 @@ public class ActivityNotification extends AppCompatActivity {
         InitiliazeAll();
     }
     private void InitiliazeAll(){
+        
         toolbar = findViewById(R.id.notificationToolbar);
         toolbarText = findViewById(R.id.notificationTxt);
 
