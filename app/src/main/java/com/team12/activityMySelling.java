@@ -20,6 +20,7 @@ public class activityMySelling extends AppCompatActivity {
     }
     private void  InitializeAll(){
         toolbar = findViewById(R.id.mySellingToolbar);
+
         toolbarText = findViewById(R.id.mySellingToolbarText);
     }
 }

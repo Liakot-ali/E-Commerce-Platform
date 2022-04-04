@@ -20,6 +20,7 @@ public class ActivityNotification extends AppCompatActivity {
     private void InitiliazeAll(){
         toolbar = findViewById(R.id.notificationToolbar);
         toolbarText = findViewById(R.id.notificationTxt);
+
         AsBuyer = findViewById(R.id.notificationUser);
         AsSeller = findViewById(R.id.notificationSeller);
 

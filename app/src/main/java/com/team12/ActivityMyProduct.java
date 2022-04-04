@@ -19,6 +19,7 @@ public class ActivityMyProduct extends AppCompatActivity {
     }
     private void InitializeAll(){
         toolbar = findViewById(R.id.myProductToolbar);
+
         toolbarText = findViewById(R.id.myProductToolbarText);
     }
 }
