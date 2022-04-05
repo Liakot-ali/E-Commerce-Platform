@@ -33,7 +33,7 @@ public class ActivityCustomerDetails extends AppCompatActivity {
 
         customerDetailsProductPic =findViewById(R.id.CUS_detailsImg);
 
-        ProductName = findViewById(R.id.Cus_detailsCustomerName);
+        ProductName = findViewById(R.id.Cus_detailsProductName);
         ProductPrice = findViewById(R.id.Cus_detailsProductPrice);
         CustomerName = findViewById(R.id.Cus_detailsCustomerName);
         CustomerPhoneNo =findViewById(R.id.Cus_detailsCustomerPhoneNo);

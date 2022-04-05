@@ -79,7 +79,7 @@ public class ActivityLogin extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             if(rememberMe.isChecked()) {
-                                //TODO----------put the value in sharedpreferences-------
+                                //TODO----------put the value in sharedPreferences-------
                                 Toast.makeText(ActivityLogin.this, "Check box clicked", Toast.LENGTH_SHORT).show();
                             }
                             Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
