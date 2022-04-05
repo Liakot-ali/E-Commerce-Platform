@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -157,6 +158,28 @@ public class ActivityHome extends AppCompatActivity {
             }else{
                 nonUserToolbar.setVisibility(View.GONE);
                 userToolbar.setVisibility(View.VISIBLE);
+
+                String userId = mAuth.getUid();
+                assert userId != null;
+                DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
+                userRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
+                        assert user != null;
+                        userName.setText(user.getName());
+                        if (user.getPicture() != null) {
+                            Picasso.get().load(user.getPicture()).into(userPicture);
+                        } else {
+                            userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         };
 

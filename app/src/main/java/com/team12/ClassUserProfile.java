@@ -4,6 +4,10 @@ public class ClassUserProfile {
     String name, picture, phone, email, address;
     int sellerId;
 
+    public ClassUserProfile(){
+
+    }
+
     public ClassUserProfile(String name, String picture, String phone, String email, String address, int sellerId) {
         this.name = name;
         this.picture = picture;

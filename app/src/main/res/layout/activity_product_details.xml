@@ -26,8 +26,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70sp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_pad">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,8 +36,9 @@
             android:padding="@dimen/layout_pad">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -52,7 +53,7 @@
                     android:id="@+id/ProductDetailsSellerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:padding="@dimen/inner_pad"
                     android:text="Seller_Name"
                     android:textColor="@color/toolbar_text"
@@ -108,10 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="-60sp"
-        android:layout_marginLeft="@dimen/layout_pad"
-        android:layout_marginRight="@dimen/layout_pad"
-        android:layout_marginBottom="@dimen/layout_pad"
+        android:layout_margin="@dimen/layout_pad"
         android:gravity="center"
         android:text="Buy Now"
         android:textSize="@dimen/button_text">

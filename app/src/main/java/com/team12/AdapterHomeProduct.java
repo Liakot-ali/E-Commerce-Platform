@@ -65,24 +65,26 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
         holder.itemView.setTag(arrayList.get(position));
 
         holder.name.setText(arrayList.get(position).getName());
-        holder.price.setText(String.valueOf(arrayList.get(position).getPrice()));
+        holder.price.setText(activityContext.getResources().getString(R.string.tk_sign) + arrayList.get(position).getPrice());
         holder.sellerName.setText("Seller Name");
         Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sellerName = "Md Liakot Ali Liton", sellerPicture = null;
                 DatabaseReference sellerProfileRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(arrayList.get(position).getSellerId()));
                 //TODO----get the seller information from firebase--------
                 sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String sellerName, sellerPicture, sellerId;
+
 
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(activityContext, error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -92,9 +94,12 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
                 intent.putExtra("productPrice", arrayList.get(position).getPrice());
                 intent.putExtra("productDescription", arrayList.get(position).getDescription());
 
+                intent.putExtra("sellerName", sellerName);
+                intent.putExtra("sellerId", arrayList.get(position).getSellerId());
+                intent.putExtra("sellerPicture", sellerPicture);
+                activityContext.startActivity(intent);
 
-
-                Toast.makeText(activityContext, "Under Construction", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(activityContext, "Under Construction", Toast.LENGTH_SHORT).show();
             }
         });
     }

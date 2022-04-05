@@ -15,7 +15,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sellerappform);
+        setContentView(R.layout.activity_seller_application_form);
 
         InitializeAll();
 
