@@ -13,7 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ActivityProductDetails extends AppCompatActivity {
 
     Toolbar ProductDetailsToolber;
-    TextView ProductDetails,SellerName,ProductPrice,ProductName,Discription;
+    TextView ProductDetails, SellerName, ProductPrice, ProductName, Discription;
     ImageView ProductPicture;
     CircleImageView SellerPicture;
     Button BuyNow;
@@ -29,15 +29,15 @@ public class ActivityProductDetails extends AppCompatActivity {
 
     private void InitializeAll() {
 
-        ProductDetailsToolber =findViewById(R.id.productDetailsToolbar);
-        SellerName=findViewById(R.id.ProductDetailsSellerName);
-        ProductDetails=findViewById(R.id.productDetailsToolbarText);
-        ProductPrice=findViewById(R.id.ProductDetailsPrice);
-        ProductName=findViewById(R.id.ProductDetailsProductName);
-        Discription=findViewById(R.id.ProductDetailsDescription);
-        ProductPicture=findViewById(R.id.productDetailsPicture);
-        SellerPicture=findViewById(R.id.ProductDetailsSellerPicture);
-        BuyNow=findViewById(R.id.productDetailsBuyNowBtn);
+        ProductDetailsToolber = findViewById(R.id.productDetailsToolbar);
+        SellerName = findViewById(R.id.ProductDetailsSellerName);
+        ProductDetails = findViewById(R.id.productDetailsToolbarText);
+        ProductPrice = findViewById(R.id.ProductDetailsPrice);
+        ProductName = findViewById(R.id.ProductDetailsProductName);
+        Discription = findViewById(R.id.ProductDetailsDescription);
+        ProductPicture = findViewById(R.id.productDetailsPicture);
+        SellerPicture = findViewById(R.id.ProductDetailsSellerPicture);
+        BuyNow = findViewById(R.id.productDetailsBuyNowBtn);
 
 
     }

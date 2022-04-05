@@ -9,8 +9,8 @@ import android.widget.EditText;
 public class ActivitySearch extends AppCompatActivity {
 
 
-   EditText Search;
-   RecyclerView List;
+    EditText Search;
+    RecyclerView List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class ActivitySearch extends AppCompatActivity {
     }
 
     private void InitializeAll() {
-        Search=findViewById(R.id.searchText);
-        List=findViewById(R.id.searchRecycleView);
+        Search = findViewById(R.id.searchText);
+        List = findViewById(R.id.searchRecycleView);
     }
 }
