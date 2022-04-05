@@ -1,8 +1,10 @@
 package com.team12;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,7 +28,11 @@ public class ActivityProductDetails extends AppCompatActivity {
 
     String sellerName, productName, description, sellerPicture, productPicture;
     long sellerId, productPrice;
+    Boolean loggedIn = true;
 
+    FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener authListener;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +47,20 @@ public class ActivityProductDetails extends AppCompatActivity {
         BuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityProductDetails.this, "Under construction" + sellerId, Toast.LENGTH_SHORT).show();
+                if (loggedIn){
+                    Toast.makeText(ActivityProductDetails.this, "Confirm order", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ActivityProductDetails.this, ActivityCustomerAddress.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }
 
     private void InitializeAll() {
+
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         ProductDetailsToolber = findViewById(R.id.productDetailsToolbar);
         SellerName = findViewById(R.id.ProductDetailsSellerName);
@@ -65,6 +81,16 @@ public class ActivityProductDetails extends AppCompatActivity {
         sellerName = getIntent().getStringExtra("sellerName");
         sellerPicture = getIntent().getStringExtra("sellerPicture");
 
+        authListener = firebaseAuth -> {
+            if(FirebaseAuth.getInstance().getCurrentUser() ==  null){
+                loggedIn = false;
+                //TODO------show a snackbar with login activity link----------
+                Toast.makeText(ActivityProductDetails.this, "Log in first", Toast.LENGTH_SHORT).show();
+            }else{
+                loggedIn = true;
+            }
+        };
+
 
         if(sellerPicture != null){
             Picasso.get().load(sellerPicture).into(SellerPicture);
@@ -83,5 +109,11 @@ public class ActivityProductDetails extends AppCompatActivity {
         ProductPrice.setText(getResources().getString(R.string.tk_sign) + productPrice);
         Discription.setText(description);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAuth.addAuthStateListener(authListener);
     }
 }
