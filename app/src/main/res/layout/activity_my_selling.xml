@@ -38,13 +38,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/MySellingTextView"
+                android:id="@+id/MySellingEmptyTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="No Selling to show"
                 android:textColor="@color/black"
-                android:textSize="@dimen/normal_text"
-                android:text="No Selling to show" />
+                android:textSize="@dimen/normal_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mySellingRecyclerView"

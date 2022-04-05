@@ -42,9 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="No Order to show"
                 android:textColor="@color/black"
-                android:textSize="@dimen/normal_text"
-                android:text="No Order to show" />
+                android:textSize="@dimen/normal_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/myOrderRecyclerView"

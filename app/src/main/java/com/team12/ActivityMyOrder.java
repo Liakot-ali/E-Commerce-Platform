@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ActivityMyOrder extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbarText;
+    TextView orderEmptyText;
 
 
     @Override
@@ -21,5 +24,6 @@ public class ActivityMyOrder extends AppCompatActivity {
 
         toolbar = findViewById(R.id.myOrderToolbar);
         toolbarText = findViewById(R.id.myOrderToolbarText);
+        orderEmptyText = findViewById(R.id.myOrderTextView);
     }
 }

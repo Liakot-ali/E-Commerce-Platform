@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class activityMySelling extends AppCompatActivity {
     Toolbar toolbar;
-    TextView toolbarText;
+    TextView toolbarText,Emptytext;
 
 
     @Override
@@ -22,5 +22,7 @@ public class activityMySelling extends AppCompatActivity {
 
         toolbar = findViewById(R.id.mySellingToolbar);
         toolbarText = findViewById(R.id.mySellingToolbarText);
+        Emptytext = findViewById(R.id.MySellingEmptyTextView);
+
     }
 }

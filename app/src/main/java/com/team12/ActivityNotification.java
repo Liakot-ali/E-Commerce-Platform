@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ActivityNotification extends AppCompatActivity {
     Toolbar toolbar;
     TextView toolbarText,AsBuyer,AsSeller;
+    FrameLayout frame;
+    LinearLayout notificationLay;
 
 
     @Override
@@ -24,6 +28,9 @@ public class ActivityNotification extends AppCompatActivity {
 
         AsBuyer = findViewById(R.id.notificationUser);
         AsSeller = findViewById(R.id.notificationSeller);
+
+        frame = findViewById(R.id.notificationFrame);
+        notificationLay = findViewById(R.id.notificationBtnLayout);
 
     }
 }
