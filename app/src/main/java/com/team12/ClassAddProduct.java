@@ -1,12 +1,25 @@
 package com.team12;
 
 public class ClassAddProduct {
-    String name, description, image, sellerName;
+    String name;
+    String description;
+    String image;
+    String productId;
     long price, sellerId;
 
     public ClassAddProduct(){
 
     }
+
+    public ClassAddProduct(String productId, String name, String description, String image, long price, long sellerId) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.sellerId = sellerId;
+    }
+
     public ClassAddProduct(String name, String description, String image, long price, long sellerId) {
         this.name = name;
         this.description = description;
@@ -14,13 +27,13 @@ public class ClassAddProduct {
         this.price = price;
         this.sellerId = sellerId;
     }
-    public ClassAddProduct(String name, String description, String image, long price, long sellerId, String sellerName) {
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-        this.sellerId = sellerId;
-        this.sellerName = sellerName;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -51,7 +64,7 @@ public class ClassAddProduct {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
@@ -59,15 +72,7 @@ public class ClassAddProduct {
         return sellerId;
     }
 
-    public void setSellerId(int sellerId) {
+    public void setSellerId(long sellerId) {
         this.sellerId = sellerId;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
     }
 }

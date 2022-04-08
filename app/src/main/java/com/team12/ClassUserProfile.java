@@ -1,7 +1,7 @@
 package com.team12;
 
 public class ClassUserProfile {
-    String name, picture, phone, email, address;
+    String name, picture, phone, email, address, userId;
     int sellerId;
 
     public ClassUserProfile(){
@@ -15,6 +15,23 @@ public class ClassUserProfile {
         this.email = email;
         this.address = address;
         this.sellerId = sellerId;
+    }
+    public ClassUserProfile(String userId, String name, String picture, String phone, String email, String address, int sellerId) {
+        this.userId = userId;
+        this.name = name;
+        this.picture = picture;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.sellerId = sellerId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -64,4 +81,6 @@ public class ClassUserProfile {
     public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
     }
+
+
 }
