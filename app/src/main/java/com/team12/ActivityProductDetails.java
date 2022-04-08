@@ -26,7 +26,7 @@ public class ActivityProductDetails extends AppCompatActivity {
     CircleImageView SellerPicture;
     Button BuyNow;
 
-    String sellerName, productName, description, sellerPicture, productPicture;
+    String productId, sellerName, productName, description, sellerPicture, productPicture;
     long sellerId, productPrice;
     Boolean loggedIn = true;
 
@@ -72,6 +72,7 @@ public class ActivityProductDetails extends AppCompatActivity {
         SellerPicture = findViewById(R.id.ProductDetailsSellerPicture);
         BuyNow = findViewById(R.id.productDetailsBuyNowBtn);
 
+        productId = getIntent().getStringExtra("productId");
         productName = getIntent().getStringExtra("productName");
         productPrice = getIntent().getLongExtra("productPrice", 0);
         productPicture = getIntent().getStringExtra("productPicture");

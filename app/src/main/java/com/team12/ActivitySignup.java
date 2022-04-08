@@ -106,7 +106,7 @@ public class ActivitySignup extends AppCompatActivity {
                         String userId = auth.getUid();
                         assert userId != null;
                         DatabaseReference profileRef = database.getReference("User").child(userId).child("Profile");
-                        ClassUserProfile newUser = new ClassUserProfile(name, null, null, email, null, 0);
+                        ClassUserProfile newUser = new ClassUserProfile(userId, name, null, null, email, null, 0);
                         profileRef.setValue(newUser)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

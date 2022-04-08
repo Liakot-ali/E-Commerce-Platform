@@ -131,7 +131,7 @@ public class ActivityPostProduct extends AppCompatActivity {
                                             String imageUri;
                                             imageUri = uri.toString();
                                             DatabaseReference productRef = database.getReference("Product").child(productId);
-                                            ClassAddProduct newProduct = new ClassAddProduct(name, description, imageUri, Integer.parseInt(price), sellerId);
+                                            ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerId);
                                             productRef.setValue(newProduct).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {

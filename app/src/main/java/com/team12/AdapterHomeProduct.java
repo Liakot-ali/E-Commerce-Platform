@@ -89,6 +89,7 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
                     }
                 });
                 Intent intent = new Intent(activityContext, ActivityProductDetails.class);
+                intent.putExtra("productId", arrayList.get(position).getProductId());
                 intent.putExtra("productPicture", arrayList.get(position).getImage());
                 intent.putExtra("productName", arrayList.get(position).getName());
                 intent.putExtra("productPrice", arrayList.get(position).getPrice());
