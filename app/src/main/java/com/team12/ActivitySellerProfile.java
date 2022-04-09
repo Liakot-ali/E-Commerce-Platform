@@ -54,6 +54,7 @@ public class ActivitySellerProfile extends AppCompatActivity {
     }
 
     private void InitializeAll() {
+        mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
         SellerToolber = findViewById(R.id.SellerProfileToolbar);
@@ -68,6 +69,7 @@ public class ActivitySellerProfile extends AppCompatActivity {
         sellerId = getIntent().getLongExtra("sellerId", 0);
         SellerId.setText(String.valueOf(sellerId));
 
+        //-------Get the seller info from firebase------------
         DatabaseReference sellerProfileRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
         sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
