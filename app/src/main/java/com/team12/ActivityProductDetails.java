@@ -60,6 +60,15 @@ public class ActivityProductDetails extends AppCompatActivity {
 
             }
         });
+        SellerPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityProductDetails.this, ActivitySellerProfile.class);
+                intent.putExtra("sellerId", sellerId);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void InitializeAll() {
