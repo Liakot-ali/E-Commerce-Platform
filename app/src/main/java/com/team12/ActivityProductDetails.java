@@ -50,7 +50,12 @@ public class ActivityProductDetails extends AppCompatActivity {
                 if (loggedIn){
                     Toast.makeText(ActivityProductDetails.this, "Confirm order", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ActivityProductDetails.this, ActivityCustomerAddress.class);
+                    intent.putExtra("productId", productId);
+                    intent.putExtra("productName", productName);
+                    intent.putExtra("sellerId", sellerId);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(ActivityProductDetails.this, "Please login first", Toast.LENGTH_SHORT).show();
                 }
 
             }

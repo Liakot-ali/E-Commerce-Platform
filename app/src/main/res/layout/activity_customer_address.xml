@@ -58,6 +58,7 @@
                 style="@style/textInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:counterMaxLength="@integer/phone_size"
                 app:helperText="*"
                 app:prefixText="@string/prefix_number">
 
@@ -65,6 +66,7 @@
                     android:id="@+id/cusAddressPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="@integer/phone_size"
                     android:hint="Phone No."
                     android:inputType="number"
                     android:textSize="@dimen/normal_text" />
