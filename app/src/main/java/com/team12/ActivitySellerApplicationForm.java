@@ -1,10 +1,13 @@
 package com.team12;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,14 +25,17 @@ import com.squareup.picasso.Picasso;
 
 public class ActivitySellerApplicationForm extends AppCompatActivity {
 
+    private static final int IMAGE_PIC = 1;
+
     Toolbar toolbar;
     EditText SellerName, SellerAddress, SellerPhone, SellerEmail, Description;
     CheckBox checkBox;
     ImageView SellerPicture;
-    Button Submit;
+    Button Submit, addPicture;
 
     String name, phone, email, address, picture, description, userId;
     long sellerId;
+    Uri imageUri = null;
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -52,11 +58,19 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                 Submit.setEnabled(checkBox.isChecked());
             }
         });
+        addPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, IMAGE_PIC);
+            }
+        });
+
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO---check the validity and store the value in Admin->SellerApproval->SellerId
-                Toast.makeText(ActivitySellerApplicationForm.this, "Under construction", Toast.LENGTH_SHORT).show();
+                //TODO---check the validity and store the image in the storage and update database---------
                 name = SellerName.getText().toString();
                 phone = SellerPhone.getText().toString();
                 address = SellerAddress.getText().toString();
@@ -64,11 +78,12 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                 description = Description.getText().toString();
 
 
+                //------generate random sellerId between (1-1000000)--------
                 if (sellerId == 0) {
                     sellerId = (long) (Math.random() * 1000000 + 1);
                 }
 
-                //-------store the application data to the admin section and change the sellerId in user Section-------
+                //-------store the application form data to the admin section and change the sellerId in user Section-------
                 DatabaseReference adminRef = database.getReference("Admin").child("SellerApproval").child(String.valueOf(sellerId));
                 ClassSellerProfile sellerReq = new ClassSellerProfile(sellerId, name, null, phone, email, userId, address, description);
                 adminRef.setValue(sellerReq).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -79,7 +94,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request is submitted to admin.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     finish();
@@ -115,6 +130,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
         Description = findViewById(R.id.Description);
         checkBox = findViewById(R.id.SellerCheckBox);
         Submit = findViewById(R.id.Submit);
+        addPicture = findViewById(R.id.SellerAddPicturebBtn);
 
         name = getIntent().getStringExtra("name");
         phone = getIntent().getStringExtra("phone");
@@ -137,5 +153,16 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
         }
 
         Submit.setEnabled(checkBox.isChecked());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_PIC && resultCode == Activity.RESULT_OK && data.getData() != null) {
+            imageUri = data.getData();
+            Picasso.get().load(imageUri).into(SellerPicture);
+        } else {
+            imageUri = null;
+        }
     }
 }
