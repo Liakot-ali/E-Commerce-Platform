@@ -24,83 +24,86 @@
             android:textSize="@dimen/toolbar_text" />
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/layout_pad"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/sellerPicture"
-            android:layout_width="@dimen/user_picture"
-            android:layout_height="@dimen/user_picture"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_demo_profile_picture_24" />
-
-        <EditText
-            android:id="@+id/SellerName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Seller Name"
-            android:inputType="textPersonName" />
+            android:orientation="vertical"
+            android:padding="@dimen/layout_pad">
 
-        <EditText
+            <ImageView
+                android:id="@+id/sellerPicture"
+                android:layout_width="@dimen/user_picture"
+                android:layout_height="@dimen/user_picture"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_demo_profile_picture_24" />
 
-            android:id="@+id/SellerPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:hint="Seller Phone"
-            android:inputType="phone"
-            android:maxLength="@integer/phone_size" />
+            <EditText
+                android:id="@+id/SellerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Seller Name"
+                android:inputType="textPersonName" />
 
-        <EditText
+            <EditText
 
-            android:id="@+id/SellerEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:hint="Seller Email"
-            android:inputType="textEmailAddress" />
+                android:id="@+id/SellerPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:hint="Seller Phone"
+                android:inputType="phone"
+                android:maxLength="@integer/phone_size" />
 
-        <EditText
+            <EditText
 
-            android:id="@+id/SellerAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:hint="Seller Address"
-            android:inputType="textPostalAddress" />
+                android:id="@+id/SellerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:hint="Seller Email"
+                android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/Description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Description" />
+            <EditText
 
-        <CheckBox
-            android:id="@+id/SellerCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Agree terms and Conditions"
-            android:textColor="@color/black_gray"
-            android:textSize="@dimen/normal_text" />
-    </LinearLayout>
+                android:id="@+id/SellerAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:hint="Seller Address"
+                android:inputType="textPostalAddress" />
 
+            <EditText
+                android:id="@+id/Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Description" />
 
-    <Button
-            android:id="@+id/Submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_gravity="center"
+            <CheckBox
+                android:id="@+id/SellerCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agree terms and Conditions"
+                android:textColor="@color/black_gray"
+                android:textSize="@dimen/normal_text" />
 
-/>
+            <Button
+                android:id="@+id/Submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:enabled="false"
+                android:text="Submit" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
