@@ -3,8 +3,21 @@ package com.team12;
 public class ClassSellerProfile {
     long sellerId;
     String name, picture, phone, email, userId;
+    String address, description;
 
     public ClassSellerProfile() {
+
+    }
+    //---for add and retrieve value from admin->sellerApproval-----
+    public ClassSellerProfile(long sellerId, String name, String picture, String phone, String email, String userId, String address, String description) {
+        this.sellerId = sellerId;
+        this.name = name;
+        this.picture = picture;
+        this.phone = phone;
+        this.email = email;
+        this.userId = userId;
+        this.address = address;
+        this.description = description;
     }
 
     public ClassSellerProfile(long sellerId, String name, String picture, String phone, String email, String userId) {
@@ -15,6 +28,7 @@ public class ClassSellerProfile {
         this.email = email;
         this.userId = userId;
     }
+
 
     public long getSellerId() {
         return sellerId;
@@ -62,5 +76,21 @@ public class ClassSellerProfile {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

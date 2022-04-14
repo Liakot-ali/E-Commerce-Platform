@@ -22,6 +22,9 @@
             android:name=".ActivitySellerProfile"
             android:exported="false" />
         <activity
+            android:name=".ActivitySellerApplicationForm"
+            android:exported="false"/>
+        <activity
             android:name=".ActivityProductDetails"
             android:exported="false" />
         <activity

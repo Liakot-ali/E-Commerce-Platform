@@ -1,11 +1,13 @@
 package com.team12;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,6 +40,10 @@ public class ActivityHome extends AppCompatActivity {
     RecyclerView productView;
 
     ArrayList<ClassAddProduct> arrayList;
+    boolean loggedIn = false;
+    long sellerId;
+    String name, phone, email, address, picture;
+    String userId;
 
     AdapterHomeProduct adapter;
     RecyclerView.LayoutManager layoutManager;
@@ -45,6 +51,7 @@ public class ActivityHome extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +98,74 @@ public class ActivityHome extends AppCompatActivity {
         postProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ActivityHome.this, ActivityPostProduct.class));
+                if(loggedIn){
+                    if(sellerId == 0){
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
+                        dialog.setTitle("You don't have an seller ID");
+                        dialog.setMessage("For posting your product,\nfirst you have to apply for seller.");
+                        dialog.setPositiveButton("Apply", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(ActivityHome.this, ActivitySellerApplicationForm.class);
+                                intent.putExtra("sellerId", sellerId);
+                                intent.putExtra("userId", userId);
+                                intent.putExtra("name", name);
+                                intent.putExtra("phone", phone);
+                                intent.putExtra("email", email);
+                                intent.putExtra("address", address);
+                                intent.putExtra("picture", picture);
+                                intent.putExtra("description", "");
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.setNegativeButton("Cancel", null);
+                        dialog.setCancelable(true);
+                        dialog.show();
+                    }
+                    else if(sellerId > 0 && sellerId <= 1000000){
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
+                        dialog.setTitle("Your are not seller yet");
+                        dialog.setMessage("Check your notification,\nor edit your seller application form");
+                        dialog.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference editRef = database.getReference("Admin").child("SellerApproval").child(String.valueOf(sellerId));
+                                editRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        ClassSellerProfile editSeller = snapshot.getValue(ClassSellerProfile.class);
+                                        Intent intent = new Intent(ActivityHome.this, ActivitySellerApplicationForm.class);
+                                        assert editSeller != null;
+                                        intent.putExtra("sellerId", sellerId);
+                                        intent.putExtra("userId", editSeller.getUserId());
+                                        intent.putExtra("name", editSeller.getName());
+                                        intent.putExtra("phone", editSeller.getPhone());
+                                        intent.putExtra("email", editSeller.getEmail());
+                                        intent.putExtra("address", editSeller.getAddress());
+                                        intent.putExtra("description", editSeller.getDescription());
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                        dialog.setNegativeButton("Cancel", null);
+                        dialog.setCancelable(true);
+                        dialog.show();
+                    }else if(sellerId > 1000000){
+                        Intent intent = new Intent(ActivityHome.this, ActivityPostProduct.class);
+                        startActivity(intent);
+                    }
+                }
+                else{
+                    //TODO--show an alertdialog to login------
+                    Toast.makeText(ActivityHome.this, "You're not login yet", Toast.LENGTH_SHORT).show();
+                }
+//                startActivity(new Intent(ActivityHome.this, ActivityPostProduct.class));
 
             }
         });
@@ -155,11 +229,13 @@ public class ActivityHome extends AppCompatActivity {
             if(FirebaseAuth.getInstance().getCurrentUser() == null){
                 nonUserToolbar.setVisibility(View.VISIBLE);
                 userToolbar.setVisibility(View.GONE);
+                loggedIn = false;
             }else{
                 nonUserToolbar.setVisibility(View.GONE);
                 userToolbar.setVisibility(View.VISIBLE);
+                loggedIn = true;
 
-                String userId = mAuth.getUid();
+                userId = mAuth.getUid();
                 assert userId != null;
                 DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
                 userRef.addValueEventListener(new ValueEventListener() {
@@ -167,9 +243,16 @@ public class ActivityHome extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
                         assert user != null;
-                        userName.setText(user.getName());
+                        name = user.getName();
+                        phone = user.getPhone();
+                        email = user.getEmail();
+                        address = user.getAddress();
+                        sellerId = user.getSellerId();
+                        picture = user.getPicture();
+
+                        userName.setText(name);
                         if (user.getPicture() != null) {
-                            Picasso.get().load(user.getPicture()).into(userPicture);
+                            Picasso.get().load(picture).into(userPicture);
                         } else {
                             userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
                         }
