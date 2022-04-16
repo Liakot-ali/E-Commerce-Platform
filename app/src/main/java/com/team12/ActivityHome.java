@@ -164,7 +164,20 @@ public class ActivityHome extends AppCompatActivity {
                 }
                 else{
                     //TODO--show an alertdialog to login------
-                    Toast.makeText(ActivityHome.this, "You're not login yet", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
+                    dialog.setTitle("You're not log in yet");
+                    dialog.setMessage("Please log in to your account");
+                    dialog.setCancelable(true);
+                    dialog.setPositiveButton("LogIn", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(ActivityHome.this, ActivityLogin.class);
+                            startActivity(intent);
+                        }
+                    });
+                    dialog.setNegativeButton("Cancel", null);
+                    dialog.show();
+//                    Toast.makeText(ActivityHome.this, "You're not login yet", Toast.LENGTH_SHORT).show();
                 }
 //                startActivity(new Intent(ActivityHome.this, ActivityPostProduct.class));
 

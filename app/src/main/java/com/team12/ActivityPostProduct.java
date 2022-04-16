@@ -115,7 +115,7 @@ public class ActivityPostProduct extends AppCompatActivity {
                     //TODO----add the information to the database
                     // 1. Admin product review list
 
-                    // TODO----- add image in the storage
+                    // TODO-----add image in the storage
                     // 1. Product picture
                     String productId;
                     int sellerId = 1234567;
