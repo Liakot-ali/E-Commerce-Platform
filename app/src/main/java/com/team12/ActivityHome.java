@@ -189,7 +189,6 @@ public class ActivityHome extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHome.this, ActivityLogin.class);
                 startActivity(intent);
-                finish();
             }
         });
 
