@@ -52,8 +52,7 @@
                         android:id="@+id/adminHomeProduct"
                         android:layout_width="@dimen/product_picture"
                         android:layout_height="@dimen/product_picture"
-                        android:backgroundTint="?attr/selectableItemBackground"
-                        app:srcCompat="@drawable/ic_product_demo_photo_24" />
+                        android:src="@drawable/ic_product_demo_photo_24" />
 
                     <TextView
                         android:id="@+id/adminHomeProductText"
@@ -77,8 +76,7 @@
                         android:id="@+id/adminHomeSeller"
                         android:layout_width="@dimen/product_picture"
                         android:layout_height="@dimen/product_picture"
-                        android:backgroundTint="?attr/selectableItemBackground"
-                        app:srcCompat="@drawable/ic_product_demo_photo_24" />
+                        android:src="@drawable/ic_product_demo_photo_24" />
 
                     <TextView
                         android:id="@+id/adminHomeSellerText"
@@ -111,8 +109,7 @@
                         android:id="@+id/adminHomeSellerList"
                         android:layout_width="@dimen/product_picture"
                         android:layout_height="@dimen/product_picture"
-                        android:backgroundTint="?attr/selectableItemBackground"
-                        app:srcCompat="@drawable/ic_product_demo_photo_24" />
+                        android:src="@drawable/ic_product_demo_photo_24" />
 
                     <TextView
                         android:id="@+id/adminHomeSellerListText"
@@ -136,8 +133,8 @@
                         android:id="@+id/adminHomeFeedback"
                         android:layout_width="@dimen/product_picture"
                         android:layout_height="@dimen/product_picture"
-                        app:srcCompat="@drawable/ic_product_demo_photo_24"
-                        android:backgroundTint="?attr/selectableItemBackground"/>
+                        android:src="@drawable/ic_product_demo_photo_24"
+                        />
 
                     <TextView
                         android:id="@+id/adminHomeFeedbackText"

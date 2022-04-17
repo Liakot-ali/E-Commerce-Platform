@@ -33,7 +33,8 @@ public class AdminHome extends AppCompatActivity {
         seller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AdminHome.this, "Under Construction", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AdminHome.this, AdminApproveSeller.class);
+                startActivity(intent);
             }
         });
 

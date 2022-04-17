@@ -59,7 +59,15 @@ public class ActivityLogin extends AppCompatActivity {
                 email = signInEmail.getText().toString();
                 password = signInPassword.getText().toString();
 
-                if(email.isEmpty()){
+                if(email.equals("Admin") && password.equals("123456")){
+                    Intent intent = new Intent(ActivityLogin.this, AdminHome.class);
+                    startActivity(intent);
+                    finish();
+                    signInEmail.setText("");
+                    signInPassword.setText("");
+                }
+
+                else if(email.isEmpty()){
                     progressDialog.dismiss();
                     signInEmailLay.setError("Email is empty");
                     signInPasswordLay.setErrorEnabled(false);
