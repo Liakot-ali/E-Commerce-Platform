@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/layout_pad"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/approveSellerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seller Name"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/approveSellerPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_text"
+            android:textColor="@color/black_gray"
+            android:text="Phone Number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/approveSellerApproveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="4"
+        android:text="Approve" />
+
+</LinearLayout>
