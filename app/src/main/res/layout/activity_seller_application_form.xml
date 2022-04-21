@@ -61,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="Seller Name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <EditText
 
@@ -72,7 +73,8 @@
                 android:layout_marginTop="10dp"
                 android:hint="Seller Phone"
                 android:inputType="phone"
-                android:maxLength="@integer/phone_size" />
+                android:maxLength="@integer/phone_size"
+                android:minHeight="48dp" />
 
             <EditText
 
@@ -82,7 +84,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:hint="Seller Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
             <EditText
 
@@ -92,14 +95,16 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:hint="Seller Address"
-                android:inputType="textPostalAddress" />
+                android:inputType="textPostalAddress"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="Description" />
+                android:hint="Description"
+                android:minHeight="48dp" />
 
             <CheckBox
                 android:id="@+id/SellerCheckBox"

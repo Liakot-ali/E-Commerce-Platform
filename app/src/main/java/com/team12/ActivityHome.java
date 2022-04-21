@@ -144,6 +144,7 @@ public class ActivityHome extends AppCompatActivity {
                                         intent.putExtra("address", editSeller.getAddress());
                                         intent.putExtra("picture", editSeller.getPicture());
                                         intent.putExtra("description", editSeller.getDescription());
+                                        intent.putExtra("type", editSeller.getType());
                                         startActivity(intent);
                                     }
 
