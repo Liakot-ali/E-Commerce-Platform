@@ -77,15 +77,28 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                 address = SellerAddress.getText().toString();
                 email = SellerEmail.getText().toString();
                 description = Description.getText().toString();
+
+                long number = 2000000000;
+                if (!phone.isEmpty() && !phone.contains("%") && !phone.contains(":") && !phone.contains(" ") && !phone.contains(".")) {
+                    number = Long.parseLong(phone);
+                }
+
                 if (name.isEmpty()) {
                     SellerName.setError("Name is empty");
                     SellerName.requestFocus();
-                } else if (phone.length() < 10 || phone.length() > 11) {
+                } else if(phone.isEmpty()){
+                    SellerPhone.setError("Phone is empty");
+                    SellerPhone.requestFocus();
+                }
+                else if (phone.length() < 10 || phone.length() > 11 || number > 1999999999 || number < 999999999) {
                     SellerPhone.setError("Invalid phone number");
                     SellerPhone.requestFocus();
                 } else if (address.isEmpty()) {
                     SellerAddress.setError("Invalid address");
                     SellerAddress.requestFocus();
+                } else if (email.isEmpty()) {
+                    SellerEmail.setError("Email is empty");
+                    SellerEmail.requestFocus();
                 } else if (!email.matches(EMAIL_VALIDITY_CHECK)) {
                     SellerEmail.setError("Invalid email");
                     SellerEmail.requestFocus();
