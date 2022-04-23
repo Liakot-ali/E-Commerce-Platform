@@ -2,39 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/inner_pad"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/inner_pad"
+        app:cardElevation="@dimen/inner_pad"
+        android:layout_margin="@dimen/layout_pad"
+        android:backgroundTint="?attr/selectableItemBackground"
+        android:layout_weight="2" >
 
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/approveSellerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seller Name"
-            android:textSize="@dimen/normal_text"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/approveSellerPhone"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/small_text"
-            android:textColor="@color/black_gray"
-            android:text="Phone Number" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/approveSellerApproveBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="4"
-        android:text="Approve" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/approveSellerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seller Name"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="@dimen/inner_pad"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/inner_pad">
+
+                    <TextView
+                        android:id="@+id/approveSellerPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/layout_pad"
+                        android:text="+8801797681231"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black_gray"
+                        android:textSize="@dimen/normal_text" />
+
+                    <TextView
+                        android:id="@+id/approveSellerType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_pad"
+                        android:text="type"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/approveSellerApproveBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/inner_pad"
+                android:layout_weight="4"
+                android:text="Approve" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

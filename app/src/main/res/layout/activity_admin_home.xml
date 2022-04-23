@@ -50,7 +50,7 @@
                     android:id="@+id/adminHomeProduct"
                     android:layout_width="@dimen/product_picture"
                     android:layout_height="@dimen/product_picture"
-                    android:src="@drawable/ic_seller_approval_24" />
+                    android:src="@drawable/ic_product_approval_24" />
 
                 <TextView
                     android:id="@+id/adminHomeProductText"
@@ -75,7 +75,7 @@
                     android:id="@+id/adminHomeSeller"
                     android:layout_width="@dimen/product_picture"
                     android:layout_height="@dimen/product_picture"
-                    android:src="@drawable/ic_product_approval_24" />
+                    android:src="@drawable/ic_seller_approval_24" />
 
                 <TextView
                     android:id="@+id/adminHomeSellerText"
