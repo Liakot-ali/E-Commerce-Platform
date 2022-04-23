@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
     CheckBox checkBox;
     ImageView SellerPicture;
     Button Submit, addPicture;
+    ProgressDialog dialog;
 
     String name, phone, email, address, picture, description, userId, type;
     long sellerId;
@@ -112,11 +114,14 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                     Description.setError("Description is empty");
                     Description.requestFocus();
                 } else {
+
+                    //TODO----check if any seller ID is already register by the email or phone---------
                     //------generate random sellerId between (1-1000000)--------
                     if (sellerId == 0) {
                         sellerId = (long) (Math.random() * 1000000 + 1);
                     }
                     if(imageUri != null){
+                        dialog.show();
                         String id = UUID.randomUUID().toString();
                         StorageReference sRef = storage.getReference("Admin").child("SellerApproval").child(id);
                         sRef.putFile(imageUri).addOnCompleteListener(task -> {
@@ -133,23 +138,22 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                                     }
                                     adminRef.setValue(sellerReq).addOnCompleteListener(task1 -> {
                                         DatabaseReference userRef = database.getReference("User").child(userId).child("Profile").child("sellerId");
-                                        userRef.setValue(sellerId).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task1) {
-                                                if (task1.isSuccessful()) {
-                                                    Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
-                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                    finish();
-                                                    SellerName.setText("");
-                                                    SellerEmail.setText("");
-                                                    SellerPhone.setText("");
-                                                    SellerAddress.setText("");
-                                                    Description.setText("");
-                                                    SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
-                                                } else {
-                                                    Toast.makeText(ActivitySellerApplicationForm.this, task1.getException().toString(), Toast.LENGTH_SHORT).show();
-                                                }
+                                        userRef.setValue(sellerId).addOnCompleteListener(task11 -> {
+                                            if (task11.isSuccessful()) {
+                                                dialog.dismiss();
+                                                Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                finish();
+                                                SellerName.setText("");
+                                                SellerEmail.setText("");
+                                                SellerPhone.setText("");
+                                                SellerAddress.setText("");
+                                                Description.setText("");
+                                                SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                                            } else {
+                                                dialog.dismiss();
+                                                Toast.makeText(ActivitySellerApplicationForm.this, task11.getException().toString(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     });
@@ -157,6 +161,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                             }
                         });
                     }else {
+                        dialog.show();
 
                         //-------store the application form data to the admin section and change the sellerId in user Section-------
                         DatabaseReference adminRef = database.getReference("Admin").child("SellerApproval").child(String.valueOf(sellerId));
@@ -170,23 +175,22 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 DatabaseReference userRef = database.getReference("User").child(userId).child("Profile").child("sellerId");
-                                userRef.setValue(sellerId).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            finish();
-                                            SellerName.setText("");
-                                            SellerEmail.setText("");
-                                            SellerPhone.setText("");
-                                            SellerAddress.setText("");
-                                            Description.setText("");
-                                            SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
-                                        } else {
-                                            Toast.makeText(ActivitySellerApplicationForm.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                        }
+                                userRef.setValue(sellerId).addOnCompleteListener(task12 -> {
+                                    if (task12.isSuccessful()) {
+                                        dialog.dismiss();
+                                        Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        finish();
+                                        SellerName.setText("");
+                                        SellerEmail.setText("");
+                                        SellerPhone.setText("");
+                                        SellerAddress.setText("");
+                                        Description.setText("");
+                                        SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                                    } else {
+                                        dialog.dismiss();
+                                        Toast.makeText(ActivitySellerApplicationForm.this, task12.getException().toString(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -198,6 +202,11 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
     }
 
     private void InitializeAll() {
+
+        dialog = new ProgressDialog(ActivitySellerApplicationForm.this);
+        dialog.setTitle("Please wait");
+        dialog.setMessage("Your request is now in processing");
+        dialog.setCancelable(false);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
