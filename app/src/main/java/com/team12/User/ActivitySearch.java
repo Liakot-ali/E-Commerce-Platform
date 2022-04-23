@@ -1,10 +1,12 @@
-package com.team12;
+package com.team12.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.EditText;
+
+import com.team12.R;
 
 public class ActivitySearch extends AppCompatActivity {
 

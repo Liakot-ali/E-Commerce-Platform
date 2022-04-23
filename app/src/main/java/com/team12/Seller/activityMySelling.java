@@ -1,10 +1,12 @@
-package com.team12;
+package com.team12.Seller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.team12.R;
 
 public class activityMySelling extends AppCompatActivity {
     Toolbar toolbar;

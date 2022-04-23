@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Seller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.team12.R;
 
 
 public class ActivityCustomerDetails extends AppCompatActivity {

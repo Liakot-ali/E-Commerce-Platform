@@ -1,6 +1,5 @@
-package com.team12;
+package com.team12.User;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,6 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+import com.team12.Seller.ActivitySellerProfile;
+import com.team12.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

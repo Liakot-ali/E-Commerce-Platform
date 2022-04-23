@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.User;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -27,6 +27,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.team12.Seller.ActivityPostProduct;
+import com.team12.Seller.ActivitySellerApplicationForm;
+import com.team12.Adapter.AdapterHomeProduct;
+import com.team12.Authentication.ActivityLogin;
+import com.team12.Class.ClassAddProduct;
+import com.team12.Class.ClassSellerProfile;
+import com.team12.Class.ClassUserProfile;
+import com.team12.R;
 
 import java.util.ArrayList;
 

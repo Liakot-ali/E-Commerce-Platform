@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Class;
 
 public class ClassAddProduct {
     String name;

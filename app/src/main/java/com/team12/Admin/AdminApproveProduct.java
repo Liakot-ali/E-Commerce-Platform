@@ -1,14 +1,16 @@
-package com.team12;
+package com.team12.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ActivityMyProfile extends AppCompatActivity {
+import com.team12.R;
+
+public class AdminApproveProduct extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_admin_approve_product);
     }
 }

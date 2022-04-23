@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Class;
 
 public class ClassUserProfile {
     String name, picture, phone, email, address, userId;

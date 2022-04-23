@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.team12.R;
 
 public class ActivityNotification extends AppCompatActivity {
     Toolbar toolbar;

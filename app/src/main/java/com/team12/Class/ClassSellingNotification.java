@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Class;
 
 public class ClassSellingNotification {
     String sellingId, productId, productName, cusName, cusPhone, cusEmail, cusAddress, cusNote;

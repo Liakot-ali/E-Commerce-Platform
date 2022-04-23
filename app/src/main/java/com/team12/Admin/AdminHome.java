@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.team12.R;
 
 public class AdminHome extends AppCompatActivity {
     ImageView product, seller, sellerList, feedback;

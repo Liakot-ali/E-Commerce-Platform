@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.team12.User.ActivityHome;
+import com.team12.Admin.AdminHome;
+import com.team12.R;
 
 public class ActivityLogin extends AppCompatActivity {
 

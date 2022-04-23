@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AdminHome">
+    tools:context=".Admin.AdminHome">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sign_inToolbar2"
