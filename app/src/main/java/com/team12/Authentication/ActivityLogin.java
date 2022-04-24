@@ -63,7 +63,9 @@ public class ActivityLogin extends AppCompatActivity {
                 email = signInEmail.getText().toString();
                 password = signInPassword.getText().toString();
 
+                //-------for login admin---------
                 if(email.equals("Admin") && password.equals("123456")){
+                    progressDialog.dismiss();
                     Intent intent = new Intent(ActivityLogin.this, AdminHome.class);
                     startActivity(intent);
                     finish();

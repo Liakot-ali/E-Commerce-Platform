@@ -82,14 +82,9 @@ public class AdminApproveSeller extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(AdminApproveSeller.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
-        if(arrayList.size() != 0){
-            emptyText.setVisibility(View.GONE);
-        }else{
-            emptyText.setVisibility(View.VISIBLE);
-        }
+
         adapter = new AdapterAdminApproveSeller(AdminApproveSeller.this, arrayList);
         recyclerView.setAdapter(adapter);
 
