@@ -71,39 +71,36 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
         holder.sellerName.setText("Seller Name");
         Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sellerName = "Md Liakot Ali Liton", sellerPicture = null;
-                DatabaseReference sellerProfileRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(arrayList.get(position).getSellerId()));
-                //TODO----get the seller information from firebase--------
-                sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        holder.itemView.setOnClickListener(v -> {
+            String sellerName = "Md Liakot Ali Liton", sellerPicture = null;
+            DatabaseReference sellerProfileRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(arrayList.get(position).getSellerId()));
+            //TODO----get the seller information from firebase--------
+            sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                    }
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(activityContext, error.getMessage(), Toast.LENGTH_SHORT).show();
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(activityContext, error.getMessage(), Toast.LENGTH_SHORT).show();
 
-                    }
-                });
-                Intent intent = new Intent(activityContext, ActivityProductDetails.class);
-                intent.putExtra("productId", arrayList.get(position).getProductId());
-                intent.putExtra("productPicture", arrayList.get(position).getImage());
-                intent.putExtra("productName", arrayList.get(position).getName());
-                intent.putExtra("productPrice", arrayList.get(position).getPrice());
-                intent.putExtra("productDescription", arrayList.get(position).getDescription());
+                }
+            });
+            Intent intent = new Intent(activityContext, ActivityProductDetails.class);
+            intent.putExtra("productId", arrayList.get(position).getProductId());
+            intent.putExtra("productPicture", arrayList.get(position).getImage());
+            intent.putExtra("productName", arrayList.get(position).getName());
+            intent.putExtra("productPrice", arrayList.get(position).getPrice());
+            intent.putExtra("productDescription", arrayList.get(position).getDescription());
 
-                intent.putExtra("sellerName", sellerName);
-                intent.putExtra("sellerId", arrayList.get(position).getSellerId());
-                intent.putExtra("sellerPicture", sellerPicture);
-                activityContext.startActivity(intent);
+            intent.putExtra("sellerName", sellerName);
+            intent.putExtra("sellerId", arrayList.get(position).getSellerId());
+            intent.putExtra("sellerPicture", sellerPicture);
+            activityContext.startActivity(intent);
 
 //                Toast.makeText(activityContext, "Under Construction", Toast.LENGTH_SHORT).show();
-            }
         });
     }
 
