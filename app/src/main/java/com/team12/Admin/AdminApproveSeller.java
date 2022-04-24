@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.team12.Adapter.AdapterAdminApproveSeller;
+import com.team12.Authentication.ActivityLogin;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
@@ -55,6 +60,8 @@ public class AdminApproveSeller extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         arrayList = new ArrayList<>();
 
+        emptyText.setVisibility(View.GONE);
+
         DatabaseReference adminRef = database.getReference("Admin").child("SellerApproval");
 
         adminRef.addValueEventListener(new ValueEventListener() {
@@ -63,6 +70,11 @@ public class AdminApproveSeller extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()){
                     ClassSellerProfile seller = snap.getValue(ClassSellerProfile.class);
                     arrayList.add(seller);
+                }
+                if(arrayList.size() != 0){
+                    emptyText.setVisibility(View.GONE);
+                }else{
+                    emptyText.setVisibility(View.VISIBLE);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -73,7 +85,11 @@ public class AdminApproveSeller extends AppCompatActivity {
 
             }
         });
-
+        if(arrayList.size() != 0){
+            emptyText.setVisibility(View.GONE);
+        }else{
+            emptyText.setVisibility(View.VISIBLE);
+        }
         adapter = new AdapterAdminApproveSeller(AdminApproveSeller.this, arrayList);
         recyclerView.setAdapter(adapter);
 

@@ -3,6 +3,7 @@ package com.team12.Authentication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -120,6 +121,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     private void InitializeAll() {
+
         //----------Firebase------------
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
