@@ -56,6 +56,7 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
         //--TODO---add type(new or edited) for every product-----------
         holder.itemView.setTag(arrayList.get(position));
         holder.name.setText(arrayList.get(position).getName());
+        holder.type.setText(arrayList.get(position).getType());
         holder.price.setText(context.getResources().getString(R.string.tk_sign) + arrayList.get(position).getPrice());
         if(arrayList.get(position).getImage() != null){
             Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
