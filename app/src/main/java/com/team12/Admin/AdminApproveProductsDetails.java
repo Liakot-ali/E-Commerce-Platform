@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.team12.R;
 
-public class AdminApproveProduct extends AppCompatActivity {
+public class AdminApproveProductsDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_approve_product);
+        setContentView(R.layout.activity_admin_approve_product_details);
     }
 }

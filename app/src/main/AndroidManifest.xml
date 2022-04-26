@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".ActivityAdminProductsDetails"
+            android:name=".Admin.AdminApproveProductsDetails"
             android:exported="false" />
         <activity
-            android:name=".Admin.AdminApproveProduct"
+            android:name=".Admin.AdminApproveProductList"
             android:exported="false" />
         <activity
-            android:name=".Admin.AdminApproveSeller"
+            android:name=".Admin.AdminApproveSellerList"
             android:exported="false" />
         <activity
             android:name=".Admin.AdminHome"

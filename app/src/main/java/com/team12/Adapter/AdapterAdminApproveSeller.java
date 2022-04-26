@@ -1,7 +1,7 @@
 package com.team12.Adapter;
 
 import android.content.Context;
-import android.text.Layout;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.team12.Admin.AdminApproveProductsDetails;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
@@ -58,19 +59,20 @@ public class AdapterAdminApproveSeller extends RecyclerView.Adapter<AdapterAdmin
         holder.phone.setText(list.get(holder.getAdapterPosition()).getPhone());
         holder.type.setText(list.get(holder.getAdapterPosition()).getType());
 
-        holder.itemView.setOnClickListener(v -> Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show());
-        holder.approveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long sellerId = 1234567;
-                sellerId = (long) (Math.random() * 9999999 + 1000001); //--Generate sellerId (1000001 - 9999999)---------
-                Toast.makeText(context, "Approve Clicked", Toast.LENGTH_SHORT).show();
-                DatabaseReference adminRef = FirebaseDatabase.getInstance().getReference("Admin").child("SellerApproval").child(String.valueOf(list.get(holder.getAdapterPosition()).getSellerId()));
-                DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
-                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(list.get(holder.getAdapterPosition()).getUserId()).child("Profile").child("sellerId");
+        holder.itemView.setOnClickListener(v -> {
+            Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, AdminApproveProductsDetails.class);
+            context.startActivity(intent);
+        });
+        holder.approveBtn.setOnClickListener(v -> {
+            long sellerId = 1234567;
+            sellerId = (long) (Math.random() * 9999999 + 1000001); //--Generate sellerId (1000001 - 9999999)---------
+            Toast.makeText(context, "Approve Clicked", Toast.LENGTH_SHORT).show();
+            DatabaseReference adminRef = FirebaseDatabase.getInstance().getReference("Admin").child("SellerApproval").child(String.valueOf(list.get(holder.getAdapterPosition()).getSellerId()));
+            DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(list.get(holder.getAdapterPosition()).getUserId()).child("Profile").child("sellerId");
 
 
-            }
         });
     }
 
