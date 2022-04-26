@@ -26,8 +26,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10sp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,16 +59,15 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/inner_pad"
                 android:text="Product Name"
-                android:textSize="@dimen/normal_text"
-                android:textColor="@color/black"/>
-
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
 
             <TextView
                 android:id="@+id/adminProductDetailsDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description"
                 android:padding="@dimen/inner_pad"
+                android:text="Description"
                 android:textSize="@dimen/normal_text" />
 
             <LinearLayout
@@ -97,37 +95,43 @@
                     android:textSize="@dimen/toolbar_text" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/layout_pad"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/adminProductDetailsApproveBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/inner_pad"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Approve">
+
+                </Button>
+
+                <Button
+                    android:id="@+id/adminProductDetailsDenyBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/inner_pad"
+                    android:layout_weight="1"
+                    android:text="Deny">
+
+                </Button>
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </ScrollView>
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       >
-       <Button
-           android:id="@+id/adminProductDetailsApproveBtn"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Aprrove"
-           android:gravity="center"
-           android:layout_marginRight="100sp"
-           android:layout_marginLeft="30sp">
-
-       </Button>
-       <Button
-           android:id="@+id/adminProductDetailsDenyBtn"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:text="Deny"
-           android:layout_marginLeft="50sp">
-
-       </Button>
-
-
-   </LinearLayout>
 
 
 </LinearLayout>

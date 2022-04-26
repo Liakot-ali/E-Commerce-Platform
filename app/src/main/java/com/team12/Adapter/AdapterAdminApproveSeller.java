@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
@@ -50,17 +52,24 @@ public class AdapterAdminApproveSeller extends RecyclerView.Adapter<AdapterAdmin
 
     @Override
     public void onBindViewHolder(@NonNull AdapterAdminApproveSeller.ViewHolder holder, int position) {
-        holder.itemView.setTag(list.get(position));
+        holder.itemView.setTag(list.get(holder.getAdapterPosition()));
 
-        holder.name.setText(list.get(position).getName());
-        holder.phone.setText(list.get(position).getPhone());
-        holder.type.setText(list.get(position).getType());
+        holder.name.setText(list.get(holder.getAdapterPosition()).getName());
+        holder.phone.setText(list.get(holder.getAdapterPosition()).getPhone());
+        holder.type.setText(list.get(holder.getAdapterPosition()).getType());
 
         holder.itemView.setOnClickListener(v -> Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show());
         holder.approveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                long sellerId = 1234567;
+                sellerId = (long) (Math.random() * 9999999 + 1000001); //--Generate sellerId (1000001 - 9999999)---------
                 Toast.makeText(context, "Approve Clicked", Toast.LENGTH_SHORT).show();
+                DatabaseReference adminRef = FirebaseDatabase.getInstance().getReference("Admin").child("SellerApproval").child(String.valueOf(list.get(holder.getAdapterPosition()).getSellerId()));
+                DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(list.get(holder.getAdapterPosition()).getUserId()).child("Profile").child("sellerId");
+
+
             }
         });
     }
