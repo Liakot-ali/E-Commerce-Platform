@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Authentication.ActivityLogin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ActivitySignIn">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/sign_inToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_background"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme">
+
+            <TextView
+                android:id="@+id/sign_inToolbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Sign In"
+                android:textColor="@color/toolbar_text"
+                android:textSize="@dimen/toolbar_text" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_pad">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/signInLogo"
+                    android:layout_width="@dimen/user_picture"
+                    android:layout_height="@dimen/user_picture"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_demo_profile_picture_24"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="@dimen/border_width" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signInEmailLayout"
+                    style="@style/textInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconTint="@color/black"
+                    app:helperText="*">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signInEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_pad"
+                        android:gravity="center_vertical"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:textSize="@dimen/normal_text"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/signInPasswordLayout"
+                    style="@style/textInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="password_toggle"
+                    app:helperText="*">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signInPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/normal_text"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/signInBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Sign In"
+                    android:textSize="@dimen/button_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/signInRememberMe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Remember Me"
+                        android:textColor="@color/black_gray"
+                        android:textSize="@dimen/normal_text" />
+
+                    <TextView
+                        android:id="@+id/signInForgetPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="@color/red"
+                        android:text="Forget Password?"
+                        android:textSize="@dimen/normal_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Don't Have An Account?"
+                        android:textSize="@dimen/normal_text"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/signInSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Sign Up"
+                        android:textColor="@color/purple_500"
+                        android:textSize="@dimen/normal_text"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

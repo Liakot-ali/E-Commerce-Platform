@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250sp"
+    android:layout_height="@dimen/product_height"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="@dimen/inner_pad">
 
     <ImageView
@@ -14,31 +15,31 @@
         android:src="@drawable/ic_product_demo_photo_24" />
 
     <TextView
-        android:id="@+id/homeProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/headline_text"
-        android:textColor="@color/product_price"
-        android:textStyle="bold"
-        android:text="Product_Price" />
-
-    <TextView
         android:id="@+id/homeProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/normal_text"
-        android:textColor="@color/black"
-        android:maxLines="2"
         android:ellipsize="end"
-        android:text="Product_Name" />
+        android:maxLines="2"
+        android:text="Product_Name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text" />
+
+    <TextView
+        android:id="@+id/homeProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product_Price"
+        android:textColor="@color/product_price"
+        android:textSize="@dimen/headline_text"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/homeSellerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/normal_text"
-        android:maxLines="2"
         android:ellipsize="end"
-        android:text="Posted By-\nSeller_Name" />
+        android:maxLines="2"
+        android:text="Posted By-\nSeller_Name"
+        android:textSize="@dimen/normal_text" />
 
 </LinearLayout>

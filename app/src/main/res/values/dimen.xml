@@ -8,15 +8,21 @@
     <dimen name="headline_text">24sp</dimen>
     <dimen name="button_text">17sp</dimen>
 
-    <dimen name="toolbar_icon">40sp</dimen>
+    <dimen name="toolbar_icon">35sp</dimen>
     <dimen name="body_icon">45sp</dimen>
+    <dimen name="item_icon">55sp</dimen>
+
     <dimen name="product_picture">110sp</dimen>
     <dimen name="user_picture">100sp</dimen>
+    <dimen name="toolbar_picture">40sp</dimen>
+
     <dimen name="toolbar_width">?attr/actionBarSize</dimen>
 
     <dimen name="inner_pad">5sp</dimen>
     <dimen name="layout_pad">10sp</dimen>
 
     <dimen name="border_width">2sp</dimen>
+
+    <dimen name="product_height">250sp</dimen>
 
 </resources>

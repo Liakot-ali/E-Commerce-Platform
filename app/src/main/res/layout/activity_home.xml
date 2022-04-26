@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityHome">
+    tools:context=".User.ActivityHome">
 
 
     <RelativeLayout
@@ -20,7 +20,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/homeLogInBtn"
@@ -29,7 +29,7 @@
                 android:layout_gravity="left"
                 android:layout_marginLeft="@dimen/layout_pad"
                 android:text="Log In"
-                android:textSize="@dimen/button_text"/>
+                android:textSize="@dimen/button_text" />
 
             <ImageView
                 android:id="@+id/homeSearchNonUser"
@@ -47,12 +47,12 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homeProfilePicture"
-                android:layout_width="@dimen/toolbar_icon"
-                android:layout_height="@dimen/toolbar_icon"
+                android:layout_width="@dimen/toolbar_picture"
+                android:layout_height="@dimen/toolbar_picture"
                 android:src="@drawable/ic_demo_profile_picture_24"
                 app:civ_border_color="@color/toolbar_text"
                 app:civ_border_width="@dimen/border_width" />
@@ -100,6 +100,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            layout="@layout/fab_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>

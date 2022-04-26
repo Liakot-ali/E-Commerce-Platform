@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/inner_pad"
+        android:weightSum="8">
+        <ImageView
+            android:id="@+id/myOrderProductPicture"
+            android:layout_width="@dimen/item_icon"
+            android:layout_height="@dimen/item_icon"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_product_demo_photo_24" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/myOrderProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:paddingTop="@dimen/inner_pad"
+                android:paddingBottom="@dimen/inner_pad"
+                android:maxLines="1"
+                android:text="Product_Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/myOrderProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product_Price"
+                android:textColor="@color/product_price"
+                android:textSize="@dimen/headline_text"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

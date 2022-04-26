@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">E-Commerce</string>
+    <string name="prefix_number">+880</string>
+    <string name="tk_sign">\u09F3</string>
+
+    <integer name="phone_size">11</integer>
+    <integer name="name_size">25</integer>
+    <integer name="product_name_size">25</integer>
+    <integer name="description_size">50</integer>
 
 </resources>

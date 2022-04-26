@@ -10,10 +10,64 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".ActivityHome"
+            android:name=".ActivityAdminProductsDetails"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Admin.AdminApproveProduct"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminApproveSeller"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminHome"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivitySearch"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityMyOrder"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.activityMySelling"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.ActivitySellerProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.ActivitySellerApplicationForm"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityProductDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.ActivityPostProduct"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.ActivityCustomerDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Seller.ActivityMyProduct"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityMyProfile"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityNotification"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityCustomerAddress"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.ActivitySignup"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.ActivityLogin"
+            android:exported="false" />
+        <activity
+            android:name=".User.ActivityHome"
+            android:exported="false" />
+        <activity
+            android:name=".General.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

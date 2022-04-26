@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.AdminHome">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/sign_inToolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_background"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <TextView
+            android:id="@+id/sign_inToolbarText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Home"
+            android:textColor="@color/toolbar_text"
+            android:textSize="@dimen/toolbar_text" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="-56sp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/adminHomeProductLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_pad"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/adminHomeProduct"
+                    android:layout_width="@dimen/product_picture"
+                    android:layout_height="@dimen/product_picture"
+                    android:src="@drawable/ic_product_approval_24" />
+
+                <TextView
+                    android:id="@+id/adminHomeProductText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Approval Product"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adminHomeSellerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_pad"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/adminHomeSeller"
+                    android:layout_width="@dimen/product_picture"
+                    android:layout_height="@dimen/product_picture"
+                    android:src="@drawable/ic_seller_approval_24" />
+
+                <TextView
+                    android:id="@+id/adminHomeSellerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Approval Seller"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/adminHomeSellerListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_pad"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/adminHomeSellerList"
+                    android:layout_width="@dimen/product_picture"
+                    android:layout_height="@dimen/product_picture"
+                    android:src="@drawable/ic_seller_list_24" />
+
+                <TextView
+                    android:id="@+id/adminHomeSellerListText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Seller List"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adminHomeFeedbackLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_pad"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/adminHomeFeedback"
+                    android:layout_width="@dimen/product_picture"
+                    android:layout_height="@dimen/product_picture"
+                    android:src="@drawable/ic_feedback_24" />
+
+                <TextView
+                    android:id="@+id/adminHomeFeedbackText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Feedback"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

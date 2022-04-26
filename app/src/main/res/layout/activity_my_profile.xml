@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".User.ActivityMyProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myProfileToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolbar_background"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/MyProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textColor="@color/toolbar_text"
+            android:textSize="@dimen/toolbar_text">
+
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/user_picture"
+            android:layout_height="@dimen/user_picture"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_demo_profile_picture_24"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="@dimen/border_width" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/body_icon"
+            android:layout_height="@dimen/body_icon"
+            android:layout_marginStart="60sp"
+            android:layout_marginTop="60sp"
+            android:src="@drawable/ic_add_a_photo_24" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/layout_pad">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/myProfileNameLayout"
+                style="@style/textInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="*">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/myProfileName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="User Name"
+                    android:textSize="@dimen/normal_text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/myProfilePhoneNoLayout"
+                style="@style/textInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/myProfilePhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone No"
+                    android:inputType="number"
+                    android:textSize="@dimen/normal_text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/myProfileEmailLayout"
+                style="@style/textInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                app:helperText="*">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/myProfileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/myProfileAddressLayout"
+                style="@style/textInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/myProfileAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:textSize="@dimen/normal_text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/myProfileSellerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/headline_text"
+                android:text="Seller Id : "
+                android:paddingBottom="@dimen/layout_pad"
+                android:paddingLeft="@dimen/layout_pad"
+                android:textColor="@color/black"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/inner_pad"
+                android:paddingRight="@dimen/inner_pad"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/myProfileUpdateBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/inner_pad"
+                    android:layout_gravity="center"
+                    android:text="Update"
+                    android:textSize="@dimen/button_text" />
+
+                <Button
+                    android:id="@+id/myOrderBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/inner_pad"
+                    android:layout_weight="1"
+                    android:text="My Orders"
+                    android:textSize="@dimen/button_text"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:paddingLeft="@dimen/inner_pad"
+                android:paddingRight="@dimen/inner_pad"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/UpdateBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/inner_pad"
+                    android:text="My Products"
+                    android:textSize="@dimen/button_text" />
+
+                <Button
+                    android:id="@+id/MyProductBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/inner_pad"
+                    android:gravity="center"
+                    android:text="My Selling"
+                    android:textSize="@dimen/button_text" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
