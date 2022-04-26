@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.team12.Admin.AdminApproveProductsDetails;
@@ -66,12 +68,33 @@ public class AdapterAdminApproveSeller extends RecyclerView.Adapter<AdapterAdmin
         });
         holder.approveBtn.setOnClickListener(v -> {
             long sellerId = 1234567;
+            //TODO-------ensure that no seller Id will be duplicate-------
             sellerId = (long) (Math.random() * 9999999 + 1000001); //--Generate sellerId (1000001 - 9999999)---------
-            Toast.makeText(context, "Approve Clicked", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Approve Clicked", Toast.LENGTH_SHORT).show();
+
             DatabaseReference adminRef = FirebaseDatabase.getInstance().getReference("Admin").child("SellerApproval").child(String.valueOf(list.get(holder.getAdapterPosition()).getSellerId()));
             DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(list.get(holder.getAdapterPosition()).getUserId()).child("Profile").child("sellerId");
 
+            ClassSellerProfile delAdmin = new ClassSellerProfile(list.get(holder.getAdapterPosition()).getSellerId(), "Admin", context);
+            long finalSellerId = sellerId;
+            adminRef.removeValue().addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    Toast.makeText(context, "Seller approved", Toast.LENGTH_SHORT).show();
+                    list.remove(holder.getAdapterPosition());
+                    notifyDataSetChanged();
+                    ClassSellerProfile newSeller = new ClassSellerProfile(finalSellerId, delAdmin.getName(), delAdmin.getPicture(), delAdmin.getPhone(), delAdmin.getEmail(), delAdmin.getUserId());
+                    sellerRef.setValue(newSeller).addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()){
+                            userRef.setValue(finalSellerId);
+                        }else{
+                            Toast.makeText(context, task1.getException().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(context, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
         });
     }
@@ -81,3 +104,4 @@ public class AdapterAdminApproveSeller extends RecyclerView.Adapter<AdapterAdmin
         return list.size();
     }
 }
+
