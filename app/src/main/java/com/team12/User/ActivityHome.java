@@ -80,15 +80,16 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayList.clear();
-                for (DataSnapshot snap : snapshot.getChildren()){
+                for (DataSnapshot snap : snapshot.getChildren()) {
                     ClassAddProduct product = snap.getValue(ClassAddProduct.class);
                     arrayList.add(product);
                 }
                 adapter.notifyDataSetChanged();
-                if(adapter.getItemCount()>0){
+                if (adapter.getItemCount() > 0) {
                     emptyText.setVisibility(View.GONE);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -106,8 +107,8 @@ public class ActivityHome extends AppCompatActivity {
         postProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(loggedIn){
-                    if(sellerId == 0){
+                if (loggedIn) {
+                    if (sellerId == 0) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
                         dialog.setTitle("You don't have an seller ID");
                         dialog.setMessage("For posting your product,\nfirst you have to apply for seller.");
@@ -129,8 +130,7 @@ public class ActivityHome extends AppCompatActivity {
                         dialog.setNegativeButton("Cancel", null);
                         dialog.setCancelable(true);
                         dialog.show();
-                    }
-                    else if(sellerId > 0 && sellerId <= 1000000){
+                    } else if (sellerId > 0 && sellerId <= 1000000) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
                         dialog.setTitle("Your are not seller yet");
                         dialog.setMessage("Check your notification,\nor edit your seller application form");
@@ -166,14 +166,13 @@ public class ActivityHome extends AppCompatActivity {
                         dialog.setNegativeButton("Cancel", null);
                         dialog.setCancelable(true);
                         dialog.show();
-                    }else if(sellerId > 1000000){
+                    } else if (sellerId > 1000000) {
                         Intent intent = new Intent(ActivityHome.this, ActivityPostProduct.class);
                         intent.putExtra("SellerId", sellerId);
                         startActivity(intent);
                     }
-                }
-                else{
-                    //TODO--show an alertdialog to login------
+                } else {
+                    //------show an alertdialog to login------
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
                     dialog.setTitle("You're not log in yet");
                     dialog.setMessage("Please log in to your account");
@@ -187,9 +186,7 @@ public class ActivityHome extends AppCompatActivity {
                     });
                     dialog.setNegativeButton("Cancel", null);
                     dialog.show();
-//                    Toast.makeText(ActivityHome.this, "You're not login yet", Toast.LENGTH_SHORT).show();
                 }
-//                startActivity(new Intent(ActivityHome.this, ActivityPostProduct.class));
 
             }
         });
@@ -249,11 +246,11 @@ public class ActivityHome extends AppCompatActivity {
 
         //---------check user is logged in or not-----------
         mAuthListener = firebaseAuth -> {
-            if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 nonUserToolbar.setVisibility(View.VISIBLE);
                 userToolbar.setVisibility(View.GONE);
                 loggedIn = false;
-            }else{
+            } else {
                 nonUserToolbar.setVisibility(View.GONE);
                 userToolbar.setVisibility(View.VISIBLE);
                 loggedIn = true;
@@ -309,7 +306,7 @@ public class ActivityHome extends AppCompatActivity {
     //----for selected menu item---------
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.homeMenuLogOut){
+        if (item.getItemId() == R.id.homeMenuLogOut) {
             Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
             mAuth.addAuthStateListener(mAuthListener);

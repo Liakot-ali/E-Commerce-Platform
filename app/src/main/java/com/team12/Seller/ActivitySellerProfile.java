@@ -84,20 +84,18 @@ public class ActivitySellerProfile extends AppCompatActivity {
                 SellerName.setText(nameSt);
                 SellerPhone.setText(phoneSt);
                 SellerEmail.setText(emailSt);
-                if(pictureSt != null){
+                if (pictureSt != null) {
                     Picasso.get().load(pictureSt).into(SellerPicture);
-                }else{
+                } else {
                     SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ActivitySellerProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 }

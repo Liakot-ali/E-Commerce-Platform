@@ -138,14 +138,14 @@ public class ActivityPostProduct extends AppCompatActivity {
                                             productRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()) {
+                                                    if (task.isSuccessful()) {
                                                         progressDialog.dismiss();
                                                         Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Product added successfully", Snackbar.LENGTH_SHORT).show();
                                                         productName.setText("");
                                                         productPrice.setText("");
                                                         productDescription.setText("");
                                                         productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
-                                                    }else{
+                                                    } else {
                                                         progressDialog.dismiss();
                                                         Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                                                     }

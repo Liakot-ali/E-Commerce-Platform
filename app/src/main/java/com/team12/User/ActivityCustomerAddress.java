@@ -31,7 +31,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView toolbarText;
-    TextInputEditText  name, phoneNo, email, deliveryAddress, note;
+    TextInputEditText name, phoneNo, email, deliveryAddress, note;
     TextInputLayout nameLayout, phoneNoLayout, emailLayout, deliveryAddressLayout, noteLayout;
     Button confirmOrder;
 
@@ -43,7 +43,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase database;
 
-    private static final String EMAIL_CHECK  = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private static final String EMAIL_CHECK = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,51 +57,49 @@ public class ActivityCustomerAddress extends AppCompatActivity {
         confirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameSt, phoneSt, emailSt, addressSt,noteSt;
+                String nameSt, phoneSt, emailSt, addressSt, noteSt;
                 nameSt = name.getText().toString();
                 phoneSt = phoneNo.getText().toString();
                 emailSt = email.getText().toString();
                 addressSt = deliveryAddress.getText().toString();
                 noteSt = note.getText().toString();
 
-                if(nameSt.isEmpty()){
+                if (nameSt.isEmpty()) {
                     nameLayout.setError("Name is empty");
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setErrorEnabled(false);
                     deliveryAddressLayout.setErrorEnabled(false);
-                } else if(phoneSt.isEmpty()){
+                } else if (phoneSt.isEmpty()) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setError("Phone is empty");
                     emailLayout.setErrorEnabled(false);
                     deliveryAddressLayout.setErrorEnabled(false);
-                } else if(phoneSt.length() < 10 || phoneSt.length() > 11){
+                } else if (phoneSt.length() < 10 || phoneSt.length() > 11) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setError("Invalid phone number");
                     emailLayout.setErrorEnabled(false);
                     deliveryAddressLayout.setErrorEnabled(false);
-                } else if(emailSt.isEmpty()){
+                } else if (emailSt.isEmpty()) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setError("Empty email address");
                     deliveryAddressLayout.setErrorEnabled(false);
-                }
-                else if(!emailSt.matches(EMAIL_CHECK)){
+                } else if (!emailSt.matches(EMAIL_CHECK)) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setError("Invalid email address");
                     deliveryAddressLayout.setErrorEnabled(false);
-                } else if(addressSt.isEmpty()){
+                } else if (addressSt.isEmpty()) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setErrorEnabled(false);
                     deliveryAddressLayout.setError("Delivery address is empty");
-                } else if(addressSt.length()<10){
+                } else if (addressSt.length() < 10) {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setErrorEnabled(false);
                     deliveryAddressLayout.setError("Enter valid address");
-                }
-                else{
+                } else {
                     nameLayout.setErrorEnabled(false);
                     phoneNoLayout.setErrorEnabled(false);
                     emailLayout.setErrorEnabled(false);
@@ -114,17 +112,15 @@ public class ActivityCustomerAddress extends AppCompatActivity {
                     sellerRef.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
-                            }else{
+                            } else {
                                 Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
                 }
-
-                //Toast.makeText(ActivityCustomerAddress.this, "Under construction", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -55,7 +55,6 @@ public class ActivityProductDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (loggedIn) {
-                    Toast.makeText(ActivityProductDetails.this, "Confirm order", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ActivityProductDetails.this, ActivityCustomerAddress.class);
                     intent.putExtra("productId", productId);
                     intent.putExtra("productName", productName);
@@ -140,8 +139,6 @@ public class ActivityProductDetails extends AppCompatActivity {
                 loggedIn = true;
             }
         };
-
-
     }
 
     @Override

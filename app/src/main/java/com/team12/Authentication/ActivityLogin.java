@@ -63,35 +63,33 @@ public class ActivityLogin extends AppCompatActivity {
                 password = signInPassword.getText().toString();
 
                 //-------for login admin---------
-                if(email.equals("Admin") && password.equals("123456")){
+                if (email.equals("Admin") && password.equals("123456")) {
                     progressDialog.dismiss();
                     Intent intent = new Intent(ActivityLogin.this, AdminHome.class);
                     startActivity(intent);
                     finish();
                     signInEmail.setText("");
                     signInPassword.setText("");
-                }
-
-                else if(email.isEmpty()){
+                } else if (email.isEmpty()) {
                     progressDialog.dismiss();
                     signInEmailLay.setError("Email is empty");
                     signInPasswordLay.setErrorEnabled(false);
-                }else if(!email.matches(EMAIL_VALIDITY_CHECK)){
+                } else if (!email.matches(EMAIL_VALIDITY_CHECK)) {
                     progressDialog.dismiss();
                     signInEmailLay.setError("Invalid email");
                     signInPasswordLay.setErrorEnabled(false);
-                }else if(password.isEmpty()){
+                } else if (password.isEmpty()) {
                     progressDialog.dismiss();
                     signInEmailLay.setErrorEnabled(false);
                     signInPasswordLay.setError("Password is empty");
-                }else{
+                } else {
                     signInEmailLay.setErrorEnabled(false);
                     signInPasswordLay.setErrorEnabled(false);
 
                     auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            if(rememberMe.isChecked()) {
+                            if (rememberMe.isChecked()) {
                                 //TODO----------put the value in sharedPreferences-------
                                 Toast.makeText(ActivityLogin.this, "Check box clicked", Toast.LENGTH_SHORT).show();
                             }

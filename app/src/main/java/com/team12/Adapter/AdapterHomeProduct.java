@@ -31,7 +31,7 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
     ArrayList<ClassAddProduct> arrayList;
     Context activityContext;
 
-    public AdapterHomeProduct (Context context, ArrayList<ClassAddProduct> list) {
+    public AdapterHomeProduct(Context context, ArrayList<ClassAddProduct> list) {
 
         activityContext = context;
         arrayList = list;

@@ -8,7 +8,7 @@ public class ClassAddProduct {
     long price, sellerId;
     String sellerName, type;
 
-    public ClassAddProduct(){
+    public ClassAddProduct() {
 
     }
 

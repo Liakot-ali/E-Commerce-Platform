@@ -96,7 +96,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                 if (name.isEmpty()) {
                     SellerName.setError("Name is empty");
                     SellerName.requestFocus();
-                } else if(phone.isEmpty()){
+                } else if (phone.isEmpty()) {
                     SellerPhone.setError("Phone is empty");
                     SellerPhone.requestFocus();
                 } else if (phone.length() < 10 || phone.length() > 11 || number > 1999999999 || number < 999999999) {
@@ -121,12 +121,12 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                     if (sellerId == 0) {
                         sellerId = (long) (Math.random() * 1000000 + 1);
                     }
-                    if(imageUri != null){
+                    if (imageUri != null) {
                         dialog.show();
                         String id = UUID.randomUUID().toString();
                         StorageReference sRef = storage.getReference("Admin").child("SellerApproval").child(id);
                         sRef.putFile(imageUri).addOnCompleteListener(task -> {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 sRef.getDownloadUrl().addOnSuccessListener(uri -> {
 
                                     //-------store the application form data to the admin section and change the sellerId in user Section-------
@@ -161,7 +161,7 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                                 });
                             }
                         });
-                    }else {
+                    } else {
                         dialog.show();
 
                         //-------store the application form data to the admin section and change the sellerId in user Section-------
