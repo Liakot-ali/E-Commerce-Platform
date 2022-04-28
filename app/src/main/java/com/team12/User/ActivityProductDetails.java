@@ -1,5 +1,6 @@
 package com.team12.User;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,8 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.team12.Class.ClassSellerProfile;
 import com.team12.Seller.ActivitySellerProfile;
 import com.team12.R;
 
@@ -27,7 +33,7 @@ public class ActivityProductDetails extends AppCompatActivity {
     CircleImageView SellerPicture;
     Button BuyNow;
 
-    String productId, sellerName, productName, description, sellerPicture, productPicture;
+    String productId, sellerName, productName, description, sellerPicture, productPicture = null;
     long sellerId, productPrice;
     Boolean loggedIn = true;
 
@@ -48,14 +54,14 @@ public class ActivityProductDetails extends AppCompatActivity {
         BuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (loggedIn){
+                if (loggedIn) {
                     Toast.makeText(ActivityProductDetails.this, "Confirm order", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ActivityProductDetails.this, ActivityCustomerAddress.class);
                     intent.putExtra("productId", productId);
                     intent.putExtra("productName", productName);
                     intent.putExtra("sellerId", sellerId);
                     startActivity(intent);
-                }else{
+                } else {
                     Toast.makeText(ActivityProductDetails.this, "Please login first", Toast.LENGTH_SHORT).show();
                 }
 
@@ -95,35 +101,46 @@ public class ActivityProductDetails extends AppCompatActivity {
 
         sellerId = getIntent().getLongExtra("sellerId", 0);
         sellerName = getIntent().getStringExtra("sellerName");
-        sellerPicture = getIntent().getStringExtra("sellerPicture");
 
-        authListener = firebaseAuth -> {
-            if(FirebaseAuth.getInstance().getCurrentUser() ==  null){
-                loggedIn = false;
-                //TODO------show a snackbar with login activity link----------
-                Toast.makeText(ActivityProductDetails.this, "Log in first", Toast.LENGTH_SHORT).show();
-            }else{
-                loggedIn = true;
-            }
-        };
-
-
-        if(sellerPicture != null){
-            Picasso.get().load(sellerPicture).into(SellerPicture);
-        }
-        else{
-            SellerPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
-        }
-        if(productPicture != null){
+        //--------set the value of the desired field------------
+        if (productPicture != null) {
             Picasso.get().load(productPicture).into(ProductPicture);
-        }else{
+        } else {
             ProductPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
         }
-
         SellerName.setText(sellerName);
         ProductName.setText(productName);
         ProductPrice.setText(getResources().getString(R.string.tk_sign) + productPrice);
         Discription.setText(description);
+
+        //-----get seller picture from firebase database-----------
+        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassSellerProfile profile = snapshot.getValue(ClassSellerProfile.class);
+                assert profile != null;
+                sellerPicture = profile.getPicture();
+                Picasso.get().load(sellerPicture).into(SellerPicture);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityProductDetails.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //------check the user is log in or not---------
+        authListener = firebaseAuth -> {
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                loggedIn = false;
+                //TODO------show a snackbar with login activity link----------
+                Toast.makeText(ActivityProductDetails.this, "Log in first", Toast.LENGTH_SHORT).show();
+            } else {
+                loggedIn = true;
+            }
+        };
+
 
     }
 

@@ -14,17 +14,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.team12.Class.ClassAddProduct;
+import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
 import java.util.UUID;
@@ -39,6 +45,9 @@ public class ActivityPostProduct extends AppCompatActivity {
     TextInputEditText productName, productPrice, productDescription;
     TextInputLayout productNameLay, productPriceLay, productDescriptionLay;
 
+    long sellerId = 0;
+    String sellerPicture = null;
+    String sellerName = null;
 
     FirebaseDatabase database;
     FirebaseStorage storage;
@@ -75,7 +84,7 @@ public class ActivityPostProduct extends AppCompatActivity {
                 price = productPrice.getText().toString();
                 description = productDescription.getText().toString();
 
-                if(productPictureUri == null) {
+                if (productPictureUri == null) {
                     progressDialog.dismiss();
                     Snackbar snackbar = Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Add product picture", Snackbar.LENGTH_SHORT);
                     snackbar.setAction("Add Image", new View.OnClickListener() {
@@ -87,23 +96,22 @@ public class ActivityPostProduct extends AppCompatActivity {
                         }
                     });
                     snackbar.show();
-                }
-                else if(name.equals("")){
+                } else if (name.equals("")) {
                     progressDialog.dismiss();
                     productNameLay.setError("Product must have a name");
                     productPriceLay.setErrorEnabled(false);
                     productDescriptionLay.setErrorEnabled(false);
-                }else if(price.equals("")){
+                } else if (price.equals("")) {
                     progressDialog.dismiss();
                     productNameLay.setErrorEnabled(false);
                     productPriceLay.setError("Invalid price");
                     productDescriptionLay.setErrorEnabled(false);
-                }else if(description.equals("")){
+                } else if (description.equals("")) {
                     progressDialog.dismiss();
                     productNameLay.setErrorEnabled(false);
                     productPriceLay.setErrorEnabled(false);
                     productDescriptionLay.setError("Write product details");
-                }else{
+                } else {
                     productNameLay.setErrorEnabled(false);
                     productPriceLay.setErrorEnabled(false);
                     productDescriptionLay.setErrorEnabled(false);
@@ -114,35 +122,39 @@ public class ActivityPostProduct extends AppCompatActivity {
                     // TODO-----add image in the storage
                     // 1. Product picture
                     String productId;
-                    int sellerId = 1234567;
                     productId = UUID.randomUUID().toString();
 
                     StorageReference productPicRef = storage.getReference("ProductPicture").child(productId);
                     productPicRef.putFile(productPictureUri).
                             addOnCompleteListener(task -> {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     productPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             String imageUri;
                                             imageUri = uri.toString();
                                             DatabaseReference productRef = database.getReference("Product").child(productId);
-                                            ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerId);
-                                            productRef.setValue(newProduct).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerName, sellerId);
+                                            productRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
-                                                public void onSuccess(Void unused) {
-                                                    progressDialog.dismiss();
-                                                    Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Product added successfully", Snackbar.LENGTH_SHORT).show();
-                                                    productName.setText("");
-                                                    productPrice.setText("");
-                                                    productDescription.setText("");
-                                                    productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()) {
+                                                        progressDialog.dismiss();
+                                                        Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Product added successfully", Snackbar.LENGTH_SHORT).show();
+                                                        productName.setText("");
+                                                        productPrice.setText("");
+                                                        productDescription.setText("");
+                                                        productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                                    }else{
+                                                        progressDialog.dismiss();
+                                                        Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                                 }
                                             });
 
@@ -150,9 +162,9 @@ public class ActivityPostProduct extends AppCompatActivity {
                                     });
                                 }
                             }).addOnFailureListener(e -> {
-                                progressDialog.dismiss();
-                                Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                            });
+                        progressDialog.dismiss();
+                        Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    });
                 }
             }
         });
@@ -160,6 +172,9 @@ public class ActivityPostProduct extends AppCompatActivity {
     }
 
     private void InitializeAll() {
+
+        sellerId = getIntent().getLongExtra("SellerId", 0);
+
         //--------Firebase initialization-------
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -181,6 +196,22 @@ public class ActivityPostProduct extends AppCompatActivity {
         productPriceLay = findViewById(R.id.postProductPriceLayout);
         productDescriptionLay = findViewById(R.id.postProductDescriptionLayout);
 
+        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassSellerProfile seller = snapshot.getValue(ClassSellerProfile.class);
+                assert seller != null;
+                sellerPicture = seller.getPicture();
+                sellerName = seller.getName();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         progressDialog = new ProgressDialog(ActivityPostProduct.this);
         progressDialog.setTitle("Please wait");
         progressDialog.setMessage("We are working on your product");
@@ -195,8 +226,7 @@ public class ActivityPostProduct extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data.getData() != null) {
             productPictureUri = data.getData();
             Picasso.get().load(productPictureUri).into(productPicture);
-        }
-        else{
+        } else {
             productPictureUri = null;
         }
     }

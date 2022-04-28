@@ -51,7 +51,6 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityLogin.this, ActivitySignup.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -101,6 +100,7 @@ public class ActivityLogin extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
+                            progressDialog.dismiss();
                             signInEmail.setText("");
                             signInPassword.setText("");
                         }

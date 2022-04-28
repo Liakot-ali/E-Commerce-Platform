@@ -6,7 +6,7 @@ public class ClassAddProduct {
     String image;
     String productId;
     long price, sellerId;
-    String type;
+    String sellerName, type;
 
     public ClassAddProduct(){
 
@@ -23,12 +23,13 @@ public class ClassAddProduct {
         this.type = type;
     }
 
-    public ClassAddProduct(String productId, String name, String description, String image, long price, long sellerId) {
+    public ClassAddProduct(String productId, String name, String description, String image, long price, String sellerName, long sellerId) {
         this.productId = productId;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
+        this.sellerName = sellerName;
         this.sellerId = sellerId;
     }
 
@@ -86,6 +87,14 @@ public class ClassAddProduct {
 
     public void setSellerId(long sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
     public String getType() {

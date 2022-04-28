@@ -168,6 +168,7 @@ public class ActivityHome extends AppCompatActivity {
                         dialog.show();
                     }else if(sellerId > 1000000){
                         Intent intent = new Intent(ActivityHome.this, ActivityPostProduct.class);
+                        intent.putExtra("SellerId", sellerId);
                         startActivity(intent);
                     }
                 }

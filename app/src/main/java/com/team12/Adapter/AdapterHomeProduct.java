@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.team12.Class.ClassSellerProfile;
 import com.team12.User.ActivityProductDetails;
 import com.team12.Class.ClassAddProduct;
 import com.team12.R;
@@ -68,26 +69,10 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
 
         holder.name.setText(arrayList.get(position).getName());
         holder.price.setText(activityContext.getResources().getString(R.string.tk_sign) + arrayList.get(position).getPrice());
-        holder.sellerName.setText("Seller Name");
+        holder.sellerName.setText(arrayList.get(position).getSellerName());
         Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
 
         holder.itemView.setOnClickListener(v -> {
-            String sellerName = "Md Liakot Ali Liton", sellerPicture = null;
-            DatabaseReference sellerProfileRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(arrayList.get(position).getSellerId()));
-            //TODO----get the seller information from firebase--------
-            sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(activityContext, error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
             Intent intent = new Intent(activityContext, ActivityProductDetails.class);
             intent.putExtra("productId", arrayList.get(position).getProductId());
             intent.putExtra("productPicture", arrayList.get(position).getImage());
@@ -95,12 +80,9 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
             intent.putExtra("productPrice", arrayList.get(position).getPrice());
             intent.putExtra("productDescription", arrayList.get(position).getDescription());
 
-            intent.putExtra("sellerName", sellerName);
+            intent.putExtra("sellerName", arrayList.get(position).getSellerName());
             intent.putExtra("sellerId", arrayList.get(position).getSellerId());
-            intent.putExtra("sellerPicture", sellerPicture);
             activityContext.startActivity(intent);
-
-//                Toast.makeText(activityContext, "Under Construction", Toast.LENGTH_SHORT).show();
         });
     }
 

@@ -47,6 +47,7 @@ public class ActivitySignup extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivitySignup.this, ActivityLogin.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -112,7 +113,7 @@ public class ActivitySignup extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         progressDialog.dismiss();
-                                        //TODO----------put the value in sharedpreferences-------
+                                        //TODO----------put the value in sharedPreferences-------
                                         Intent intent = new Intent(ActivitySignup.this, ActivityHome.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -169,8 +170,5 @@ public class ActivitySignup extends AppCompatActivity {
         progressDialog.setTitle("Please wait..");
         progressDialog.setMessage("We are working on your account");
         progressDialog.setCancelable(false);
-
-
-
     }
 }
