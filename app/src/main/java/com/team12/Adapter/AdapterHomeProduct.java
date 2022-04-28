@@ -69,7 +69,7 @@ public class AdapterHomeProduct extends RecyclerView.Adapter<AdapterHomeProduct.
 
         holder.name.setText(arrayList.get(position).getName());
         holder.price.setText(activityContext.getResources().getString(R.string.tk_sign) + arrayList.get(position).getPrice());
-        holder.sellerName.setText(arrayList.get(position).getSellerName());
+        holder.sellerName.setText("Posted by " + arrayList.get(position).getSellerName());
         Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
 
         holder.itemView.setOnClickListener(v -> {

@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class ActivityHome extends AppCompatActivity {
     ImageView notification, userPicture, searchForUser, searchForNonUser;
     FloatingActionButton postProduct;
     RecyclerView productView;
+    ProgressBar progressBar;
+    LinearLayout progressBarLay;
 
     ArrayList<ClassAddProduct> arrayList;
     boolean loggedIn = false;
@@ -80,22 +84,26 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayList.clear();
+                progressBarLay.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     ClassAddProduct product = snap.getValue(ClassAddProduct.class);
                     arrayList.add(product);
                 }
                 adapter.notifyDataSetChanged();
-                if (adapter.getItemCount() > 0) {
+                progressBarLay.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+                if (arrayList.size() == 0) {
+                    emptyText.setVisibility(View.VISIBLE);
+                } else {
                     emptyText.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
         adapter = new AdapterHomeProduct(ActivityHome.this, arrayList);
         productView.setAdapter(adapter);
 
@@ -236,6 +244,8 @@ public class ActivityHome extends AppCompatActivity {
         postProduct = findViewById(R.id.homeAddProductBtn);
         logInBtn = findViewById(R.id.homeLogInBtn);
 
+        progressBar = findViewById(R.id.homeProgressBar);
+        progressBarLay = findViewById(R.id.homeProgressBarLay);
 
         emptyText = findViewById(R.id.homeEmptyText);
         userName = findViewById(R.id.homeUserName);
@@ -243,6 +253,10 @@ public class ActivityHome extends AppCompatActivity {
         setSupportActionBar(userToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         userToolbar.setTitle("");
+
+        progressBarLay.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        emptyText.setVisibility(View.GONE);
 
         //---------check user is logged in or not-----------
         mAuthListener = firebaseAuth -> {
