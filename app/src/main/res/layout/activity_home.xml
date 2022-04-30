@@ -106,10 +106,10 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="@dimen/product_picture"
-                android:maxHeight="@dimen/product_picture"
-                android:minWidth="@dimen/product_picture"
-                android:minHeight="@dimen/product_picture" />
+                android:maxWidth="@dimen/body_icon"
+                android:maxHeight="@dimen/body_icon"
+                android:minWidth="@dimen/body_icon"
+                android:minHeight="@dimen/body_icon" />
         </LinearLayout>
 
         <TextView
