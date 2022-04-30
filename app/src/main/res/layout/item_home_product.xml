@@ -2,44 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/product_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="@dimen/inner_pad">
+    android:gravity="center">
 
-    <ImageView
-        android:id="@+id/homeProductPicture"
-        android:layout_width="@dimen/product_picture"
-        android:layout_height="@dimen/product_picture"
-        android:src="@drawable/ic_product_demo_photo_24" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/layout_pad"
+        app:cardElevation="@dimen/inner_pad"
+        app:cardCornerRadius="@dimen/inner_pad">
 
-    <TextView
-        android:id="@+id/homeProductName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="Product_Name"
-        android:textColor="@color/black"
-        android:textSize="@dimen/normal_text" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/inner_pad"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/homeProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product_Price"
-        android:textColor="@color/product_price"
-        android:textSize="@dimen/headline_text"
-        android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/homeProductPicture"
+                android:layout_width="@dimen/product_picture"
+                android:layout_height="@dimen/product_picture"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_product_demo_photo_24" />
 
-    <TextView
-        android:id="@+id/homeSellerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="Posted By-\nSeller_Name"
-        android:textSize="@dimen/normal_text" />
+            <TextView
+                android:id="@+id/homeProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Product_Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/homeProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product_Price"
+                android:textColor="@color/product_price"
+                android:textSize="@dimen/headline_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/homeSellerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Posted By-\nSeller_Name"
+                android:textSize="@dimen/normal_text" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
