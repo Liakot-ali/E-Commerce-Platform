@@ -335,6 +335,7 @@ public class ActivityHome extends AppCompatActivity {
         ShowData();
     }
 
+    //-------for pressing double back to exit--------
     long currentTime = 0;
     @Override
     public void onBackPressed() {
