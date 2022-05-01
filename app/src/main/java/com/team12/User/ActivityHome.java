@@ -334,4 +334,15 @@ public class ActivityHome extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
         ShowData();
     }
+
+    long currentTime = 0;
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis() - currentTime < 1000){
+            super.onBackPressed();
+        }else{
+            currentTime = System.currentTimeMillis();
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
