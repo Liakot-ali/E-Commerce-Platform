@@ -20,7 +20,7 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/homeLogInBtn"
@@ -37,7 +37,8 @@
                 android:layout_height="@dimen/toolbar_icon"
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/layout_pad"
-                android:src="@drawable/ic_search_24" />
+                android:src="@drawable/ic_search_24"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.Toolbar
@@ -47,12 +48,13 @@
             android:background="@color/toolbar_background"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/homeProfilePicture"
                 android:layout_width="@dimen/toolbar_picture"
                 android:layout_height="@dimen/toolbar_picture"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_demo_profile_picture_24"
                 app:civ_border_color="@color/toolbar_text"
                 app:civ_border_width="@dimen/border_width" />
@@ -61,6 +63,7 @@
                 android:id="@+id/homeUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
                 android:padding="@dimen/inner_pad"
                 android:text="User_Name"
                 android:textColor="@color/toolbar_text"
@@ -72,6 +75,7 @@
                 android:layout_height="@dimen/toolbar_icon"
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/layout_pad"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_search_24" />
 
             <ImageView
@@ -80,6 +84,7 @@
                 android:layout_height="@dimen/toolbar_icon"
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/layout_pad"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_notifications_24" />
         </androidx.appcompat.widget.Toolbar>
     </RelativeLayout>
