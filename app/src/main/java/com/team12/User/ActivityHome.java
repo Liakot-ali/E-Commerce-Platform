@@ -222,6 +222,13 @@ public class ActivityHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        userName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivityMyProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //------For initialize all things-------------
@@ -324,6 +331,15 @@ public class ActivityHome extends AppCompatActivity {
             Toast.makeText(this, "Log out successful", Toast.LENGTH_SHORT).show();
             mAuth.signOut();
             mAuth.addAuthStateListener(mAuthListener);
+        }
+        else if(item.getItemId() == R.id.homeMenuAboutUs){
+            Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
+        }
+        else if(item.getItemId() == R.id.homeMenuFeedback){
+            Toast.makeText(this, "Feedback clicked", Toast.LENGTH_SHORT).show();
+        }
+        else if(item.getItemId() == R.id.homeMenuHelp){
+            Toast.makeText(this, "Help clicked", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
