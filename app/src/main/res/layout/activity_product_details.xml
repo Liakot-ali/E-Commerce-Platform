@@ -47,17 +47,20 @@
                     android:layout_height="@dimen/body_icon"
                     android:src="@drawable/ic_demo_profile_picture_24"
                     app:civ_border_color="@color/toolbar_text"
-                    app:civ_border_width="@dimen/border_width" />
+                    app:civ_border_width="@dimen/border_width"
+                    android:background="?attr/selectableItemBackgroundBorderless"/>
 
                 <TextView
                     android:id="@+id/ProductDetailsSellerName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:padding="@dimen/inner_pad"
                     android:text="Seller_Name"
                     android:textColor="@color/toolbar_text"
-                    android:textSize="@dimen/toolbar_text" />
+                    android:textSize="@dimen/toolbar_text"
+                    android:background="?attr/selectableItemBackground"/>
 
             </LinearLayout>
 

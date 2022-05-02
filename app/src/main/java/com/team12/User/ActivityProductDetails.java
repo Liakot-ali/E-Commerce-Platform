@@ -74,6 +74,14 @@ public class ActivityProductDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        SellerName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityProductDetails.this, ActivitySellerProfile.class);
+                intent.putExtra("sellerId", sellerId);
+                startActivity(intent);
+            }
+        });
 
     }
 
