@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -90,7 +91,13 @@ public class ActivityProductDetails extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+        //--------show back icon in toolbar----------
         ProductDetailsToolber = findViewById(R.id.productDetailsToolbar);
+        setSupportActionBar(ProductDetailsToolber);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         SellerName = findViewById(R.id.ProductDetailsSellerName);
         ProductDetails = findViewById(R.id.productDetailsToolbarText);
         ProductPrice = findViewById(R.id.ProductDetailsPrice);
@@ -153,5 +160,14 @@ public class ActivityProductDetails extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mAuth.addAuthStateListener(authListener);
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
