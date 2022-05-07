@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,7 +58,12 @@ public class ActivitySellerProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+        //--------show back icon in toolbar----------
         SellerToolber = findViewById(R.id.SellerProfileToolbar);
+        setSupportActionBar(SellerToolber);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         SellerProfile = findViewById(R.id.SellerProfileToolbarText);
         SellerName = findViewById(R.id.SellerProfileName);
         SellerPhone = findViewById(R.id.SellerProfilePhoneNo);
@@ -97,5 +103,14 @@ public class ActivitySellerProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
