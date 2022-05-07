@@ -3,12 +3,14 @@ package com.team12.Seller;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,6 +42,7 @@ public class ActivityPostProduct extends AppCompatActivity {
     final static int PICK_IMAGE = 10;
     Uri productPictureUri = null;
 
+    Toolbar toolbar;
     ImageView productPicture;
     Button addProductPicture, postProduct;
     TextInputEditText productName, productPrice, productDescription;
@@ -179,6 +182,12 @@ public class ActivityPostProduct extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
+        //--------show back icon in toolbar----------
+        toolbar = findViewById(R.id.postProductToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //--------Image------
         productPicture = findViewById(R.id.postProductPicture);
 
@@ -229,5 +238,14 @@ public class ActivityPostProduct extends AppCompatActivity {
         } else {
             productPictureUri = null;
         }
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
