@@ -2,10 +2,12 @@ package com.team12.Authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.team12.R;
 public class ActivitySignup extends AppCompatActivity {
     String EMAIL_VALIDITY_CHECK = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
+    Toolbar toolbar;
     TextInputEditText signUpName, signUpEmail, signUpPassword, signUpConfirmPassword;
     TextInputLayout signUpNameLay, signUpEmailLay, signUpPasswordLay, signUpConfirmPasswordLay;
     Button signUpBtn;
@@ -150,6 +153,13 @@ public class ActivitySignup extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        //--------show back icon in toolbar----------
+        toolbar = findViewById(R.id.signUpoToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //----------TextInputEditText------------
         signUpName = findViewById(R.id.signUpName);
         signUpEmail = findViewById(R.id.signUpEmail);
@@ -170,5 +180,14 @@ public class ActivitySignup extends AppCompatActivity {
         progressDialog.setTitle("Please wait..");
         progressDialog.setMessage("We are working on your account");
         progressDialog.setCancelable(false);
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
