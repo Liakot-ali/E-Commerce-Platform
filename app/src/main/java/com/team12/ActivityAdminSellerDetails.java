@@ -20,10 +20,10 @@ public class ActivityAdminSellerDetails extends AppCompatActivity {
         setContentView(R.layout.activity_admin_seller_details);
 
         InitializeAll();
+
     }
     private void InitializeAll(){
         toolbar = findViewById(R.id.Seller_detailsToolbar);
-        SellerToolbar = findViewById(R.id.Seller_detailsTxt);
 
         SellerName = findViewById(R.id.Seller_detailsName);
         SellerEmail = findViewById(R.id.Seller_detailsEmail);
@@ -33,8 +33,7 @@ public class ActivityAdminSellerDetails extends AppCompatActivity {
 
         SellerDetailsPic = findViewById(R.id.Seller_detailsImg);
 
-        Approve = findViewById(R.id.Seller_detailsApprove);
-        Deny = findViewById(R.id.Seller_detailsDeny);
-
+        Approve = findViewById(R.id.adminSellerDetailsApproveBtn);
+        Deny = findViewById(R.id.adminSellerDetailsDenyBtn);
     }
 }

@@ -107,7 +107,7 @@
                 android:padding="@dimen/layout_pad">
 
                 <Button
-                    android:id="@+id/Seller_detailsApprove"
+                    android:id="@+id/adminSellerDetailsApproveBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/inner_pad"
@@ -118,7 +118,7 @@
                 </Button>
 
                 <Button
-                    android:id="@+id/Seller_detailsDeny"
+                    android:id="@+id/adminSellerDetailsDenyBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/inner_pad"
