@@ -20,7 +20,7 @@
             android:id="@+id/Cus_detailsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/inner_pad"
+            android:padding="5sp"
             android:text="Customer_details"
             android:textColor="@color/toolbar_text"
             android:textSize="@dimen/toolbar_text" />
