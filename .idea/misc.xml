@@ -17,6 +17,7 @@
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_approve_seller.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_home.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_products_details.xml" value="0.27025641025641023" />
+        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_seller_details.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_customer_address.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_customer_details.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_home.xml" value="0.27447916666666666" />
@@ -45,14 +46,12 @@
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/item_search.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/menu/menu.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
-        <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_admin_seller_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_customer_address.xml" value="0.18" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_customer_details.xml" value="0.18" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_home.xml" value="0.12037037037037036" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_item_home_myorder.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_item_home_selling.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_my_order.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_my_product.xml" value="0.25" />
         <entry key="..\:/Users/hp/StudioProjects/E-Commerce-Platform/app/src/main/res/layout/activity_my_profile.xml" value="0.12037037037037036" />
