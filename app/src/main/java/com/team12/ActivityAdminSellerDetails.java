@@ -1,18 +1,20 @@
 package com.team12;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ActivityAdminSellerDetails extends AppCompatActivity {
     Toolbar toolbar;
-    TextView SellerToolbar,SellerName,SellerEmail,SellerPhone,SellerAddress,SellerDescription;
+    TextView SellerName, SellerEmail, SellerPhone, SellerAddress, SellerDescription;
     ImageView SellerDetailsPic;
-    Button Approve,Deny;
+    Button Approve, Deny;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +24,14 @@ public class ActivityAdminSellerDetails extends AppCompatActivity {
         InitializeAll();
 
     }
-    private void InitializeAll(){
+
+    private void InitializeAll() {
+
+        //--------show back icon in toolbar----------
         toolbar = findViewById(R.id.Seller_detailsToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SellerName = findViewById(R.id.Seller_detailsName);
         SellerEmail = findViewById(R.id.Seller_detailsEmail);
@@ -35,5 +43,14 @@ public class ActivityAdminSellerDetails extends AppCompatActivity {
 
         Approve = findViewById(R.id.adminSellerDetailsApproveBtn);
         Deny = findViewById(R.id.adminSellerDetailsDenyBtn);
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
