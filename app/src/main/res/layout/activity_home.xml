@@ -37,8 +37,8 @@
                 android:layout_height="@dimen/toolbar_icon"
                 android:layout_gravity="right"
                 android:layout_marginRight="@dimen/layout_pad"
-                android:src="@drawable/ic_search_24"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_search_24" />
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.Toolbar

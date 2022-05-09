@@ -229,6 +229,20 @@ public class ActivityHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        searchForNonUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivitySearch.class);
+                startActivity(intent);
+            }
+        });
+        searchForUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHome.this, ActivitySearch.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //------For initialize all things-------------
