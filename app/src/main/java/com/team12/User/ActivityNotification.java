@@ -3,20 +3,25 @@ package com.team12.User;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 import com.team12.R;
 
 public class ActivityNotification extends AppCompatActivity {
     Toolbar toolbar;
-    TextView toolbarText,AsBuyer,AsSeller;
-    FrameLayout frame;
-    LinearLayout notificationLay;
+    TabLayout tabLayout;
+    TabItem AsBuyer, AsSeller;
+    TextView toolbarText;
+    ViewPager viewPager;
 
 
     @Override
@@ -24,8 +29,10 @@ public class ActivityNotification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         InitializeAll();
+
     }
-    private void InitializeAll(){
+
+    private void InitializeAll() {
 
         //----------show back button in toolbar--------
         toolbar = findViewById(R.id.notificationToolbar);
@@ -35,11 +42,13 @@ public class ActivityNotification extends AppCompatActivity {
 
         toolbarText = findViewById(R.id.notificationTxt);
 
-        AsBuyer = findViewById(R.id.notificationUser);
+        AsBuyer = findViewById(R.id.notificationBuyer);
         AsSeller = findViewById(R.id.notificationSeller);
+        tabLayout = findViewById(R.id.notificationTab);
+        viewPager = findViewById(R.id.notificationViewpager);
 
-        frame = findViewById(R.id.notificationFrame);
-        notificationLay = findViewById(R.id.notificationBtnLayout);
+
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 

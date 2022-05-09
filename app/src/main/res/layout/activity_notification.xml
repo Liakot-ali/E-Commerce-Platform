@@ -27,42 +27,28 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/notificationBtnLayout"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/notificationTab"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/inner_pad">
 
-        <TextView
-            android:id="@+id/notificationUser"
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/notificationBuyer"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/toolbar_background"
-            android:gravity="center"
-            android:padding="@dimen/inner_pad"
-            android:text="As Buyer"
-            android:textColor="@color/black"
-            android:textSize="@dimen/headline_text" />
+            android:layout_height="wrap_content"
+            android:text="As Buyer" />
 
-        <TextView
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/notificationSeller"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/toolbar_background"
-            android:gravity="center"
-            android:padding="@dimen/inner_pad"
-            android:text="As Seller"
-            android:textColor="@color/black"
-            android:textSize="@dimen/headline_text" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="As Seller" />
 
-    <FrameLayout
-        android:id="@+id/notificationFrame"
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/notificationViewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
