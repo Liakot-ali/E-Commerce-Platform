@@ -1,4 +1,4 @@
-package com.team12;
+package com.team12.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.team12.R;
 
 public class ActivityAdminSellerDetails extends AppCompatActivity {
     Toolbar toolbar;

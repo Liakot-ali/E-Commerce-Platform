@@ -21,7 +21,6 @@ public class ActivitySearch extends AppCompatActivity {
 
         InitializeAll();
 
-
     }
 
     private void InitializeAll() {

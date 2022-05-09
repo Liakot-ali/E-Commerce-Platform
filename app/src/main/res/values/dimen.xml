@@ -24,5 +24,6 @@
     <dimen name="border_width">2sp</dimen>
 
     <dimen name="product_height">250sp</dimen>
+    <dimen name="progress_bar">50sp</dimen>
 
 </resources>

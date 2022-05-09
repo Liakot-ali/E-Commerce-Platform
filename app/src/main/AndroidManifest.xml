@@ -9,50 +9,74 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
+
+        <!--        User activity-->
         <activity
-            android:name=".ActivitySearch"
+            android:name=".User.ActivitySearch"
             android:exported="false" />
         <activity
-            android:name=".ActivityMyOrder"
+            android:name=".User.ActivityMyOrder"
             android:exported="false" />
         <activity
-            android:name=".activityMySelling"
+            android:name=".User.ActivityProductDetails"
             android:exported="false" />
         <activity
-            android:name=".ActivitySellerProfile"
+            android:name=".User.ActivityMyProfile"
             android:exported="false" />
         <activity
-            android:name=".ActivityProductDetails"
+            android:name=".User.ActivityNotification"
             android:exported="false" />
         <activity
-            android:name=".ActivityPostProduct"
+            android:name=".User.ActivityCustomerAddress"
             android:exported="false" />
         <activity
-            android:name=".ActivityCustomerDetails"
+            android:name=".User.ActivityHome"
+            android:exported="false" />
+
+
+        <!--        Authentication activity-->
+        <activity
+            android:name=".Authentication.ActivitySignup"
             android:exported="false" />
         <activity
-            android:name=".ActivityMyProduct"
+            android:name=".Authentication.ActivityLogin"
+            android:exported="false" />
+
+        <!--      Seller activity-->
+        <activity
+            android:name=".Seller.ActivityPostProduct"
             android:exported="false" />
         <activity
-            android:name=".ActivityMyProfile"
+            android:name=".Seller.ActivityCustomerDetails"
             android:exported="false" />
         <activity
-            android:name=".ActivityNotification"
+            android:name=".Seller.ActivityMyProduct"
             android:exported="false" />
         <activity
-            android:name=".ActivityCustomerAddress"
+            android:name=".Seller.activityMySelling"
             android:exported="false" />
         <activity
-            android:name=".ActivitySignup"
+            android:name=".Seller.ActivitySellerProfile"
+            android:exported="false" />
+
+        <!--        Admin activity -->
+        <activity
+            android:name=".Admin.ActivityAdminSellerDetails"
             android:exported="false" />
         <activity
-            android:name=".ActivityLogin"
+            android:name=".Admin.AdminApproveProductList"
             android:exported="false" />
         <activity
-            android:name=".ActivityHome"
+            android:name=".Admin.AdminApproveProductsDetails"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Admin.AdminApproveSellerList"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AdminHome"
+            android:exported="false" />
+        <activity
+            android:name=".General.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
