@@ -10,8 +10,12 @@ import android.view.ViewGroup;
 
 import com.team12.R;
 
+import java.util.ArrayList;
+
 
 public class FragmentBuyer extends Fragment {
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

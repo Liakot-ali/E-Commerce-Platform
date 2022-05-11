@@ -3,6 +3,7 @@ package com.team12.User;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.team12.Adapter.AdapterNotification;
+import com.team12.General.FragmentBuyer;
+import com.team12.General.FragmentSeller;
 import com.team12.R;
 
 public class ActivityNotification extends AppCompatActivity {
@@ -22,6 +26,8 @@ public class ActivityNotification extends AppCompatActivity {
     TabItem AsBuyer, AsSeller;
     TextView toolbarText;
     ViewPager viewPager;
+
+    AdapterNotification adapter;
 
 
     @Override
@@ -49,7 +55,10 @@ public class ActivityNotification extends AppCompatActivity {
 
 
         tabLayout.setupWithViewPager(viewPager);
-
+        adapter = new AdapterNotification(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter.addFragment(new FragmentBuyer(), "As Buyer");
+        adapter.addFragment(new FragmentSeller(), "As Seller");
+        viewPager.setAdapter(adapter);
     }
 
     //---------for back to previous activity-------------
