@@ -51,6 +51,9 @@ public class ActivityPostProduct extends AppCompatActivity {
     long sellerId = 0;
     String sellerPicture = null;
     String sellerName = null;
+    String productId = null;
+    String type, pictureSt = null;
+    String passCode = null;
 
     FirebaseDatabase database;
     FirebaseStorage storage;
@@ -124,50 +127,75 @@ public class ActivityPostProduct extends AppCompatActivity {
 
                     // TODO-----add image in the storage
                     // 1. Product picture
-                    String productId;
-                    productId = UUID.randomUUID().toString();
+                    if (productId == null) {
+                        productId = UUID.randomUUID().toString();
 
-                    StorageReference productPicRef = storage.getReference("ProductPicture").child(productId);
-                    productPicRef.putFile(productPictureUri).
-                            addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    productPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
+                        StorageReference productPicRef = storage.getReference("ProductPicture").child(productId);
+                        productPicRef.putFile(productPictureUri).
+                                addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        productPicRef.getDownloadUrl().addOnSuccessListener(uri -> {
                                             String imageUri;
                                             imageUri = uri.toString();
-                                            DatabaseReference productRef = database.getReference("Product").child(productId);
-                                            ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerName, sellerId);
-                                            productRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        progressDialog.dismiss();
-                                                        Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Product added successfully", Snackbar.LENGTH_SHORT).show();
-                                                        productName.setText("");
-                                                        productPrice.setText("");
-                                                        productDescription.setText("");
-                                                        productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
-                                                    } else {
-                                                        progressDialog.dismiss();
-                                                        Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
+                                            DatabaseReference productRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                                            ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerId, "New");
+                                            productRef.setValue(newProduct).addOnCompleteListener(task1 -> {
+                                                if (task1.isSuccessful()) {
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                                    Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
+                                                    productName.setText("");
+                                                    productPrice.setText("");
+                                                    productDescription.setText("");
+                                                    productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                                } else {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                                                 }
+                                            }).addOnFailureListener(e -> {
+                                                progressDialog.dismiss();
+                                                Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                             });
 
-                                        }
+                                        });
+                                    }
+                                }).addOnFailureListener(e -> {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                });
+                    }else{
+                        DatabaseReference productRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                        ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, pictureSt, Integer.parseInt(price), sellerId, "Edit");
+                        productRef.setValue(newProduct).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                if(passCode.equals("Edit")){
+                                    //-------if the seller edit the product which is already shown in home-------------
+                                    DatabaseReference deleteProductRef = database.getReference("Product").child(productId);
+                                    deleteProductRef.removeValue().addOnCompleteListener(task -> {
+                                        progressDialog.dismiss();
+                                        Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
+                                        productName.setText("");
+                                        productPrice.setText("");
+                                        productDescription.setText("");
+                                        productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
                                     });
+                                }else{
+                                    progressDialog.dismiss();
+                                    Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
+                                    productName.setText("");
+                                    productPrice.setText("");
+                                    productDescription.setText("");
+                                    productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
                                 }
-                            }).addOnFailureListener(e -> {
-                        progressDialog.dismiss();
-                        Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    });
+
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(e -> {
+                            progressDialog.dismiss();
+                            Toast.makeText(ActivityPostProduct.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        });
+                    }
                 }
             }
         });
@@ -177,6 +205,9 @@ public class ActivityPostProduct extends AppCompatActivity {
     private void InitializeAll() {
 
         sellerId = getIntent().getLongExtra("SellerId", 0);
+        productId = getIntent().getStringExtra("ProductId");
+        passCode = getIntent().getStringExtra("PassCode");
+
 
         //--------Firebase initialization-------
         database = FirebaseDatabase.getInstance();
@@ -205,21 +236,54 @@ public class ActivityPostProduct extends AppCompatActivity {
         productPriceLay = findViewById(R.id.postProductPriceLayout);
         productDescriptionLay = findViewById(R.id.postProductDescriptionLayout);
 
-        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
-        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ClassSellerProfile seller = snapshot.getValue(ClassSellerProfile.class);
-                assert seller != null;
-                sellerPicture = seller.getPicture();
-                sellerName = seller.getName();
+        //-----get the details info if the product has to be edit----------
+        if(productId == null){
+            type = "new";
+        }else{
+            DatabaseReference editProductRef;
+            if(passCode.equals("Admin")) {
+                 editProductRef = database.getReference("Admin").child("ApproveProduct").child(productId);
+            }else{
+                editProductRef = database.getReference("Product").child(productId);
             }
+            type ="Edit";
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            editProductRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
+                    assert product != null;
+                    productName.setText(product.getName());
+                    productPrice.setText(String.valueOf(product.getPrice()));
+                    productDescription.setText(product.getDescription());
+                    Picasso.get().load(product.getImage()).into(productPicture);
+
+                    pictureSt = product.getImage();
+                    productPictureUri = Uri.parse(pictureSt);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        //------------get the seller info------------
+//        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+//        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                ClassSellerProfile seller = snapshot.getValue(ClassSellerProfile.class);
+//                assert seller != null;
+//                sellerPicture = seller.getPicture();
+//                sellerName = seller.getName();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         progressDialog = new ProgressDialog(ActivityPostProduct.this);
         progressDialog.setTitle("Please wait");

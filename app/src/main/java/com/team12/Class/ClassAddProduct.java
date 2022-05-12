@@ -13,7 +13,7 @@ public class ClassAddProduct {
     }
 
     //------------for admin section----------
-    public ClassAddProduct(String name, String description, String image, String productId, long price, long sellerId, String type) {
+    public ClassAddProduct(String productId, String name, String description, String image,  long price, long sellerId, String type) {
         this.name = name;
         this.description = description;
         this.image = image;
