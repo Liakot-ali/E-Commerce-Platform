@@ -36,6 +36,7 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/myProfilePicture"
             android:layout_width="@dimen/user_picture"
             android:layout_height="@dimen/user_picture"
             android:layout_gravity="center"
@@ -44,6 +45,7 @@
             app:civ_border_width="@dimen/border_width" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/myProfilePictureAdd"
             android:layout_width="@dimen/body_icon"
             android:layout_height="@dimen/body_icon"
             android:layout_marginStart="60sp"
@@ -150,7 +152,7 @@
                     android:textSize="@dimen/button_text" />
 
                 <Button
-                    android:id="@+id/myOrderBtn"
+                    android:id="@+id/myProfileOrderBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/inner_pad"
