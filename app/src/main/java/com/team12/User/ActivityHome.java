@@ -271,8 +271,8 @@ public class ActivityHome extends AppCompatActivity {
         emptyText = findViewById(R.id.homeEmptyText);
         userName = findViewById(R.id.homeUserName);
 
-//        setSupportActionBar(userToolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setSupportActionBar(userToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        progressBarLay.setVisibility(View.VISIBLE);
@@ -290,38 +290,40 @@ public class ActivityHome extends AppCompatActivity {
                 userToolbar.setVisibility(View.VISIBLE);
                 loggedIn = true;
             }
+
+            if(loggedIn){
+                userId = mAuth.getUid();
+                assert userId != null;
+                DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
+                userRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
+                        assert user != null;
+                        name = user.getName();
+                        phone = user.getPhone();
+                        email = user.getEmail();
+                        address = user.getAddress();
+                        sellerId = user.getSellerId();
+                        picture = user.getPicture();
+
+                        userName.setText(name);
+                        if (user.getPicture() != null) {
+                            Picasso.get().load(picture).into(userPicture);
+                        } else {
+                            userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         };
 
-        if(loggedIn){
-            userId = mAuth.getUid();
-            assert userId != null;
-            DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
-                    assert user != null;
-                    name = user.getName();
-                    phone = user.getPhone();
-                    email = user.getEmail();
-                    address = user.getAddress();
-                    sellerId = user.getSellerId();
-                    picture = user.getPicture();
 
-                    userName.setText(name);
-                    if (user.getPicture() != null) {
-                        Picasso.get().load(picture).into(userPicture);
-                    } else {
-                        userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
 
 
         arrayList = new ArrayList<ClassAddProduct>();
