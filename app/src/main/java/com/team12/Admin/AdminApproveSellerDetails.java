@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.team12.R;
 
-public class ActivityAdminSellerDetails extends AppCompatActivity {
+public class AdminApproveSellerDetails extends AppCompatActivity {
     Toolbar toolbar;
     TextView SellerName, SellerEmail, SellerPhone, SellerAddress, SellerDescription;
     ImageView SellerDetailsPic;

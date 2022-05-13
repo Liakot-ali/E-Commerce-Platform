@@ -61,7 +61,7 @@
 
         <!--        Admin activity -->
         <activity
-            android:name=".Admin.ActivityAdminSellerDetails"
+            android:name=".Admin.AdminApproveSellerDetails"
             android:exported="false" />
         <activity
             android:name=".Admin.AdminApproveProductList"

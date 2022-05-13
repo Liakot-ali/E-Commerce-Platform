@@ -1,6 +1,7 @@
 package com.team12.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.team12.Admin.AdminApproveProductList;
+import com.team12.Admin.AdminApproveProductsDetails;
 import com.team12.Class.ClassAddProduct;
 import com.team12.R;
 
@@ -67,6 +70,15 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, AdminApproveProductsDetails.class);
+                intent.putExtra("ProductName", arrayList.get(position).getName());
+                intent.putExtra("ProductPrice", arrayList.get(position).getPrice());
+                intent.putExtra("Description", arrayList.get(position).getDescription());
+                intent.putExtra("ProductPicture", arrayList.get(position).getImage());
+
+                intent.putExtra("SellerName", arrayList.get(position).getSellerName());
+                intent.putExtra("SellerId", arrayList.get(position).getSellerId());
+                context.startActivity(intent);
             }
         });
 

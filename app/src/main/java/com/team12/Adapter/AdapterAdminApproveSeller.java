@@ -12,11 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.team12.Admin.AdminApproveProductsDetails;
+import com.team12.Admin.AdminApproveSellerDetails;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
@@ -63,7 +61,7 @@ public class AdapterAdminApproveSeller extends RecyclerView.Adapter<AdapterAdmin
 
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, AdminApproveProductsDetails.class);
+            Intent intent = new Intent(context, AdminApproveSellerDetails.class);
             context.startActivity(intent);
         });
         holder.approveBtn.setOnClickListener(v -> {

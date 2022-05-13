@@ -27,8 +27,8 @@ public class AdminApproveSellerList extends AppCompatActivity {
     TextView emptyText;
     RecyclerView recyclerView;
     AdapterAdminApproveSeller adapter;
-    RecyclerView.LayoutManager manager;
 
+    RecyclerView.LayoutManager manager;
     ArrayList<ClassSellerProfile> arrayList;
 
     FirebaseDatabase database;

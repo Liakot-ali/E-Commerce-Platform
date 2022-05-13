@@ -138,6 +138,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+        //----------show back button in toolbar----------
         toolbar = findViewById(R.id.customerAddressToolbarUser);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
