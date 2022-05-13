@@ -13,10 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.team12.Admin.AdminApproveProductList;
 import com.team12.Admin.AdminApproveProductsDetails;
 import com.team12.Class.ClassAddProduct;
+import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 
 import java.util.ArrayList;
@@ -69,7 +77,7 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, AdminApproveProductsDetails.class);
                 intent.putExtra("ProductId", arrayList.get(holder.getAdapterPosition()).getProductId());
                 intent.putExtra("ProductName", arrayList.get(holder.getAdapterPosition()).getName());
@@ -85,7 +93,54 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
         holder.approveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Approve btn clicked", Toast.LENGTH_SHORT).show();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                String productName, productPicture, description,  productId;
+                long productPrice, sellerId;
+                productName = arrayList.get(holder.getAdapterPosition()).getName();
+                productPicture = arrayList.get(holder.getAdapterPosition()).getImage();
+                description = arrayList.get(holder.getAdapterPosition()).getDescription();
+                productId = arrayList.get(holder.getAdapterPosition()).getProductId();
+                productPrice = arrayList.get(holder.getAdapterPosition()).getPrice();
+
+                sellerId = arrayList.get(holder.getAdapterPosition()).getSellerId();
+
+                DatabaseReference sellerRef = FirebaseDatabase.getInstance().getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+                sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ClassSellerProfile profile = snapshot.getValue(ClassSellerProfile.class);
+                        assert profile != null;
+                        ClassAddProduct newProduct = new ClassAddProduct(productId, productName, description, productPicture, productPrice, profile.getName(), sellerId);
+
+                        //TODO------send a notification to the seller------
+                        DatabaseReference adminRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(String.valueOf(System.currentTimeMillis()));
+                        DatabaseReference productRef = database.getReference("Product").child(productId);
+                        DatabaseReference notiRef = database.getReference("User").child(profile.getUserId()).child("Notification").child("SellingNotification");
+
+                        productRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    arrayList.remove(holder.getAdapterPosition());
+                                    notifyDataSetChanged();
+                                    adminRef.removeValue();
+                                    sellerRef.setValue(productId);
+                                    Toast.makeText(context, "Product approved", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(context, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

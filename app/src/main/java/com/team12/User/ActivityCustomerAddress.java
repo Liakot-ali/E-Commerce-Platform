@@ -111,7 +111,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
                     //TODO---store the data in firebase-------
                     String sellingId = UUID.randomUUID().toString();
                     ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt, "Order");
-                    DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling");
+                    DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling").child(String.valueOf(System.currentTimeMillis()));
                     DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(sellingId);
 
                     notiRef.setValue(order).addOnCompleteListener(task -> {
