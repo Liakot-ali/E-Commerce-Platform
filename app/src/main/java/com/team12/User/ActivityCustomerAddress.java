@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.team12.Class.ClassSellerProfile;
 import com.team12.Class.ClassSellingNotification;
 import com.team12.Class.ClassUserProfile;
 import com.team12.R;
@@ -37,7 +40,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
 
     String cusName, cusPhone, cusEmail, cusAddress;
 
-    String productId, productName;
+    String productId, productName, sellerUserId;
     long sellerId;
 
     FirebaseAuth mAuth;
@@ -107,16 +110,21 @@ public class ActivityCustomerAddress extends AppCompatActivity {
 
                     //TODO---store the data in firebase-------
                     String sellingId = UUID.randomUUID().toString();
-                    ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt);
-                    DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling").child(sellingId);
-                    sellerRef.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                    ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt, "Order");
+                    DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling");
+                    DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(sellingId);
+
+                    notiRef.setValue(order).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            sellerRef.setValue(sellingId);
+                            Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ActivityCustomerAddress.this, ActivityHome.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -131,8 +139,12 @@ public class ActivityCustomerAddress extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         toolbar = findViewById(R.id.customerAddressToolbarUser);
-        toolbarText = findViewById(R.id.CustomerAddressToolbarText);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        toolbarText = findViewById(R.id.CustomerAddressToolbarText);
         name = findViewById(R.id.cusAddressName);
         phoneNo = findViewById(R.id.cusAddressPhone);
         email = findViewById(R.id.cusAddressEmail);
@@ -175,6 +187,29 @@ public class ActivityCustomerAddress extends AppCompatActivity {
             }
         });
 
+        //------get the sellerUserId form seller profile-------------
+        DatabaseReference sellerProfileRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+        sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassSellerProfile profile = snapshot.getValue(ClassSellerProfile.class);
+                assert profile != null;
+                sellerUserId = profile.getUserId();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityCustomerAddress.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
