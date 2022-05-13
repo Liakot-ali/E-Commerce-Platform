@@ -1,9 +1,23 @@
 package com.team12.Class;
 
 public class ClassBuyingNotification {
-    String buyingId, sellerId, sellerName, productId, productName;
+    String buyingId, sellerId, sellerName, productId, productName, type;
 
     public ClassBuyingNotification() {
+    }
+
+    public ClassBuyingNotification(String sellerName, String productName) {
+        this.sellerName = sellerName;
+        this.productName = productName;
+    }
+
+    public ClassBuyingNotification(String buyingId, String sellerId, String sellerName, String productId, String productName, String type) {
+        this.buyingId = buyingId;
+        this.sellerId = sellerId;
+        this.sellerName = sellerName;
+        this.productId = productId;
+        this.productName = productName;
+        this.type = type;
     }
 
     public ClassBuyingNotification(String buyingId, String sellerId, String sellerName, String productId, String productName) {
@@ -12,6 +26,11 @@ public class ClassBuyingNotification {
         this.sellerName = sellerName;
         this.productId = productId;
         this.productName = productName;
+    }
+
+    @Override
+    public String toString() {
+        return "Your Order " + productName + " is confirmed by " + sellerName ;
     }
 
     public String getBuyingId() {
