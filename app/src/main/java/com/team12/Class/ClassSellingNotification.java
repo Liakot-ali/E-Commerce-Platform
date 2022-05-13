@@ -1,9 +1,26 @@
 package com.team12.Class;
 
 public class ClassSellingNotification {
-    String sellingId, productId, productName, cusName, cusPhone, cusEmail, cusAddress, cusNote;
+    String sellingId, productId, productName, cusName, cusPhone, cusEmail, cusAddress, cusNote, type;
 
     public ClassSellingNotification() {
+    }
+
+    public ClassSellingNotification(String sellingId, String productId) {
+        this.sellingId = sellingId;
+        this.productId = productId;
+    }
+
+    public ClassSellingNotification(String sellingId, String productId, String productName, String cusName, String cusPhone, String cusEmail, String cusAddress, String cusNote, String type) {
+        this.sellingId = sellingId;
+        this.productId = productId;
+        this.productName = productName;
+        this.cusName = cusName;
+        this.cusPhone = cusPhone;
+        this.cusEmail = cusEmail;
+        this.cusAddress = cusAddress;
+        this.cusNote = cusNote;
+        this.type = type;
     }
 
     public ClassSellingNotification(String sellingId, String productId, String productName, String cusName, String cusPhone, String cusEmail, String cusAddress, String cusNote) {
@@ -15,6 +32,11 @@ public class ClassSellingNotification {
         this.cusEmail = cusEmail;
         this.cusAddress = cusAddress;
         this.cusNote = cusNote;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassSellingNotification{}";
     }
 
     public String getSellingId() {
@@ -79,5 +101,13 @@ public class ClassSellingNotification {
 
     public void setCusNote(String cusNote) {
         this.cusNote = cusNote;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

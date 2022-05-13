@@ -37,10 +37,8 @@ public class FragmentBuyer extends Fragment {
     ArrayList<ClassBuyingNotification> arrayList;
     RecyclerView.LayoutManager manager;
 
-
     FirebaseDatabase database;
     FirebaseAuth auth;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -31,7 +31,6 @@ public class AdminApproveSellerList extends AppCompatActivity {
 
     ArrayList<ClassSellerProfile> arrayList;
 
-
     FirebaseDatabase database;
     FirebaseAuth mAuth;
 
