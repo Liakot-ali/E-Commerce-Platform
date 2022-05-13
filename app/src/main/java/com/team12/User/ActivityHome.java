@@ -84,20 +84,20 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayList.clear();
-                progressBarLay.setVisibility(View.VISIBLE);
+//                progressBarLay.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     ClassAddProduct product = snap.getValue(ClassAddProduct.class);
                     arrayList.add(product);
                 }
-                adapter.notifyDataSetChanged();
-                progressBarLay.setVisibility(View.GONE);
+//                progressBarLay.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 if (arrayList.size() == 0) {
                     emptyText.setVisibility(View.VISIBLE);
                 } else {
                     emptyText.setVisibility(View.GONE);
                 }
+                adapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -271,11 +271,11 @@ public class ActivityHome extends AppCompatActivity {
         emptyText = findViewById(R.id.homeEmptyText);
         userName = findViewById(R.id.homeUserName);
 
-        setSupportActionBar(userToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        userToolbar.setTitle("");
+//        setSupportActionBar(userToolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        progressBarLay.setVisibility(View.VISIBLE);
+//        progressBarLay.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         emptyText.setVisibility(View.GONE);
 
@@ -289,37 +289,39 @@ public class ActivityHome extends AppCompatActivity {
                 nonUserToolbar.setVisibility(View.GONE);
                 userToolbar.setVisibility(View.VISIBLE);
                 loggedIn = true;
-
-                userId = mAuth.getUid();
-                assert userId != null;
-                DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
-                userRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
-                        assert user != null;
-                        name = user.getName();
-                        phone = user.getPhone();
-                        email = user.getEmail();
-                        address = user.getAddress();
-                        sellerId = user.getSellerId();
-                        picture = user.getPicture();
-
-                        userName.setText(name);
-                        if (user.getPicture() != null) {
-                            Picasso.get().load(picture).into(userPicture);
-                        } else {
-                            userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         };
+
+        if(loggedIn){
+            userId = mAuth.getUid();
+            assert userId != null;
+            DatabaseReference userRef = database.getReference("User").child(userId).child("Profile");
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    ClassUserProfile user = snapshot.getValue(ClassUserProfile.class);
+                    assert user != null;
+                    name = user.getName();
+                    phone = user.getPhone();
+                    email = user.getEmail();
+                    address = user.getAddress();
+                    sellerId = user.getSellerId();
+                    picture = user.getPicture();
+
+                    userName.setText(name);
+                    if (user.getPicture() != null) {
+                        Picasso.get().load(picture).into(userPicture);
+                    } else {
+                        userPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(ActivityHome.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
 
         arrayList = new ArrayList<ClassAddProduct>();

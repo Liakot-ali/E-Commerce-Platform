@@ -23,6 +23,7 @@ public class ClassAddProduct {
         this.type = type;
     }
 
+    //----------for add product in home----------
     public ClassAddProduct(String productId, String name, String description, String image, long price, String sellerName, long sellerId) {
         this.productId = productId;
         this.name = name;

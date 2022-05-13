@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.team12.Class.ClassAddProduct;
 import com.team12.Class.ClassSellerProfile;
+import com.team12.Class.ClassSellingNotification;
 import com.team12.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,7 +37,7 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
     ImageView PPicture;
     Button approveBtn, denyBtn;
 
-    String productName, productPicture, description, sellerName, sellerPicture;
+    String productName, productPicture, description, sellerName, sellerPicture, productId, sellerUserId;
     long productPrice, sellerId;
 
     FirebaseDatabase database;
@@ -49,7 +55,30 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
         approveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AdminApproveProductsDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
+
+                //TODO-----------send a notification to the seller as 'your product is approved by admin'--------
+
+                DatabaseReference adminRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(String.valueOf(System.currentTimeMillis()));
+                DatabaseReference productRef = database.getReference("Product").child(productId);
+                DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification");
+                ClassAddProduct newProduct = new ClassAddProduct(productId, productName, description, productPicture, productPrice, sellerName, sellerId);
+
+                productRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            adminRef.removeValue();
+                            sellerRef.setValue(productId);
+                            Intent intent = new Intent(AdminApproveProductsDetails.this, AdminApproveProductList.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(AdminApproveProductsDetails.this, "Product approved", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(AdminApproveProductsDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
         denyBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +100,12 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
 
 
         //------------get the value form previous activity--------------
+        productId = getIntent().getStringExtra("ProductId");
         productName = getIntent().getStringExtra("ProductName");
         productPicture = getIntent().getStringExtra("ProductPicture");
         description = getIntent().getStringExtra("Description");
         productPrice = getIntent().getLongExtra("ProductPrice", 0);
 
-        sellerName = getIntent().getStringExtra("SellerName");
         sellerId = getIntent().getLongExtra("SellerId", 0);
 
         //--------find the Id form layout file------------
@@ -98,6 +127,11 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
                 ClassSellerProfile profile = snapshot.getValue(ClassSellerProfile.class);
                 assert profile != null;
                 sellerPicture = profile.getPicture();
+                sellerUserId = profile.getUserId();
+                sellerName = profile.getName();
+
+                SName.setText(sellerName);
+                Picasso.get().load(sellerPicture).into(SPicture);
             }
 
             @Override
@@ -108,12 +142,12 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
 
         //---------------set the value to the desired field--------------
         Picasso.get().load(productPicture).into(PPicture);
-        Picasso.get().load(sellerPicture).into(SPicture);
+//        Picasso.get().load(sellerPicture).into(SPicture);
 
         name.setText(productName);
         price.setText(getResources().getString(R.string.tk_sign) + String.valueOf(productPrice));
         desc.setText(description);
-        SName.setText(sellerName);
+//        SName.setText(sellerName);
 
     }
 

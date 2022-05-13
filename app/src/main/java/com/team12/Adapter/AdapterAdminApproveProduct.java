@@ -57,11 +57,11 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
     public void onBindViewHolder(@NonNull AdapterAdminApproveProduct.ViewHolder holder, int position) {
 
         //--TODO---add type(new or edited) for every product-----------
-        holder.itemView.setTag(arrayList.get(position));
-        holder.name.setText(arrayList.get(position).getName());
-        holder.type.setText(arrayList.get(position).getType());
-        holder.price.setText(context.getResources().getString(R.string.tk_sign) + arrayList.get(position).getPrice());
-        if(arrayList.get(position).getImage() != null){
+        holder.itemView.setTag(arrayList.get(holder.getAdapterPosition()));
+        holder.name.setText(arrayList.get(holder.getAdapterPosition()).getName());
+        holder.type.setText(arrayList.get(holder.getAdapterPosition()).getType());
+        holder.price.setText(context.getResources().getString(R.string.tk_sign) + arrayList.get(holder.getAdapterPosition()).getPrice());
+        if(arrayList.get(holder.getAdapterPosition()).getImage() != null){
             Picasso.get().load(arrayList.get(position).getImage()).into(holder.picture);
         }else{
             holder.picture.setImageResource(R.drawable.ic_product_demo_photo_24);
@@ -71,13 +71,13 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
             public void onClick(View v) {
                 Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, AdminApproveProductsDetails.class);
-                intent.putExtra("ProductName", arrayList.get(position).getName());
-                intent.putExtra("ProductPrice", arrayList.get(position).getPrice());
-                intent.putExtra("Description", arrayList.get(position).getDescription());
-                intent.putExtra("ProductPicture", arrayList.get(position).getImage());
+                intent.putExtra("ProductId", arrayList.get(holder.getAdapterPosition()).getProductId());
+                intent.putExtra("ProductName", arrayList.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("ProductPrice", arrayList.get(holder.getAdapterPosition()).getPrice());
+                intent.putExtra("Description", arrayList.get(holder.getAdapterPosition()).getDescription());
+                intent.putExtra("ProductPicture", arrayList.get(holder.getAdapterPosition()).getImage());
 
-                intent.putExtra("SellerName", arrayList.get(position).getSellerName());
-                intent.putExtra("SellerId", arrayList.get(position).getSellerId());
+                intent.putExtra("SellerId", arrayList.get(holder.getAdapterPosition()).getSellerId());
                 context.startActivity(intent);
             }
         });
