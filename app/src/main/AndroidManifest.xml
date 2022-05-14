@@ -26,6 +26,7 @@
         <activity
             android:name=".User.ActivityNotification"
             android:exported="false" />
+
         <activity
             android:name=".User.ActivityCustomerAddress"
             android:exported="false" />
@@ -50,6 +51,12 @@
         <activity
             android:name=".Seller.ActivityCustomerDetails"
             android:exported="false" />
+
+        <activity
+            android:name=".Seller.ActivitySellerApplicationForm"
+            android:exported="false" />
+
+
         <activity
             android:name=".Seller.ActivityMyProduct"
             android:exported="false" />
