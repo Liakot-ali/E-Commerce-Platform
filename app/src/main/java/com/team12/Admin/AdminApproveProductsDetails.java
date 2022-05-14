@@ -84,7 +84,21 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
         denyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AdminApproveProductsDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
+                //TODO-----------send a notification to the seller for edit the product--------
+                ClassAddProduct newProduct = new ClassAddProduct(productId, productName, description, productPicture, productPrice, sellerId, "Edit");
+                DatabaseReference adminRef = database.getReference("Admin").child("ProductApprove").child(productId);
+
+                adminRef.setValue(newProduct).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(AdminApproveProductsDetails.this, "Product denyd", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AdminApproveProductsDetails.this, AdminApproveProductList.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+//                Toast.makeText(AdminApproveProductsDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
             }
         });
     }
