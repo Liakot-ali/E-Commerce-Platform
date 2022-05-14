@@ -53,7 +53,7 @@ public class ActivityHome extends AppCompatActivity {
 
     ArrayList<ClassAddProduct> arrayList;
     boolean loggedIn = false;
-    long sellerId;
+    long sellerId = 0;
     String name, phone, email, address, picture;
     String userId;
 
@@ -115,6 +115,7 @@ public class ActivityHome extends AppCompatActivity {
         postProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.addAuthStateListener(mAuthListener);
                 if (loggedIn) {
                     if (sellerId == 0) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityHome.this);
