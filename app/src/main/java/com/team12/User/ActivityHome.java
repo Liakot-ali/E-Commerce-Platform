@@ -219,6 +219,7 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHome.this, ActivityMyProfile.class);
+
                 startActivity(intent);
             }
         });

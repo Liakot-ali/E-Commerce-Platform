@@ -118,6 +118,8 @@ public class ActivitySignup extends AppCompatActivity {
                                         progressDialog.dismiss();
                                         //TODO----------put the value in sharedPreferences-------
                                         Intent intent = new Intent(ActivitySignup.this, ActivityHome.class);
+
+
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);

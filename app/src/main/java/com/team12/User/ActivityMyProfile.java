@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.FileObserver;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.material.textfield.TextInputEditText;
@@ -24,7 +26,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+import com.team12.Class.ClassSellerProfile;
+import com.team12.Class.ClassUserProfile;
 import com.team12.R;
+import com.team12.Seller.ActivitySellerProfile;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -36,10 +42,10 @@ public class ActivityMyProfile extends AppCompatActivity {
      */
     private static final String TAG = "My Profile";
 
-    private FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    String nameUs,emailUs;
+
     //done by  done
 
 
@@ -57,31 +63,39 @@ public class ActivityMyProfile extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
         initialiozationall();
 
-        //done by done
-        Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
-        query.addValueEventListener(new ValueEventListener(){
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    // Retrieving Data from firebase
-                    String name = "" + dataSnapshot1.child("name").getValue();
-                    String emaill = "" + dataSnapshot1.child("email").getValue();
-                   // String image = "" + dataSnapshot1.child("image").getValue();
-                    // setting data to our text view
-                    Name.setText(name);
-                    Email.setText(emaill);
+        //done by jannat
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
-                }
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
+        DatabaseReference MyProfileRef = database.getReference("User").child(String.valueOf(uid)).child("Profile");
+        MyProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassUserProfile UserProfile = snapshot.getValue(ClassUserProfile.class);
+                assert UserProfile != null;
+                nameUs = UserProfile.getName();
+                emailUs = UserProfile.getEmail();
+
+                Name.setText(nameUs);
+              //  SellerPhone.setText(phoneSt);
+                Email.setText(emailUs);
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityMyProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
-    //done by done
+
+
+        //done by jannat
 
 
     }
@@ -92,16 +106,20 @@ public class ActivityMyProfile extends AppCompatActivity {
     private void initialiozationall() {
 
 
-        //done by done
-        firebaseAuth = FirebaseAuth.getInstance();
+        //done by jannat
 
-        // getting current user data
-        firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("User");
-        //done by done
 
+        //--------show back icon in toolbar----------
         MyProfileToolber = findViewById(R.id.myProfileToolbar);
+        setSupportActionBar(MyProfileToolber);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+        //done by jannat
+
+
         myProfile =findViewById(R.id.MyProfile);
         Name=findViewById(R.id.myProfileName);
         NameLayout= findViewById(R.id.myProfileNameLayout);
@@ -115,5 +133,13 @@ public class ActivityMyProfile extends AppCompatActivity {
         AddPicture=findViewById(R.id.myProfilePictureAdd);
         Update=findViewById(R.id.myProfileUpdateBtn);
         MyOrder=findViewById(R.id.myProfileOrderBtn);
+    }
+   //----for back previous activity--------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
