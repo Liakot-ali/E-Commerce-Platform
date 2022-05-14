@@ -1,14 +1,18 @@
 package com.team12.User;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.FileObserver;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +40,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityMyProfile extends AppCompatActivity {
 
+
+    final static int PICK_IMAGE = 10;
+    Uri UserPictureUri = null;
+
     //done by done
     /**
      * Tag to use to {@link Log} messages
@@ -43,6 +51,7 @@ public class ActivityMyProfile extends AppCompatActivity {
     private static final String TAG = "My Profile";
 
     FirebaseAuth mAuth;
+    FirebaseStorage storage;
     FirebaseDatabase database;
     String nameUs,emailUs;
 
@@ -63,14 +72,14 @@ public class ActivityMyProfile extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile);
         initialiozationall();
 
-        //done by jannat
+
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
+
+        //done by jannat for retrive data from firebase
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
-
         DatabaseReference MyProfileRef = database.getReference("User").child(String.valueOf(uid)).child("Profile");
         MyProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,10 +104,35 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
 
-        //done by jannat
+        //done by jannat retrive data from firebase
+
+        //------for clicked-------//
+        AddPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_IMAGE);
+            }
+        });
+
+        Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameus,emailus,phoneus,addressus,sellerIdus;
+                nameus = Name.getText().toString();
+                emailus = Email.getText().toString();
+                phoneus=Phone.getText().toString();
+                addressus=Address.getText().toString();
+
+
+            }
+        });
 
 
     }
+
+
 
 
     //for initialize everything
@@ -134,6 +168,19 @@ public class ActivityMyProfile extends AppCompatActivity {
         Update=findViewById(R.id.myProfileUpdateBtn);
         MyOrder=findViewById(R.id.myProfileOrderBtn);
     }
+
+    //--------For add the image in the imageView----------
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data.getData() != null) {
+            UserPictureUri = data.getData();
+            Picasso.get().load(UserPictureUri).into(MyPicture);
+        } else {
+            UserPictureUri = null;
+        }
+    }
+
    //----for back previous activity--------
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
