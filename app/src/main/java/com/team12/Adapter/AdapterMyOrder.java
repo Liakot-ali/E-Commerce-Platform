@@ -53,7 +53,7 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
 
         holder.itemView.setTag(arrayList.get(holder.getAdapterPosition()));
         holder.productName.setText(arrayList.get(holder.getAdapterPosition()).getProductName());
-        holder.sellerName.setText(arrayList.get(holder.getAdapterPosition()).getSellerName());
+        holder.sellerName.setText("Seller " + arrayList.get(holder.getAdapterPosition()).getSellerName());
         holder.price.setText(arrayList.get(holder.getAdapterPosition()).getProductPrice());
         Picasso.get().load(arrayList.get(holder.getAdapterPosition()).getProductPicture()).into(holder.picture);
 

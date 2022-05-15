@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -57,8 +58,8 @@ public class ActivityMyOrder extends AppCompatActivity {
         //-----------show back button in the toolbar----------
         toolbar = findViewById(R.id.myOrderToolbar);
         setSupportActionBar(toolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         recyclerView = findViewById(R.id.myOrderRecyclerView);
@@ -99,5 +100,14 @@ public class ActivityMyOrder extends AppCompatActivity {
 
         adapter = new AdapterMyOrder(ActivityMyOrder.this, arrayList);
         recyclerView.setAdapter(adapter);
+    }
+
+    //----for back previous activity--------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

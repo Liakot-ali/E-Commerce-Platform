@@ -36,6 +36,8 @@ import com.team12.Class.ClassUserProfile;
 import com.team12.R;
 import com.team12.Seller.ActivitySellerProfile;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ActivityMyProfile extends AppCompatActivity {
@@ -53,17 +55,19 @@ public class ActivityMyProfile extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseStorage storage;
     FirebaseDatabase database;
-    String nameUs,emailUs;
+    String nameUs, emailUs;
 
     //done by  done
 
 
     Toolbar MyProfileToolber;
     TextView myProfile;
-    TextInputEditText Name ,Phone,Email,Address;
-    TextInputLayout NameLayout,PhoneLayout,EmailLayout,AddressLayout;
-    CircleImageView MyPicture,AddPicture;
-    Button Update,MyOrder;
+    TextInputEditText Name, Phone, Email, Address;
+    TextInputLayout NameLayout, PhoneLayout, EmailLayout, AddressLayout;
+    CircleImageView MyPicture, AddPicture;
+    Button Update, MyOrder;
+
+    String uid;
 
 
     @Override
@@ -71,6 +75,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
         initialiozationall();
+        OnClick();
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -79,7 +84,7 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
         //done by jannat for retrive data from firebase
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uid = FirebaseAuth.getInstance().getUid();
         DatabaseReference MyProfileRef = database.getReference("User").child(String.valueOf(uid)).child("Profile");
         MyProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,7 +95,7 @@ public class ActivityMyProfile extends AppCompatActivity {
                 emailUs = UserProfile.getEmail();
 
                 Name.setText(nameUs);
-              //  SellerPhone.setText(phoneSt);
+                //  SellerPhone.setText(phoneSt);
                 Email.setText(emailUs);
 
             }
@@ -100,8 +105,6 @@ public class ActivityMyProfile extends AppCompatActivity {
                 Toast.makeText(ActivityMyProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
 
         //done by jannat retrive data from firebase
@@ -119,11 +122,11 @@ public class ActivityMyProfile extends AppCompatActivity {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameus,emailus,phoneus,addressus,sellerIdus;
+                String nameus, emailus, phoneus, addressus, sellerIdus;
                 nameus = Name.getText().toString();
                 emailus = Email.getText().toString();
-                phoneus=Phone.getText().toString();
-                addressus=Address.getText().toString();
+                phoneus = Phone.getText().toString();
+                addressus = Address.getText().toString();
 
 
             }
@@ -132,7 +135,16 @@ public class ActivityMyProfile extends AppCompatActivity {
 
     }
 
-
+    private void OnClick() {
+        MyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMyProfile.this, ActivityMyOrder.class);
+                intent.putExtra("UserId", uid);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     //for initialize everything
@@ -150,23 +162,22 @@ public class ActivityMyProfile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         //done by jannat
 
 
-        myProfile =findViewById(R.id.MyProfile);
-        Name=findViewById(R.id.myProfileName);
-        NameLayout= findViewById(R.id.myProfileNameLayout);
-        Phone=findViewById(R.id.myProfilePhoneNo);
-        PhoneLayout= findViewById(R.id.myProfilePhoneNoLayout);
-        Email=findViewById(R.id.myProfileEmail);
-        EmailLayout= findViewById(R.id.myProfileEmailLayout);
-        Address=findViewById(R.id.myProfileAddress);
-        AddressLayout= findViewById(R.id.myProfileAddressLayout);
-        MyPicture =findViewById(R.id.myProfilePicture);
-        AddPicture=findViewById(R.id.myProfilePictureAdd);
-        Update=findViewById(R.id.myProfileUpdateBtn);
-        MyOrder=findViewById(R.id.myProfileOrderBtn);
+        myProfile = findViewById(R.id.MyProfile);
+        Name = findViewById(R.id.myProfileName);
+        NameLayout = findViewById(R.id.myProfileNameLayout);
+        Phone = findViewById(R.id.myProfilePhoneNo);
+        PhoneLayout = findViewById(R.id.myProfilePhoneNoLayout);
+        Email = findViewById(R.id.myProfileEmail);
+        EmailLayout = findViewById(R.id.myProfileEmailLayout);
+        Address = findViewById(R.id.myProfileAddress);
+        AddressLayout = findViewById(R.id.myProfileAddressLayout);
+        MyPicture = findViewById(R.id.myProfilePicture);
+        AddPicture = findViewById(R.id.myProfilePictureAdd);
+        Update = findViewById(R.id.myProfileUpdateBtn);
+        MyOrder = findViewById(R.id.myProfileOrderBtn);
     }
 
     //--------For add the image in the imageView----------
@@ -181,7 +192,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         }
     }
 
-   //----for back previous activity--------
+    //----for back previous activity--------
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

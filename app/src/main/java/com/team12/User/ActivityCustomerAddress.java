@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.team12.Class.ClassAddProduct;
+import com.team12.Class.ClassMyOrder;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.Class.ClassSellingNotification;
 import com.team12.Class.ClassUserProfile;
@@ -39,9 +41,12 @@ public class ActivityCustomerAddress extends AppCompatActivity {
     Button confirmOrder;
 
     String cusName, cusPhone, cusEmail, cusAddress;
-
+    String userId;
     String productId, productName, sellerUserId;
-    long sellerId;
+    long sellerId ;
+
+    String productPicture, sellerName, sellerEmail, sellerPhone;
+    long productPrice;
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -111,23 +116,33 @@ public class ActivityCustomerAddress extends AppCompatActivity {
                     //TODO---store the data in firebase-------
                     String sellingId = String.valueOf(System.currentTimeMillis());
                     ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt, "Order");
+                    ClassMyOrder newMyOrder = new ClassMyOrder(productName, getResources().getString(R.string.tk_sign) + productPrice, productPicture, sellerName, sellerPhone, sellerEmail);
                     DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling").child(sellingId);
                     DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(sellingId);
+                    DatabaseReference orderRef = database.getReference("User").child(userId).child("MyOrders").child(sellingId);
 
                     notiRef.setValue(order).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            sellerRef.setValue(sellingId);
-                            Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ActivityCustomerAddress.this, ActivityHome.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                            orderRef.setValue(newMyOrder).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        sellerRef.setValue(sellingId);
+                                        Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ActivityCustomerAddress.this, ActivityHome.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+                                        Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         } else {
                             Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-
                 }
             }
         });
@@ -163,7 +178,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
         productId = getIntent().getStringExtra("productId");
         productName = getIntent().getStringExtra("productName");
         sellerId = getIntent().getLongExtra("sellerId", 0);
-        String userId = mAuth.getUid();
+        userId = mAuth.getUid();
         assert userId != null;
         DatabaseReference profileRef = database.getReference("User").child(userId).child("Profile");
         profileRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -188,6 +203,22 @@ public class ActivityCustomerAddress extends AppCompatActivity {
             }
         });
 
+        DatabaseReference productRef = database.getReference("Product").child(productId);
+        productRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
+                assert product != null;
+                productPrice = product.getPrice();
+                productPicture = product.getImage();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityCustomerAddress.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //------get the sellerUserId form seller profile-------------
         DatabaseReference sellerProfileRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
         sellerProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -196,6 +227,9 @@ public class ActivityCustomerAddress extends AppCompatActivity {
                 ClassSellerProfile profile = snapshot.getValue(ClassSellerProfile.class);
                 assert profile != null;
                 sellerUserId = profile.getUserId();
+                sellerName = profile.getName();
+                sellerPhone = profile.getPhone();
+                sellerEmail = profile.getEmail();
             }
 
             @Override
