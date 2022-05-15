@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
-
-        <!--        User activity-->
+        <activity
+            android:name=".User.ActivityMyOrderDetails"
+            android:exported="false" />
+        <!-- User activity -->
         <activity
             android:name=".User.ActivitySearch"
             android:exported="false" />
@@ -26,37 +28,31 @@
         <activity
             android:name=".User.ActivityNotification"
             android:exported="false" />
-
         <activity
             android:name=".User.ActivityCustomerAddress"
             android:exported="false" />
         <activity
             android:name=".User.ActivityHome"
-            android:hardwareAccelerated="false"
-            android:exported="false" />
+            android:exported="false"
+            android:hardwareAccelerated="false" />
 
+        <!-- Authentication activity -->
 
-        <!--        Authentication activity-->
         <activity
             android:name=".Authentication.ActivitySignup"
             android:exported="false" />
         <activity
             android:name=".Authentication.ActivityLogin"
-            android:exported="false" />
-
-        <!--      Seller activity-->
+            android:exported="false" /> <!-- Seller activity -->
         <activity
             android:name=".Seller.ActivityPostProduct"
             android:exported="false" />
         <activity
             android:name=".Seller.ActivityCustomerDetails"
             android:exported="false" />
-
         <activity
             android:name=".Seller.ActivitySellerApplicationForm"
             android:exported="false" />
-
-
         <activity
             android:name=".Seller.ActivityMyProduct"
             android:exported="false" />
@@ -65,9 +61,7 @@
             android:exported="false" />
         <activity
             android:name=".Seller.ActivitySellerProfile"
-            android:exported="false" />
-
-        <!--        Admin activity -->
+            android:exported="false" /> <!-- Admin activity -->
         <activity
             android:name=".Admin.AdminApproveSellerDetails"
             android:exported="false" />
