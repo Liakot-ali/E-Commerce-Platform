@@ -18,20 +18,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/inner_pad"
-            android:weightSum="8">
+            android:weightSum="10">
 
             <ImageView
                 android:id="@+id/myOrderProductPicture"
                 android:layout_width="@dimen/item_icon"
                 android:layout_height="@dimen/item_icon"
                 android:layout_gravity="center"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:src="@drawable/ic_product_demo_photo_24" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:orientation="vertical">
 
                 <TextView
@@ -47,15 +47,24 @@
                     android:textSize="@dimen/normal_text" />
 
                 <TextView
-                    android:id="@+id/myOrderProductPrice"
+                    android:id="@+id/myOrderSellerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Product_Price"
-                    android:textColor="@color/product_price"
-                    android:textSize="@dimen/headline_text"
-                    android:textStyle="bold" />
+                    android:text="Seller Name"
+                    android:textSize="@dimen/small_text"
+                    />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/myOrderProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:text="Price"
+                android:textColor="@color/red"
+                android:textSize="@dimen/headline_text"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
