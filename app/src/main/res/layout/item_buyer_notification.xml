@@ -14,4 +14,8 @@
         android:padding="@dimen/inner_pad"
         android:textColor="@color/normal_text"
         android:text="TextView" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/black"/>
 </LinearLayout>

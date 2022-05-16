@@ -23,7 +23,7 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="@dimen/body_icon"
                 android:layout_height="@dimen/body_icon"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

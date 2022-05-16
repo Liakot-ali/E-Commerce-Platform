@@ -15,7 +15,6 @@ public class ClassBuyingNotification {
     public ClassBuyingNotification(String notiInfo, String notiTag){
         this.notiInfo = notiInfo;
         this.notiTag = notiTag;
-
     }
 
     //--------for 'ConfirmOrder' and 'SellerResponse' notification------------
@@ -46,16 +45,22 @@ public class ClassBuyingNotification {
     @Override
     public String toString() {
         String text = "";
-        if (notiTag.equals("ConfirmOrder")) {
-            text = "You're ordering a product " + notiInfo;
-        }else if(notiTag.equals("SellerResponse")){
-            text = "Seller is response in your product " + notiInfo;
-        }else if(notiTag.equals("ApplySeller")){
-            text = "Your seller request is processing. Edit your info here";
-        }else if(notiTag.equals("ApproveSeller")){
-            text = "Your seller request is approved. Your seller ID is " + notiInfo;
-        }else if(notiTag.equals("DenySeller")){
-            text = "Your seller request is denyed. Edit your info here";
+        switch (notiTag) {
+            case "ConfirmOrder":
+                text = "You're ordering a product " + notiInfo;
+                break;
+            case "SellerResponse":
+                text = "Seller is response in your product " + notiInfo;
+                break;
+            case "ApplySeller":
+                text = "Your seller request is processing. Edit your info here";
+                break;
+            case "ApproveSeller":
+                text = "Your seller request is approved. Your seller ID is " + notiInfo;
+                break;
+            case "DenySeller":
+                text = "Your seller request is denyed. Edit your info here";
+                break;
         }
         return text;
     }
@@ -162,5 +167,22 @@ public class ClassBuyingNotification {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+
+    public String getNotiInfo() {
+        return notiInfo;
+    }
+
+    public void setNotiInfo(String notiInfo) {
+        this.notiInfo = notiInfo;
+    }
+
+    public String getNotiTag() {
+        return notiTag;
+    }
+
+    public void setNotiTag(String notiTag) {
+        this.notiTag = notiTag;
     }
 }

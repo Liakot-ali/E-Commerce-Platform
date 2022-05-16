@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +57,11 @@ public class FragmentBuyer extends Fragment {
         emptyText = view.findViewById(R.id.buyerNotificationEmptyText);
         progressBar = view.findViewById(R.id.buyerNotificationProgressBar);
 
-        manager = new LinearLayoutManager(getContext());
+        manager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
+        adapter = new AdapterBuyerNotification(arrayList);
+        recyclerView.setAdapter(adapter);
 
         emptyText.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -72,13 +75,14 @@ public class FragmentBuyer extends Fragment {
                     ClassBuyingNotification newNoti = snap.getValue(ClassBuyingNotification.class);
                     arrayList.add(newNoti);
                 }
+                adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
                 if(arrayList.size() != 0){
                     emptyText.setVisibility(View.GONE);
                 }else{
                     emptyText.setVisibility(View.VISIBLE);
                 }
-                adapter.notifyDataSetChanged();
+                Log.e("ArraySize", "onDataChange: " + "size " + arrayList.size() );
             }
 
             @Override
@@ -87,8 +91,7 @@ public class FragmentBuyer extends Fragment {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        adapter = new AdapterBuyerNotification(arrayList);
-        recyclerView.setAdapter(adapter);
+
 
         return view;
     }

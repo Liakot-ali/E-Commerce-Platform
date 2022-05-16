@@ -39,7 +39,7 @@ public class AdapterBuyerNotification extends RecyclerView.Adapter<AdapterBuyerN
     public AdapterBuyerNotification.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view  = inflater.inflate(R.layout.item_buyer_notification, parent, false);
-        return new ViewHolder(view);
+        return new AdapterBuyerNotification.ViewHolder(view);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AdapterBuyerNotification extends RecyclerView.Adapter<AdapterBuyerN
                 notiInfo = "Nothing";
                 break;
         }
-        String textSt = new ClassBuyingNotification(notiTag, notiInfo).toString();
+        String textSt = new ClassBuyingNotification(notiInfo, notiTag).toString();
         holder.text.setText(textSt);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
