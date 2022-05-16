@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.team12.Class.ClassAddProduct;
+import com.team12.Class.ClassBuyingNotification;
 import com.team12.Class.ClassMyOrder;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.Class.ClassSellingNotification;
@@ -117,26 +118,27 @@ public class ActivityCustomerAddress extends AppCompatActivity {
                     String sellingId = String.valueOf(System.currentTimeMillis());
                     ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt, "Order");
                     ClassMyOrder newMyOrder = new ClassMyOrder(productName, getResources().getString(R.string.tk_sign) + productPrice, productPicture, sellerName, sellerPhone, sellerEmail);
+                    ClassBuyingNotification newBuy = new ClassBuyingNotification(productName, getResources().getString(R.string.tk_sign) + productPrice, productPicture, sellerName, sellerPhone, sellerEmail, "ConfirmOrder");
+
                     DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MySelling").child(sellingId);
                     DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(sellingId);
+                    DatabaseReference buyerNotiRef = database.getReference("User").child(userId).child("Notification").child("BuyingNotification").child(sellingId);
                     DatabaseReference orderRef = database.getReference("User").child(userId).child("MyOrders").child(sellingId);
 
                     notiRef.setValue(order).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            orderRef.setValue(newMyOrder).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        sellerRef.setValue(sellingId);
-                                        Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(ActivityCustomerAddress.this, ActivityHome.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
-                                        finish();
-                                    }else{
-                                        Toast.makeText(ActivityCustomerAddress.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
+                            orderRef.setValue(newMyOrder).addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()){
+                                    sellerRef.setValue(sellingId);
+                                    buyerNotiRef.setValue(newBuy);
+                                    Toast.makeText(ActivityCustomerAddress.this, "Order successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ActivityCustomerAddress.this, ActivityHome.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    Toast.makeText(ActivityCustomerAddress.this, task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } else {

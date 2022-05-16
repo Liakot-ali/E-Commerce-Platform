@@ -1,52 +1,87 @@
 package com.team12.Class;
 
 public class ClassBuyingNotification {
-    String buyingId, sellerId, sellerName, productId, productName, type;
+    String productName, productPrice, productPicture, sellerName, sellerPhone, sellerEmail;
+    String sellerPicture, address, description, sellerId, userId, type;
+    String tag;
+
+    String notiInfo, notiTag;
+
 
     public ClassBuyingNotification() {
     }
 
-    public ClassBuyingNotification(String sellerName, String productName) {
-        this.sellerName = sellerName;
-        this.productName = productName;
+    //-----------for show notification text----
+    public ClassBuyingNotification(String notiInfo, String notiTag){
+        this.notiInfo = notiInfo;
+        this.notiTag = notiTag;
+
     }
 
-    public ClassBuyingNotification(String buyingId, String sellerId, String sellerName, String productId, String productName, String type) {
-        this.buyingId = buyingId;
-        this.sellerId = sellerId;
-        this.sellerName = sellerName;
-        this.productId = productId;
+    //--------for 'ConfirmOrder' and 'SellerResponse' notification------------
+    public ClassBuyingNotification(String productName, String productPrice, String productPicture, String sellerName, String sellerPhone, String sellerEmail, String tag) {
         this.productName = productName;
+        this.productPrice = productPrice;
+        this.productPicture = productPicture;
+        this.sellerName = sellerName;
+        this.sellerPhone = sellerPhone;
+        this.sellerEmail = sellerEmail;
+        this.tag = tag;
+    }
+
+    //-------------for 'ApplySeller', 'ApproveSeller' and 'DenySeller' notification------------
+    public ClassBuyingNotification(String sellerName, String sellerPhone, String sellerEmail, String sellerPicture, String address, String description, String sellerId, String userId, String type, String tag) {
+        this.sellerName = sellerName;
+        this.sellerPhone = sellerPhone;
+        this.sellerEmail = sellerEmail;
+        this.sellerPicture = sellerPicture;
+        this.address = address;
+        this.description = description;
+        this.sellerId = sellerId;
+        this.userId = userId;
         this.type = type;
-    }
-
-    public ClassBuyingNotification(String buyingId, String sellerId, String sellerName, String productId, String productName) {
-        this.buyingId = buyingId;
-        this.sellerId = sellerId;
-        this.sellerName = sellerName;
-        this.productId = productId;
-        this.productName = productName;
+        this.tag = tag;
     }
 
     @Override
     public String toString() {
-        return "Your Order " + productName + " is confirmed by " + sellerName ;
+        String text = "";
+        if (notiTag.equals("ConfirmOrder")) {
+            text = "You're ordering a product " + notiInfo;
+        }else if(notiTag.equals("SellerResponse")){
+            text = "Seller is response in your product " + notiInfo;
+        }else if(notiTag.equals("ApplySeller")){
+            text = "Your seller request is processing. Edit your info here";
+        }else if(notiTag.equals("ApproveSeller")){
+            text = "Your seller request is approved. Your seller ID is " + notiInfo;
+        }else if(notiTag.equals("DenySeller")){
+            text = "Your seller request is denyed. Edit your info here";
+        }
+        return text;
     }
 
-    public String getBuyingId() {
-        return buyingId;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setBuyingId(String buyingId) {
-        this.buyingId = buyingId;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getSellerId() {
-        return sellerId;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public void setSellerId(String sellerId) {
-        this.sellerId = sellerId;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getProductPicture() {
+        return productPicture;
+    }
+
+    public void setProductPicture(String productPicture) {
+        this.productPicture = productPicture;
     }
 
     public String getSellerName() {
@@ -57,19 +92,75 @@ public class ClassBuyingNotification {
         this.sellerName = sellerName;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getSellerPhone() {
+        return sellerPhone;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setSellerPhone(String sellerPhone) {
+        this.sellerPhone = sellerPhone;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getSellerEmail() {
+        return sellerEmail;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setSellerEmail(String sellerEmail) {
+        this.sellerEmail = sellerEmail;
+    }
+
+    public String getSellerPicture() {
+        return sellerPicture;
+    }
+
+    public void setSellerPicture(String sellerPicture) {
+        this.sellerPicture = sellerPicture;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

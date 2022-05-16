@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+import com.team12.Class.ClassBuyingNotification;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.R;
 import com.team12.User.ActivityHome;
@@ -132,16 +133,21 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                                     //-------store the application form data to the admin section and change the sellerId in user Section-------
                                     DatabaseReference adminRef = database.getReference("Admin").child("SellerApproval").child(String.valueOf(sellerId));
                                     ClassSellerProfile sellerReq = new ClassSellerProfile();
+                                    ClassBuyingNotification notification ;
                                     if (type == null) {
                                         sellerReq = new ClassSellerProfile(sellerId, name, uri.toString(), phone, email, userId, address, description, "new");
+                                        notification = new ClassBuyingNotification(name, phone, email, picture, address, description, String.valueOf(sellerId), userId, "new", "ApplySeller");
                                     } else {
                                         sellerReq = new ClassSellerProfile(sellerId, name, uri.toString(), phone, email, userId, address, description, "edit");
+                                        notification = new ClassBuyingNotification(name, phone, email, picture, address, description, String.valueOf(sellerId), userId, "edit", "ApplySeller");
                                     }
                                     adminRef.setValue(sellerReq).addOnCompleteListener(task1 -> {
                                         DatabaseReference userRef = database.getReference("User").child(userId).child("Profile").child("sellerId");
+                                        DatabaseReference notiRef = database.getReference("User").child(userId).child("Notification").child("BuyingNotification").child(String.valueOf(System.currentTimeMillis()));
                                         userRef.setValue(sellerId).addOnCompleteListener(task11 -> {
                                             if (task11.isSuccessful()) {
                                                 dialog.dismiss();
+                                                notiRef.setValue(notification);
                                                 Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -167,18 +173,23 @@ public class ActivitySellerApplicationForm extends AppCompatActivity {
                         //-------store the application form data to the admin section and change the sellerId in user Section-------
                         DatabaseReference adminRef = database.getReference("Admin").child("SellerApproval").child(String.valueOf(sellerId));
                         ClassSellerProfile sellerReq = new ClassSellerProfile();
+                        ClassBuyingNotification notification;
                         if (type == null) {
+                            notification = new ClassBuyingNotification(name, phone, email, String.valueOf(getResources().getDrawable(R.drawable.ic_demo_profile_picture_24)), address, description, String.valueOf(sellerId), userId, "new", "ApplySeller");
                             sellerReq = new ClassSellerProfile(sellerId, name, null, phone, email, userId, address, description, "new");
                         } else {
-                            sellerReq = new ClassSellerProfile(sellerId, name, null, phone, email, userId, address, description, "edit");
+                            notification = new ClassBuyingNotification(name, phone, email, null, address, description, String.valueOf(sellerId), userId, "edit", "ApplySeller");
+                            sellerReq = new ClassSellerProfile(sellerId, name, String.valueOf(getResources().getDrawable(R.drawable.ic_demo_profile_picture_24)), phone, email, userId, address, description, "edit");
                         }
                         adminRef.setValue(sellerReq).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 DatabaseReference userRef = database.getReference("User").child(userId).child("Profile").child("sellerId");
+                                DatabaseReference notiRef = database.getReference("User").child(userId).child("Notification").child("BuyingNotification").child(String.valueOf(System.currentTimeMillis()));
                                 userRef.setValue(sellerId).addOnCompleteListener(task12 -> {
                                     if (task12.isSuccessful()) {
                                         dialog.dismiss();
+                                        notiRef.setValue(notification);
                                         Toast.makeText(ActivitySellerApplicationForm.this, "Your seller request has been successfully submitted to admin", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(ActivitySellerApplicationForm.this, ActivityHome.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

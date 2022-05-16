@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.google.firebase.database.core.Context;
+
 import java.util.ArrayList;
 
 public class AdapterNotification extends FragmentPagerAdapter {
 
     ArrayList<Fragment> fragmentList = new ArrayList<>();
     ArrayList<String> fragmentTitle = new ArrayList<>();
+    Context context;
 
 
     public AdapterNotification(@NonNull FragmentManager fm, int behavior) {

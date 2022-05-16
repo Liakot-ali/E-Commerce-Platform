@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.team12.Adapter.AdapterBuyerNotification;
 import com.team12.Class.ClassBuyingNotification;
 import com.team12.R;
+import com.team12.User.ActivityNotification;
 
 import java.util.ArrayList;
 
@@ -39,11 +40,6 @@ public class FragmentBuyer extends Fragment {
 
     FirebaseDatabase database;
     FirebaseAuth auth;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +83,7 @@ public class FragmentBuyer extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -94,6 +91,5 @@ public class FragmentBuyer extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
-
     }
 }
