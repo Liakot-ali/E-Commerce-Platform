@@ -5,29 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/inner_pad"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/searchProductName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Product_Name"
-        android:textColor="@color/black"
-        android:textSize="@dimen/normal_text" />
 
-    <TextView
-        android:id="@+id/searchProductPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product_Price"
-        android:textColor="@color/product_price"
-        android:textSize="@dimen/headline_text"
-        android:textStyle="bold" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="@dimen/inner_pad"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/inner_pad">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/inner_pad">
+
+            <TextView
+                android:id="@+id/searchProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Product_Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
+                android:id="@+id/searchProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product_Price"
+                android:textColor="@color/product_price"
+                android:textSize="@dimen/headline_text"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

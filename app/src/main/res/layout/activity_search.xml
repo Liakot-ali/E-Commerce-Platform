@@ -10,7 +10,14 @@
     <EditText
         android:id="@+id/searchText"
         android:layout_width="match_parent"
-        android:layout_height="71dp"
+        android:layout_height="48sp"
+        android:paddingLeft="@dimen/inner_pad"
+        android:layout_marginLeft="@dimen/layout_pad"
+        android:layout_marginRight="@dimen/layout_pad"
+        android:layout_marginTop="@dimen/inner_pad"
+        android:background="@drawable/search_background"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/black"
         android:hint=" Search">
 
     </EditText>
