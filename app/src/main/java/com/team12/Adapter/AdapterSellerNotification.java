@@ -84,6 +84,16 @@ public class AdapterSellerNotification extends RecyclerView.Adapter<AdapterSelle
                         break;
                     case "ConfirmOrder":
                         Intent intent1 = new Intent(v.getContext(), ActivityCustomerDetails.class);
+                        intent1.putExtra("ProductName", arrayList.get(holder.getAdapterPosition()).getProductName());
+                        intent1.putExtra("ProductPrice", arrayList.get(holder.getAdapterPosition()).getProductPrice());
+                        intent1.putExtra("ProductPicture", arrayList.get(holder.getAdapterPosition()).getProductPicture());
+                        intent1.putExtra("ProductId", arrayList.get(holder.getAdapterPosition()).getProductId());
+
+                        intent1.putExtra("CustomerName", arrayList.get(holder.getAdapterPosition()).getCustomerName());
+                        intent1.putExtra("CustomerPhone", arrayList.get(holder.getAdapterPosition()).getCustomerPhone());
+                        intent1.putExtra("CustomerEmail", arrayList.get(holder.getAdapterPosition()).getCustomerEmail());
+                        intent1.putExtra("CustomerAddress", arrayList.get(holder.getAdapterPosition()).getCustomerAddress());
+                        intent1.putExtra("CustomerNote", arrayList.get(holder.getAdapterPosition()).getCustomerNote());
                         v.getContext().startActivity(intent1);
                         break;
                     case "ApproveProduct":

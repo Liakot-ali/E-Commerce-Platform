@@ -25,6 +25,7 @@ import com.team12.Class.ClassSellingNotification;
 import com.team12.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FragmentSeller extends Fragment {
 
@@ -78,6 +79,7 @@ public class FragmentSeller extends Fragment {
                     ClassSellingNotification newNoti = snap.getValue(ClassSellingNotification.class);
                     arrayList.add(newNoti);
                 }
+                Collections.reverse(arrayList);
                 progressBar.setVisibility(View.GONE);
                 if(arrayList.size() != 0){
                     emptyText.setVisibility(View.GONE);

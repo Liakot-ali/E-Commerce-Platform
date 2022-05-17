@@ -27,6 +27,7 @@ import com.team12.R;
 import com.team12.User.ActivityNotification;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class FragmentBuyer extends Fragment {
@@ -75,6 +76,7 @@ public class FragmentBuyer extends Fragment {
                     ClassBuyingNotification newNoti = snap.getValue(ClassBuyingNotification.class);
                     arrayList.add(newNoti);
                 }
+                Collections.reverse(arrayList);
                 adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
                 if(arrayList.size() != 0){

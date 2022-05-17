@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Seller.ActivityCustomerDetails"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Seller.ActivityCustomerDetails">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Cus_detailsToolbar"
@@ -34,8 +34,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/layout_pad"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="@dimen/layout_pad">
 
             <TextView
                 android:id="@+id/textView3"
@@ -57,7 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Product Name"
+                android:text="Product Name"
+                android:textColor="@color/normal_text"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/normal_text">
 
@@ -68,7 +69,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Product Price"
+                android:text="Product Price"
+                android:textColor="@color/red"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/normal_text">
 
@@ -90,7 +92,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Customer Name"
+                android:text="Customer Name"
+                android:textColor="@color/normal_text"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/normal_text">
 
@@ -101,18 +104,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Customer PhoneNo"
+                android:text="Customer PhoneNo"
+                android:textColor="@color/normal_text"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/normal_text">
 
             </TextView>
 
             <TextView
+                android:id="@+id/Cus_detailsCustomerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/inner_pad"
+                android:text="Customer Email"
+                android:textColor="@color/normal_text"
+                android:textSize="@dimen/normal_text" />
+
+            <TextView
                 android:id="@+id/Cus_detailsCustomerAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Customer Address"
+                android:text="Customer Address"
+                android:textColor="@color/normal_text"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/normal_text">
 
@@ -123,7 +137,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Note"
+                android:text="Note"
+                android:textColor="@color/normal_text"
                 android:padding="@dimen/inner_pad"
                 android:textSize="@dimen/toolbar_text">
 
