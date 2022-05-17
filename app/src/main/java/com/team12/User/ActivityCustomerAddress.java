@@ -116,7 +116,7 @@ public class ActivityCustomerAddress extends AppCompatActivity {
 
                     //TODO---store the data in firebase-------
                     String sellingId = String.valueOf(System.currentTimeMillis());
-                    ClassSellingNotification order = new ClassSellingNotification(sellingId, productId, productName, nameSt, phoneSt, emailSt, addressSt, noteSt, "Order");
+                    ClassSellingNotification order = new ClassSellingNotification(productId, productName, String.valueOf(productPrice), productPicture, nameSt, phoneSt, emailSt, addressSt, noteSt, "ConfirmOrder");
                     ClassMyOrder newMyOrder = new ClassMyOrder(productName, getResources().getString(R.string.tk_sign) + productPrice, productPicture, sellerName, sellerPhone, sellerEmail);
                     ClassBuyingNotification newBuy = new ClassBuyingNotification(productName, getResources().getString(R.string.tk_sign) + productPrice, productPicture, sellerName, sellerPhone, sellerEmail, "ConfirmOrder");
 

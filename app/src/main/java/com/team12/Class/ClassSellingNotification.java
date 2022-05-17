@@ -1,50 +1,58 @@
 package com.team12.Class;
 
 public class ClassSellingNotification {
-    String sellingId, productId, productName, cusName, cusPhone, cusEmail, cusAddress, cusNote, type;
+
+    String productId, productName, productPrice, productPicture;
+    String customerName, customerPhone, customerEmail, customerAddress, customerNote;
+    String productDescription, reportMessage, sellerId, tag;
+
+    String messageProduct, messageName;
 
     public ClassSellingNotification() {
     }
 
-    public ClassSellingNotification(String sellingId, String productId) {
-        this.sellingId = sellingId;
-        this.productId = productId;
+    public ClassSellingNotification(String message1, String message2, String tag) {
+        this.messageProduct = message1;
+        this.messageName = message2;
+        this.tag = tag;
     }
 
-    public ClassSellingNotification(String sellingId, String productId, String productName, String cusName, String cusPhone, String cusEmail, String cusAddress, String cusNote, String type) {
-        this.sellingId = sellingId;
+    public ClassSellingNotification(String productId, String productName, String productPrice, String productPicture, String productDescription, String sellerId, String tag) {
         this.productId = productId;
         this.productName = productName;
-        this.cusName = cusName;
-        this.cusPhone = cusPhone;
-        this.cusEmail = cusEmail;
-        this.cusAddress = cusAddress;
-        this.cusNote = cusNote;
-        this.type = type;
+        this.productPrice = productPrice;
+        this.productPicture = productPicture;
+        this.productDescription = productDescription;
+        this.sellerId = sellerId;
+        this.tag = tag;
     }
 
-    public ClassSellingNotification(String sellingId, String productId, String productName, String cusName, String cusPhone, String cusEmail, String cusAddress, String cusNote) {
-        this.sellingId = sellingId;
+    public ClassSellingNotification(String productId, String productName, String productPrice, String productPicture, String customerName, String customerPhone, String customerEmail, String customerAddress, String customerNote, String tag) {
         this.productId = productId;
         this.productName = productName;
-        this.cusName = cusName;
-        this.cusPhone = cusPhone;
-        this.cusEmail = cusEmail;
-        this.cusAddress = cusAddress;
-        this.cusNote = cusNote;
+        this.productPrice = productPrice;
+        this.productPicture = productPicture;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerEmail = customerEmail;
+        this.customerAddress = customerAddress;
+        this.customerNote = customerNote;
+        this.tag = tag;
     }
 
     @Override
     public String toString() {
-        return "ClassSellingNotification{}";
-    }
-
-    public String getSellingId() {
-        return sellingId;
-    }
-
-    public void setSellingId(String sellingId) {
-        this.sellingId = sellingId;
+        String text = "";
+        if (tag.equals("PostProduct")) {
+            text = "Your product " + messageProduct + " is now in processing.\nEdit your product here.";
+        } else if (tag.equals("ApproveProduct")) {
+            text = "Your product " + messageProduct + " is approved by seller.";
+        } else if (tag.equals("DenyProduct")) {
+            text = "Your product " + messageProduct + " is denyed by seller.\nEdit your product here";
+        } else if (tag.equals("ConfirmOrder")) {
+            text = "A buyer " + messageName + " is order your product " + messageName + ". Click for details";
+        }
+        return text;
     }
 
     public String getProductId() {
@@ -63,51 +71,109 @@ public class ClassSellingNotification {
         this.productName = productName;
     }
 
-    public String getCusName() {
-        return cusName;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public void setCusName(String cusName) {
-        this.cusName = cusName;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getCusPhone() {
-        return cusPhone;
+    public String getProductPicture() {
+        return productPicture;
     }
 
-    public void setCusPhone(String cusPhone) {
-        this.cusPhone = cusPhone;
+    public void setProductPicture(String productPicture) {
+        this.productPicture = productPicture;
     }
 
-    public String getCusEmail() {
-        return cusEmail;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCusEmail(String cusEmail) {
-        this.cusEmail = cusEmail;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getCusAddress() {
-        return cusAddress;
+    public String getCustomerPhone() {
+        return customerPhone;
     }
 
-    public void setCusAddress(String cusAddress) {
-        this.cusAddress = cusAddress;
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
-    public String getCusNote() {
-        return cusNote;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setCusNote(String cusNote) {
-        this.cusNote = cusNote;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
-    public String getType() {
-        return type;
+    public String getCustomerAddress() {
+        return customerAddress;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
     }
+
+    public String getCustomerNote() {
+        return customerNote;
+    }
+
+    public void setCustomerNote(String customerNote) {
+        this.customerNote = customerNote;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public String getReportMessage() {
+        return reportMessage;
+    }
+
+    public void setReportMessage(String reportMessage) {
+        this.reportMessage = reportMessage;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getMessageProduct() {
+        return messageProduct;
+    }
+
+    public void setMessageProduct(String messageProduct) {
+        this.messageProduct = messageProduct;
+    }
+
+    public String getMessageName() {
+        return messageName;
+    }
+
+    public void setMessageName(String messageName) {
+        this.messageName = messageName;
+    }
+
+
 }

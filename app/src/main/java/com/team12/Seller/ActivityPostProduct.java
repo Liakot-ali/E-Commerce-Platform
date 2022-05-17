@@ -33,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.team12.Class.ClassAddProduct;
 import com.team12.Class.ClassSellerProfile;
+import com.team12.Class.ClassSellingNotification;
 import com.team12.R;
 
 import java.util.UUID;
@@ -49,6 +50,7 @@ public class ActivityPostProduct extends AppCompatActivity {
     TextInputLayout productNameLay, productPriceLay, productDescriptionLay;
 
     long sellerId = 0;
+    String sellerUserId;
     String sellerPicture = null;
     String sellerName = null;
     String productId = null;
@@ -138,15 +140,28 @@ public class ActivityPostProduct extends AppCompatActivity {
                                             String imageUri;
                                             imageUri = uri.toString();
                                             DatabaseReference productRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                                            DatabaseReference sellerNotiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(String.valueOf(System.currentTimeMillis()));
+
+                                            ClassSellingNotification notification = new ClassSellingNotification(productId, name, price, pictureSt, description, String.valueOf(sellerId), "PostProduct");
                                             ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, imageUri, Integer.parseInt(price), sellerId, "New");
                                             productRef.setValue(newProduct).addOnCompleteListener(task1 -> {
                                                 if (task1.isSuccessful()) {
-                                                    progressDialog.dismiss();
-                                                    Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
-                                                    productName.setText("");
-                                                    productPrice.setText("");
-                                                    productDescription.setText("");
-                                                    productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                                    sellerNotiRef.setValue(notification).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if(task.isSuccessful()){
+                                                                progressDialog.dismiss();
+                                                                Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
+                                                                productName.setText("");
+                                                                productPrice.setText("");
+                                                                productDescription.setText("");
+                                                                productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                                            }else{
+                                                                progressDialog.dismiss();
+                                                                Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
                                                 } else {
                                                     progressDialog.dismiss();
                                                     Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -164,29 +179,33 @@ public class ActivityPostProduct extends AppCompatActivity {
                                 });
                     }else{
                         DatabaseReference productRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                        DatabaseReference sellerNotiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(String.valueOf(System.currentTimeMillis()));
+
+                        ClassSellingNotification notification = new ClassSellingNotification(productId, name, price, pictureSt, description, String.valueOf(sellerId), "PostProduct");
                         ClassAddProduct newProduct = new ClassAddProduct(productId, name, description, pictureSt, Integer.parseInt(price), sellerId, "Edit");
                         productRef.setValue(newProduct).addOnCompleteListener(task1 -> {
                             if (task1.isSuccessful()) {
-                                if(passCode.equals("Edit")){
-                                    //-------if the seller edit the product which is already shown in home-------------
-                                    DatabaseReference deleteProductRef = database.getReference("Product").child(productId);
-                                    deleteProductRef.removeValue().addOnCompleteListener(task -> {
+                                sellerNotiRef.setValue(notification).addOnCompleteListener(task -> {
+                                    if(passCode.equals("Edit")){
+                                        //-------if the seller edit the product which is already shown in home-------------
+                                        DatabaseReference deleteProductRef = database.getReference("Product").child(productId);
+                                        deleteProductRef.removeValue().addOnCompleteListener(task2 -> {
+                                            progressDialog.dismiss();
+                                            Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
+                                            productName.setText("");
+                                            productPrice.setText("");
+                                            productDescription.setText("");
+                                            productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+                                        });
+                                    }else{
                                         progressDialog.dismiss();
                                         Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
                                         productName.setText("");
                                         productPrice.setText("");
                                         productDescription.setText("");
                                         productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
-                                    });
-                                }else{
-                                    progressDialog.dismiss();
-                                    Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
-                                    productName.setText("");
-                                    productPrice.setText("");
-                                    productDescription.setText("");
-                                    productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
-                                }
-
+                                    }
+                                });
                             } else {
                                 progressDialog.dismiss();
                                 Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -242,7 +261,7 @@ public class ActivityPostProduct extends AppCompatActivity {
         }else{
             DatabaseReference editProductRef;
             if(passCode.equals("Admin")) {
-                 editProductRef = database.getReference("Admin").child("ApproveProduct").child(productId);
+                 editProductRef = database.getReference("Admin").child("ProductApprove").child(productId);
             }else{
                 editProductRef = database.getReference("Product").child(productId);
             }
@@ -269,21 +288,22 @@ public class ActivityPostProduct extends AppCompatActivity {
             });
         }
         //------------get the seller info------------
-//        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
-//        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                ClassSellerProfile seller = snapshot.getValue(ClassSellerProfile.class);
-//                assert seller != null;
-//                sellerPicture = seller.getPicture();
-//                sellerName = seller.getName();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("SellerInfo");
+        sellerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassSellerProfile seller = snapshot.getValue(ClassSellerProfile.class);
+                assert seller != null;
+                sellerPicture = seller.getPicture();
+                sellerName = seller.getName();
+                sellerUserId = seller.getUserId();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityPostProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         progressDialog = new ProgressDialog(ActivityPostProduct.this);
         progressDialog.setTitle("Please wait");

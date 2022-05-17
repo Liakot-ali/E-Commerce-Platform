@@ -2,6 +2,7 @@ package com.team12.Adapter;
 
 import static android.os.Build.VERSION_CODES.R;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import com.google.firebase.database.core.Context;
 import com.team12.Class.ClassBuyingNotification;
 import com.team12.Class.ClassSellingNotification;
 import com.team12.R;
+import com.team12.Seller.ActivityCustomerDetails;
+import com.team12.Seller.ActivityPostProduct;
+import com.team12.User.ActivityCustomerAddress;
 
 import java.util.ArrayList;
 
@@ -49,17 +53,43 @@ public class AdapterSellerNotification extends RecyclerView.Adapter<AdapterSelle
     public void onBindViewHolder(@NonNull AdapterSellerNotification.ViewHolder holder, int position) {
 
         holder.itemView.setTag(arrayList.get(holder.getAdapterPosition()));
-        String  type = arrayList.get(position).getType();
+        String  tag = arrayList.get(holder.getAdapterPosition()).getTag();
+        String text = "Null";
+        switch (tag) {
+            case "PostProduct":
+            case "ApproveProduct":
+            case "DenyProduct":
+                text = new ClassSellingNotification(arrayList.get(holder.getAdapterPosition()).getProductName(), "", tag).toString();
+                break;
+            case "ConfirmOrder":
+                text = new ClassSellingNotification(arrayList.get(holder.getAdapterPosition()).getProductName(), arrayList.get(holder.getAdapterPosition()).getCustomerName(), tag).toString();
+                break;
+        }
 
-        //-TODO-------set the notification text depend on the type------
-        String textSt = new ClassSellingNotification(arrayList.get(position).getSellingId(), arrayList.get(position).getProductId()).toString();
-        holder.text.setText(textSt);
+        //--------set the notification text depend on the type------
+        holder.text.setText(text);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+                switch (tag) {
+                    case "PostProduct":
+                    case "DenyProduct":
+                        Intent intent = new Intent(v.getContext(), ActivityPostProduct.class);
+                        intent.putExtra("PassCode", "Admin");
+                        intent.putExtra("SellerId", Long.parseLong(arrayList.get(holder.getAdapterPosition()).getSellerId()));
+                        intent.putExtra("ProductId", arrayList.get(holder.getAdapterPosition()).getProductId());
+                        v.getContext().startActivity(intent);
+                        break;
+                    case "ConfirmOrder":
+                        Intent intent1 = new Intent(v.getContext(), ActivityCustomerDetails.class);
+                        v.getContext().startActivity(intent1);
+                        break;
+                    case "ApproveProduct":
+                        Toast.makeText(v.getContext(), "Nothing to show", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
         });
 

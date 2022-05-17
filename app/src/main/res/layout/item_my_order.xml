@@ -36,14 +36,14 @@
 
                 <TextView
                     android:id="@+id/myOrderProductName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:paddingTop="@dimen/inner_pad"
                     android:paddingLeft="@dimen/inner_pad"
                     android:paddingBottom="@dimen/inner_pad"
-                    android:text="Product_Name"
+                    android:text="jakdfh akjdfha u akdjfhue kahdfur kajdfhur kajdsfhurhakdjfhru"
                     android:textColor="@color/black"
                     android:textSize="@dimen/normal_text" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_weight="2"
-                android:text="Price"
+                android:text="*150"
                 android:textColor="@color/red"
                 android:textSize="@dimen/headline_text"/>
         </LinearLayout>
