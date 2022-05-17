@@ -18,6 +18,7 @@
         android:background="@drawable/search_background"
         android:textCursorDrawable="@null"
         android:textColor="@color/black"
+        android:focusable="true"
         android:hint=" Search">
 
     </EditText>

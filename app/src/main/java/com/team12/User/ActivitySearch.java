@@ -93,6 +93,7 @@ public class ActivitySearch extends AppCompatActivity {
         List = findViewById(R.id.searchRecycleView);
         emptyText = findViewById(R.id.searchEmptyText);
         emptyText.setVisibility(View.GONE);
+        Search.requestFocus();
 
         List.setHasFixedSize(true);
         List.setLayoutManager(new LinearLayoutManager(ActivitySearch.this));
