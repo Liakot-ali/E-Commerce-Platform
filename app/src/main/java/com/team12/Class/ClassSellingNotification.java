@@ -50,7 +50,7 @@ public class ClassSellingNotification {
         } else if (tag.equals("DenyProduct")) {
             text = "Your product " + messageProduct + " is denyed by seller.\nEdit your product here";
         } else if (tag.equals("ConfirmOrder")) {
-            text = "A buyer " + messageName + " is order your product " + messageName + ". Click for details";
+            text = "A buyer " + messageName + " is order your product " + messageProduct + ". Click for details";
         }
         return text;
     }
