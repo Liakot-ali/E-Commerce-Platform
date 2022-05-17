@@ -11,13 +11,28 @@
         android:id="@+id/searchText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
-        android:text=" Search">
+        android:hint=" Search">
 
     </EditText>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchRecycleView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/searchEmptyText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/normal_text"
+            android:textColor="@color/normal_text"
+            android:text="No search result to show" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 </LinearLayout>
