@@ -8,6 +8,8 @@ public class ClassSellingNotification {
 
     String messageProduct, messageName;
 
+    String sellingId;
+
     public ClassSellingNotification() {
     }
 
@@ -38,6 +40,32 @@ public class ClassSellingNotification {
         this.customerAddress = customerAddress;
         this.customerNote = customerNote;
         this.tag = tag;
+    }
+
+    public ClassSellingNotification(ClassSellingNotification notification, String sellingId) {
+        if (notification.getTag().equals("ConfirmOrder")) {
+            this.productId = notification.getProductId();
+            this.productName = notification.getProductName();
+            this.productPrice = notification.productPrice;
+            this.productPicture = notification.getProductPicture();
+            this.customerName = notification.getCustomerName();
+            this.customerPhone = notification.getCustomerPhone();
+            this.customerEmail = notification.customerEmail;
+            this.customerAddress = notification.getCustomerAddress();
+            this.customerNote = notification.getCustomerNote();
+            this.tag = notification.getTag();
+        } else {
+            this.productId = notification.getProductId();
+            this.productName = notification.getProductName();
+            this.productPrice = notification.getProductPrice();
+            this.productPicture = notification.getProductPicture();
+            this.productDescription = notification.getProductDescription();
+            this.sellerId = notification.getSellerId();
+            this.tag = notification.getTag();
+        }
+        this.sellingId = sellingId;
+
+
     }
 
     @Override
@@ -175,5 +203,11 @@ public class ClassSellingNotification {
         this.messageName = messageName;
     }
 
+    public String getSellingId() {
+        return sellingId;
+    }
 
+    public void setSellingId(String sellingId) {
+        this.sellingId = sellingId;
+    }
 }

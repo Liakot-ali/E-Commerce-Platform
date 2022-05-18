@@ -29,7 +29,6 @@ import java.util.Collections;
 
 public class FragmentSeller extends Fragment {
 
-
     RecyclerView recyclerView;
     TextView emptyText;
     ProgressBar progressBar;
@@ -70,6 +69,7 @@ public class FragmentSeller extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
 
 
+        assert userId != null;
         DatabaseReference sellerNotiRef = database.getReference("User").child(userId).child("Notification").child("SellingNotification");
 
         sellerNotiRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -77,7 +77,9 @@ public class FragmentSeller extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()){
                     ClassSellingNotification newNoti = snap.getValue(ClassSellingNotification.class);
-                    arrayList.add(newNoti);
+                    assert newNoti != null;
+                    ClassSellingNotification upNoti = new ClassSellingNotification(newNoti, snap.getKey());
+                    arrayList.add(upNoti);
                 }
                 Collections.reverse(arrayList);
                 progressBar.setVisibility(View.GONE);
