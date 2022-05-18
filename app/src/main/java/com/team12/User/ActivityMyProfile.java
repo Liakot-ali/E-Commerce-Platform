@@ -155,6 +155,7 @@ public class ActivityMyProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMyProfile.this, ActivityMyProduct.class);
+                intent.putExtra("SellerId", sellerId);
                 startActivity(intent);
             }
         });
@@ -162,6 +163,7 @@ public class ActivityMyProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityMyProfile.this, ActivityMySelling.class);
+                intent.putExtra("SellerId", sellerId);
                 startActivity(intent);
             }
         });
