@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:layout_marginLeft="@dimen/layout_pad"
-            android:text="My All Products"
+            android:text="My Products"
             android:textColor="@color/toolbar_text"
             android:textSize="@dimen/toolbar_text" />
 

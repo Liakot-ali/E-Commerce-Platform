@@ -37,6 +37,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mySellingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/mySellingProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/MySellingEmptyTextView"
                 android:layout_width="match_parent"
@@ -46,10 +65,6 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/normal_text" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mySellingRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </RelativeLayout>
 
     </LinearLayout>

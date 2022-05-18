@@ -95,6 +95,7 @@ public class AdapterSellerNotification extends RecyclerView.Adapter<AdapterSelle
                         intent1.putExtra("CustomerAddress", arrayList.get(holder.getAdapterPosition()).getCustomerAddress());
                         intent1.putExtra("CustomerNote", arrayList.get(holder.getAdapterPosition()).getCustomerNote());
                         intent1.putExtra("SellingId", arrayList.get(holder.getAdapterPosition()).getSellingId());
+                        intent1.putExtra("PassCode", "Notification");
                         v.getContext().startActivity(intent1);
                         break;
                     case "ApproveProduct":

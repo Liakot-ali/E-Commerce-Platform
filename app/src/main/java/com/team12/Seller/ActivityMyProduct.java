@@ -28,7 +28,7 @@ public class ActivityMyProduct extends AppCompatActivity {
 
         //-------show back button in toolbar--------
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         toolbarText = findViewById(R.id.myProductToolbarText);

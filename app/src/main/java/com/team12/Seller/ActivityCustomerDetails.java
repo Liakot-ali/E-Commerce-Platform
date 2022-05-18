@@ -123,6 +123,12 @@ public class ActivityCustomerDetails extends AppCompatActivity {
         cusAddress = getIntent().getStringExtra("CustomerAddress");
         cusNote = getIntent().getStringExtra("CustomerNote");
         sellingId = getIntent().getStringExtra("SellingId");
+        String passCode = getIntent().getStringExtra("PassCode");
+        if(passCode.equals("MySelling")){
+            ResponseBtn.setVisibility(View.GONE);
+        }else{
+            ResponseBtn.setVisibility(View.VISIBLE);
+        }
 
         Picasso.get().load(pPicture).into(customerDetailsProductPic);
         ProductName.setText(pName);
