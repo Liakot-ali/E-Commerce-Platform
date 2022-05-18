@@ -220,7 +220,7 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHome.this, ActivityMyProfile.class);
-
+                intent.putExtra("SellerId", sellerId);
                 startActivity(intent);
             }
         });
@@ -228,6 +228,7 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHome.this, ActivityMyProfile.class);
+                intent.putExtra("SellerId", sellerId);
                 startActivity(intent);
             }
         });

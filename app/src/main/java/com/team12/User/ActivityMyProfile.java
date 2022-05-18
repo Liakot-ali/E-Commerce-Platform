@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ import com.squareup.picasso.Picasso;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.Class.ClassUserProfile;
 import com.team12.R;
+import com.team12.Seller.ActivityMyProduct;
+import com.team12.Seller.ActivityMySelling;
 import com.team12.Seller.ActivitySellerProfile;
 
 import java.util.Objects;
@@ -56,6 +59,7 @@ public class ActivityMyProfile extends AppCompatActivity {
     FirebaseStorage storage;
     FirebaseDatabase database;
     String nameUs, emailUs;
+    long sellerId;
 
     //done by  done
 
@@ -66,6 +70,8 @@ public class ActivityMyProfile extends AppCompatActivity {
     TextInputLayout NameLayout, PhoneLayout, EmailLayout, AddressLayout;
     CircleImageView MyPicture, AddPicture;
     Button Update, MyOrder;
+    LinearLayout sellerLayout;
+    Button mySellingBtn, myProductBtn;
 
     String uid;
 
@@ -144,6 +150,21 @@ public class ActivityMyProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        myProductBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMyProfile.this, ActivityMyProduct.class);
+                startActivity(intent);
+            }
+        });
+        mySellingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityMyProfile.this, ActivityMySelling.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -154,6 +175,7 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         //done by jannat
 
+        sellerId = getIntent().getLongExtra("SellerId", 0);
 
         //--------show back icon in toolbar----------
         MyProfileToolber = findViewById(R.id.myProfileToolbar);
@@ -178,6 +200,16 @@ public class ActivityMyProfile extends AppCompatActivity {
         AddPicture = findViewById(R.id.myProfilePictureAdd);
         Update = findViewById(R.id.myProfileUpdateBtn);
         MyOrder = findViewById(R.id.myProfileOrderBtn);
+
+        sellerLayout = findViewById(R.id.myProfileSellerLayout);
+        myProductBtn = findViewById(R.id.myProfileMyProductBtn);
+        mySellingBtn = findViewById(R.id.myProfileMySellingBtn);
+
+        if(sellerId >= 10000){
+            sellerLayout.setVisibility(View.VISIBLE);
+        }else{
+            sellerLayout.setVisibility(View.GONE);
+        }
     }
 
     //--------For add the image in the imageView----------
