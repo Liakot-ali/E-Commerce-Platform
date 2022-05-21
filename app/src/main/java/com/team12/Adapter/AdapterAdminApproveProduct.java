@@ -115,7 +115,7 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
 
                         //TODO------send a notification to the seller------
                         DatabaseReference adminRef = database.getReference("Admin").child("ProductApprove").child(productId);
-                        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(String.valueOf(System.currentTimeMillis()));
+                        DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(productId);
                         DatabaseReference productRef = database.getReference("Product").child(productId);
                         DatabaseReference notiRef = database.getReference("User").child(profile.getUserId()).child("Notification").child("SellingNotification");
 

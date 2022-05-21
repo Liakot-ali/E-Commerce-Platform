@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,21 +85,27 @@ public class ActivityMyProduct extends AppCompatActivity {
         myProductRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap : snapshot.getChildren()){
-                    DatabaseReference productRef = database.getReference("Product").child(Objects.requireNonNull(snap.getKey()));
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    DatabaseReference productRef = database.getReference("Product").child((String) snap.getValue());
+//                    Log.e("Key", "onDataChange: " + snap.getKey());
+//                    Log.e("Value", "onDataChange: " + snap.getValue());
                     productRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
+                            Log.e("ProductName", "onDataChange: " + product.getName());
                             arrayList.add(product);
+                            adapter.notifyDataSetChanged();
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(ActivityMyProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-                adapter.notifyDataSetChanged();
+                Log.e("Arraylist size", "onDataChange: " + arrayList.size());
                 progressBar.setVisibility(View.GONE);
                 if(arrayList.size() != 0){
                     emptyText.setVisibility(View.GONE);
@@ -109,6 +116,7 @@ public class ActivityMyProduct extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(ActivityMyProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

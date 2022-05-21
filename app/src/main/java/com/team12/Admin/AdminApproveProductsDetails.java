@@ -59,7 +59,7 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
                 //TODO-----------send a notification to the seller as 'your product is approved by admin'--------
 
                 DatabaseReference adminRef = database.getReference("Admin").child("ProductApprove").child(productId);
-                DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(String.valueOf(System.currentTimeMillis()));
+                DatabaseReference sellerRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(productId);
                 DatabaseReference productRef = database.getReference("Product").child(productId);
                 DatabaseReference notiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification");
                 ClassAddProduct newProduct = new ClassAddProduct(productId, productName, description, productPicture, productPrice, sellerName, sellerId);
