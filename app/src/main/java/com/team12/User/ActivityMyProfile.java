@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.internal.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +36,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.team12.Class.ClassSellerProfile;
 import com.team12.Class.ClassUserProfile;
@@ -47,15 +53,16 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
     final static int PICK_IMAGE = 10;
-    Uri UserPictureUri = null;
+    Uri userPictureUri = null;
 
     FirebaseAuth mAuth;
     FirebaseStorage storage;
     FirebaseDatabase database;
 
-    String nameUs, emailUs;
+    String preName, prePhone, preAddress, prePicture, emailUs;
     long sellerId;
     String uid;
+    boolean changePicture = false;
 
 
     Toolbar MyProfileToolber;
@@ -66,6 +73,8 @@ public class ActivityMyProfile extends AppCompatActivity {
     Button Update, MyOrder;
     LinearLayout sellerLayout;
     Button mySellingBtn, myProductBtn;
+
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +100,60 @@ public class ActivityMyProfile extends AppCompatActivity {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameus, emailus, phoneus, addressus, sellerIdus;
+                String nameus, phoneus, addressus;
                 nameus = Name.getText().toString();
-                emailus = Email.getText().toString();
                 phoneus = Phone.getText().toString();
                 addressus = Address.getText().toString();
+                if(nameus.equals(preName) && addressus.equals(preAddress) && phoneus.equals(prePhone) && !changePicture){
+                    Toast.makeText(ActivityMyProfile.this, "Changes nothing", Toast.LENGTH_SHORT).show();
+                }else {
+
+
+                    //-----TODO---after checking the validity--------
+                    dialog.show();
+                    DatabaseReference profileRef = database.getReference("User").child(uid).child("Profile");
+
+                    if (userPictureUri != null) {
+                        StorageReference sRef = FirebaseStorage.getInstance().getReference("UserPicture").child(uid);
+
+                        sRef.putFile(userPictureUri).addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                sRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    ClassUserProfile upProfile = new ClassUserProfile(uid, nameus, uri.toString(), phoneus, emailUs, addressus, (int) sellerId);
+                                    profileRef.setValue(upProfile).addOnCompleteListener(task1 -> {
+                                        if (task1.isSuccessful()) {
+                                            dialog.dismiss();
+                                            Toast.makeText(ActivityMyProfile.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                                            Name.clearFocus();
+                                            Phone.clearFocus();
+                                            Address.clearFocus();
+                                        } else {
+                                            dialog.dismiss();
+                                            Toast.makeText(ActivityMyProfile.this, task1.getException().toString(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                });
+                            } else {
+                                dialog.dismiss();
+                                Toast.makeText(ActivityMyProfile.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        ClassUserProfile upProfile = new ClassUserProfile(uid, nameus, prePicture, phoneus, emailUs, addressus, (int) sellerId);
+                        profileRef.setValue(upProfile).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                dialog.dismiss();
+                                Toast.makeText(ActivityMyProfile.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                                Name.clearFocus();
+                                Phone.clearFocus();
+                                Address.clearFocus();
+                            } else {
+                                dialog.dismiss();
+                                Toast.makeText(ActivityMyProfile.this, task1.getException().toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
 
             }
         });
@@ -162,9 +220,9 @@ public class ActivityMyProfile extends AppCompatActivity {
         myProductBtn = findViewById(R.id.myProfileMyProductBtn);
         mySellingBtn = findViewById(R.id.myProfileMySellingBtn);
 
-        if(sellerId >= 10000){
+        if (sellerId >= 10000) {
             sellerLayout.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             sellerLayout.setVisibility(View.GONE);
         }
 
@@ -176,12 +234,21 @@ public class ActivityMyProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ClassUserProfile UserProfile = snapshot.getValue(ClassUserProfile.class);
                 assert UserProfile != null;
-                nameUs = UserProfile.getName();
+                preName = UserProfile.getName();
                 emailUs = UserProfile.getEmail();
+                prePhone = UserProfile.getPhone();
+                preAddress = UserProfile.getAddress();
+                prePicture = UserProfile.getPicture();
 
-                Name.setText(nameUs);
-                //  SellerPhone.setText(phoneSt);
+                Name.setText(preName);
+                Phone.setText(prePhone);
                 Email.setText(emailUs);
+                Address.setText(preAddress);
+                if(prePicture != null){
+                    Picasso.get().load(prePicture).into(MyPicture);
+                }else{
+                    MyPicture.setImageResource(R.drawable.ic_demo_profile_picture_24);
+                }
             }
 
             @Override
@@ -189,6 +256,12 @@ public class ActivityMyProfile extends AppCompatActivity {
                 Toast.makeText(ActivityMyProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        dialog = new ProgressDialog(ActivityMyProfile.this);
+        dialog.setTitle("Please wait..");
+        dialog.setMessage("Your profile is updating..");
+        dialog.setCancelable(false);
+
     }
 
     //--------For add the image in the imageView----------
@@ -196,10 +269,12 @@ public class ActivityMyProfile extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data.getData() != null) {
-            UserPictureUri = data.getData();
-            Picasso.get().load(UserPictureUri).into(MyPicture);
+            userPictureUri = data.getData();
+            Picasso.get().load(userPictureUri).into(MyPicture);
+            changePicture = true;
         } else {
-            UserPictureUri = null;
+            userPictureUri = null;
+            changePicture = false;
         }
     }
 
