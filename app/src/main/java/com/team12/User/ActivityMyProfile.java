@@ -49,19 +49,13 @@ public class ActivityMyProfile extends AppCompatActivity {
     final static int PICK_IMAGE = 10;
     Uri UserPictureUri = null;
 
-    //done by done
-    /**
-     * Tag to use to {@link Log} messages
-     */
-    private static final String TAG = "My Profile";
-
     FirebaseAuth mAuth;
     FirebaseStorage storage;
     FirebaseDatabase database;
+
     String nameUs, emailUs;
     long sellerId;
-
-    //done by  done
+    String uid;
 
 
     Toolbar MyProfileToolber;
@@ -73,50 +67,18 @@ public class ActivityMyProfile extends AppCompatActivity {
     LinearLayout sellerLayout;
     Button mySellingBtn, myProductBtn;
 
-    String uid;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-        initialiozationall();
+        initializationAll();
         OnClick();
 
+    }
 
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        storage = FirebaseStorage.getInstance();
+    private void OnClick() {
 
-
-        //done by jannat for retrive data from firebase
-        uid = FirebaseAuth.getInstance().getUid();
-        DatabaseReference MyProfileRef = database.getReference("User").child(String.valueOf(uid)).child("Profile");
-        MyProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ClassUserProfile UserProfile = snapshot.getValue(ClassUserProfile.class);
-                assert UserProfile != null;
-                nameUs = UserProfile.getName();
-                emailUs = UserProfile.getEmail();
-
-                Name.setText(nameUs);
-                //  SellerPhone.setText(phoneSt);
-                Email.setText(emailUs);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ActivityMyProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        //done by jannat retrive data from firebase
-
-        //------for clicked-------//
+        //------------for clicked-----------
         AddPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,14 +97,9 @@ public class ActivityMyProfile extends AppCompatActivity {
                 phoneus = Phone.getText().toString();
                 addressus = Address.getText().toString();
 
-
             }
         });
 
-
-    }
-
-    private void OnClick() {
         MyOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,6 +117,7 @@ public class ActivityMyProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         mySellingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,13 +128,12 @@ public class ActivityMyProfile extends AppCompatActivity {
         });
     }
 
+    private void initializationAll() {
 
-    //for initialize everything
-
-    private void initialiozationall() {
-
-
-        //done by jannat
+        //----------done by jannat---------
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         sellerId = getIntent().getLongExtra("SellerId", 0);
 
@@ -185,9 +142,6 @@ public class ActivityMyProfile extends AppCompatActivity {
         setSupportActionBar(MyProfileToolber);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        //done by jannat
 
 
         myProfile = findViewById(R.id.MyProfile);
@@ -213,6 +167,28 @@ public class ActivityMyProfile extends AppCompatActivity {
         }else{
             sellerLayout.setVisibility(View.GONE);
         }
+
+        //-----------one by jannat for retrieve data from firebase-------
+        uid = FirebaseAuth.getInstance().getUid();
+        DatabaseReference MyProfileRef = database.getReference("User").child(String.valueOf(uid)).child("Profile");
+        MyProfileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ClassUserProfile UserProfile = snapshot.getValue(ClassUserProfile.class);
+                assert UserProfile != null;
+                nameUs = UserProfile.getName();
+                emailUs = UserProfile.getEmail();
+
+                Name.setText(nameUs);
+                //  SellerPhone.setText(phoneSt);
+                Email.setText(emailUs);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ActivityMyProfile.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //--------For add the image in the imageView----------
