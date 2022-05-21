@@ -104,6 +104,7 @@ public class ActivityMyProfile extends AppCompatActivity {
                 //  SellerPhone.setText(phoneSt);
                 Email.setText(emailUs);
 
+
             }
 
             @Override
