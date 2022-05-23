@@ -179,6 +179,7 @@ public class ActivityPostProduct extends AppCompatActivity {
                                 });
                     }else{
                         DatabaseReference productRef = database.getReference("Admin").child("ProductApprove").child(productId);
+                        DatabaseReference myProductRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(productId);
                         DatabaseReference sellerNotiRef = database.getReference("User").child(sellerUserId).child("Notification").child("SellingNotification").child(String.valueOf(System.currentTimeMillis()));
 
                         ClassSellingNotification notification = new ClassSellingNotification(productId, name, price, pictureSt, description, String.valueOf(sellerId), "PostProduct");
@@ -191,6 +192,7 @@ public class ActivityPostProduct extends AppCompatActivity {
                                         DatabaseReference deleteProductRef = database.getReference("Product").child(productId);
                                         deleteProductRef.removeValue().addOnCompleteListener(task2 -> {
                                             progressDialog.dismiss();
+                                            myProductRef.removeValue();
                                             Snackbar.make(findViewById(R.id.postProductActivityParentLayout), "Your product upload request is submitted for review", Snackbar.LENGTH_SHORT).show();
                                             productName.setText("");
                                             productPrice.setText("");

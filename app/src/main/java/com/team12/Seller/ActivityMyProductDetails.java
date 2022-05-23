@@ -4,6 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,7 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.team12.R;
@@ -44,14 +51,47 @@ public class ActivityMyProductDetails extends AppCompatActivity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMyProductDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ActivityMyProductDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ActivityMyProductDetails.this, ActivityPostProduct.class);
+                intent.putExtra("SellerId", sellerId);
+                intent.putExtra("ProductId", productId);
+                intent.putExtra("PassCode", "Edit");
+                startActivity(intent);
             }
         });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityMyProductDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityMyProductDetails.this);
+                dialog.setTitle("Are you sure?");
+                dialog.setMessage("You can't undo your product");
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference myProductRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(productId);
+                        DatabaseReference productRef = database.getReference("Product").child(productId);
+                        productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    myProductRef.removeValue();
+                                    Toast.makeText(ActivityMyProductDetails.this, "Your product is  successfully deleted", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ActivityMyProductDetails.this, ActivityMyProduct.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    Toast.makeText(ActivityMyProductDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+                dialog.setNegativeButton("No", null);
+                dialog.setCancelable(true);
+                dialog.show();
+
+//                Toast.makeText(ActivityMyProductDetails.this, "Under Construction", Toast.LENGTH_SHORT).show();
             }
         });
     }

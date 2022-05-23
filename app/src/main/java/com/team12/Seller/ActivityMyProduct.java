@@ -95,11 +95,11 @@ public class ActivityMyProduct extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
-                            Log.e("Name", "onDataChange: " + product.getName());
+//                            Log.e("Name", "onDataChange: " + product.getName());
                             arrayList.add(product);
-                            Log.e("Arraylist size", "onDataChange: " +arrayList.size());
+//                            Log.e("Arraylist size", "onDataChange: " +arrayList.size());
                             adapter.notifyDataSetChanged();
-                            if(arrayList.size() != 0){
+                            if(arrayList.size() > 0){
                                 emptyText.setVisibility(View.GONE);
                             }else{
                                 emptyText.setVisibility(View.VISIBLE);
@@ -111,6 +111,11 @@ public class ActivityMyProduct extends AppCompatActivity {
                             Toast.makeText(ActivityMyProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+                }
+                if(arrayList.size() > 0){
+                    emptyText.setVisibility(View.GONE);
+                }else{
+                    emptyText.setVisibility(View.VISIBLE);
                 }
                 progressBar.setVisibility(View.GONE);
             }
