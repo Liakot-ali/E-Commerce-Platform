@@ -39,6 +39,7 @@ public class ActivityMyProduct extends AppCompatActivity {
 
     AdapterMyProduct adapter;
     ArrayList<ClassAddProduct> arrayList;
+    ArrayList<String> productRefList;
     long sellerId;
 
 
@@ -52,7 +53,8 @@ public class ActivityMyProduct extends AppCompatActivity {
         InitializeAll();
 
     }
-    private void InitializeAll(){
+
+    private void InitializeAll() {
 
         sellerId = getIntent().getLongExtra("SellerId", 0);
         toolbar = findViewById(R.id.myProductToolbar);
@@ -74,6 +76,7 @@ public class ActivityMyProduct extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(ActivityMyProduct.this));
 
+        productRefList = new ArrayList<>();
         arrayList = new ArrayList<>();
         adapter = new AdapterMyProduct(ActivityMyProduct.this, arrayList);
         recyclerView.setAdapter(adapter);
@@ -86,32 +89,17 @@ public class ActivityMyProduct extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    DatabaseReference productRef = database.getReference("Product").child((String) snap.getValue());
-//                    Log.e("Key", "onDataChange: " + snap.getKey());
-//                    Log.e("Value", "onDataChange: " + snap.getValue());
-                    productRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
-                            Log.e("ProductName", "onDataChange: " + product.getName());
-                            arrayList.add(product);
-                            adapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(ActivityMyProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    ClassAddProduct product = snap.getValue(ClassAddProduct.class);
+                    arrayList.add(product);
                 }
-                Log.e("Arraylist size", "onDataChange: " + arrayList.size());
+                adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
                 if(arrayList.size() != 0){
                     emptyText.setVisibility(View.GONE);
                 }else{
                     emptyText.setVisibility(View.VISIBLE);
                 }
+//                Log.e("Arraylist size", "onDataChange: " + productRefList.size());
             }
 
             @Override
@@ -121,7 +109,9 @@ public class ActivityMyProduct extends AppCompatActivity {
             }
         });
 
+
     }
+
     //---------for back to previous activity-------------
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

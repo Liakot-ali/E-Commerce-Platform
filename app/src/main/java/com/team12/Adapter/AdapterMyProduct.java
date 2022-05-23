@@ -46,7 +46,7 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
     @Override
     public AdapterMyProduct.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_my_selling, parent, false);
+        View view = inflater.inflate(R.layout.item_my_product, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,7 +54,7 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
     public void onBindViewHolder(@NonNull AdapterMyProduct.ViewHolder holder, int position) {
         holder.itemView.setTag(arrayList.get(holder.getAdapterPosition()));
         holder.name.setText(arrayList.get(holder.getAdapterPosition()).getName());
-        holder.price.setText((int) arrayList.get(holder.getAdapterPosition()).getPrice());
+        holder.price.setText(context.getResources().getString(R.string.tk_sign) + arrayList.get(holder.getAdapterPosition()).getPrice());
         holder.description.setText(arrayList.get(holder.getAdapterPosition()).getDescription());
 
         Picasso.get().load(arrayList.get(holder.getAdapterPosition()).getImage()).into(holder.productPicture);

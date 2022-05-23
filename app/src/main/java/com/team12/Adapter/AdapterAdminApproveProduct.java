@@ -126,7 +126,7 @@ public class AdapterAdminApproveProduct extends RecyclerView.Adapter<AdapterAdmi
                                     arrayList.remove(holder.getAdapterPosition());
                                     notifyDataSetChanged();
                                     adminRef.removeValue();
-                                    sellerRef.setValue(productId);
+                                    sellerRef.setValue(newProduct);
                                     Toast.makeText(context, "Product approved", Toast.LENGTH_SHORT).show();
                                 }else{
                                     Toast.makeText(context, task.getException().toString(), Toast.LENGTH_SHORT).show();
