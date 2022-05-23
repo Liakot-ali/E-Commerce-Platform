@@ -69,7 +69,7 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             adminRef.removeValue();
-                            sellerRef.setValue(newProduct);
+                            sellerRef.setValue(productId);
                             Intent intent = new Intent(AdminApproveProductsDetails.this, AdminApproveProductList.class);
                             startActivity(intent);
                             finish();

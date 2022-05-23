@@ -89,17 +89,30 @@ public class ActivityMyProduct extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    ClassAddProduct product = snap.getValue(ClassAddProduct.class);
-                    arrayList.add(product);
+
+                    DatabaseReference productRef = database.getReference("Product").child((String) snap.getValue());
+                    productRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ClassAddProduct product = snapshot.getValue(ClassAddProduct.class);
+                            Log.e("Name", "onDataChange: " + product.getName());
+                            arrayList.add(product);
+                            Log.e("Arraylist size", "onDataChange: " +arrayList.size());
+                            adapter.notifyDataSetChanged();
+                            if(arrayList.size() != 0){
+                                emptyText.setVisibility(View.GONE);
+                            }else{
+                                emptyText.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(ActivityMyProduct.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
-                adapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
-                if(arrayList.size() != 0){
-                    emptyText.setVisibility(View.GONE);
-                }else{
-                    emptyText.setVisibility(View.VISIBLE);
-                }
-//                Log.e("Arraylist size", "onDataChange: " + productRefList.size());
             }
 
             @Override
