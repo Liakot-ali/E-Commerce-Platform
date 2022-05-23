@@ -1,6 +1,7 @@
 package com.team12.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import com.team12.Class.ClassAddProduct;
 import com.team12.R;
+import com.team12.Seller.ActivityMyProductDetails;
 
 import java.util.ArrayList;
 
@@ -62,7 +64,15 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ActivityMyProductDetails.class);
+                intent.putExtra("ProductName",arrayList.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("ProductPrice",arrayList.get(holder.getAdapterPosition()).getPrice());
+                intent.putExtra("ProductPicture",arrayList.get(holder.getAdapterPosition()).getImage());
+                intent.putExtra("Description",arrayList.get(holder.getAdapterPosition()).getDescription());
+                intent.putExtra("SellerId",arrayList.get(holder.getAdapterPosition()).getSellerId());
+                intent.putExtra("ProductId",arrayList.get(holder.getAdapterPosition()).getProductId());
+                context.startActivity(intent);
+
             }
         });
 

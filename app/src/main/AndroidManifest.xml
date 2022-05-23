@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".User.ActivityMyOrderDetails"
+            android:name=".ActivityMyProductDetails"
             android:exported="false" />
-        <!-- User activity -->
+        <activity
+            android:name=".User.ActivityMyOrderDetails"
+            android:exported="false" /> <!-- User activity -->
         <activity
             android:name=".User.ActivitySearch"
             android:exported="false" />
@@ -34,10 +36,7 @@
         <activity
             android:name=".User.ActivityHome"
             android:exported="false"
-            android:hardwareAccelerated="false" />
-
-        <!-- Authentication activity -->
-
+            android:hardwareAccelerated="false" /> <!-- Authentication activity -->
         <activity
             android:name=".Authentication.ActivitySignup"
             android:exported="false" />
@@ -56,6 +55,9 @@
         <activity
             android:name=".Seller.ActivityMyProduct"
             android:exported="false" />
+        <activity
+            android:name=".Seller.ActivityMyProductDetails"
+            android:exported="false"/>
         <activity
             android:name=".Seller.ActivityMySelling"
             android:exported="false" />
