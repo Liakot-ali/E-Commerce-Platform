@@ -8,7 +8,7 @@
     tools:context=".General.ActivityAboutUs">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/reportSellerToolbar2"
+        android:id="@+id/aboutUsToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar_background"

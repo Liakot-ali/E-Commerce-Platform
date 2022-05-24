@@ -149,7 +149,7 @@ public class ActivityProductDetails extends AppCompatActivity {
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 loggedIn = false;
                 //TODO------show a snackbar with login activity link----------
-                Toast.makeText(ActivityProductDetails.this, "Log in first", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ActivityProductDetails.this, "Log in first", Toast.LENGTH_SHORT).show();
             } else {
                 loggedIn = true;
             }

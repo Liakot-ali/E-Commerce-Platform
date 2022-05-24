@@ -29,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.team12.General.ActivityAboutUs;
+import com.team12.General.ActivityFeedback;
 import com.team12.Seller.ActivityPostProduct;
 import com.team12.Seller.ActivitySellerApplicationForm;
 import com.team12.Adapter.AdapterHomeProduct;
@@ -354,10 +356,12 @@ public class ActivityHome extends AppCompatActivity {
             mAuth.addAuthStateListener(mAuthListener);
         }
         else if(item.getItemId() == R.id.homeMenuAboutUs){
-            Toast.makeText(this, "About us clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ActivityHome.this, ActivityAboutUs.class);
+            startActivity(intent);
         }
         else if(item.getItemId() == R.id.homeMenuFeedback){
-            Toast.makeText(this, "Feedback clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ActivityHome.this, ActivityFeedback.class);
+            startActivity(intent);
         }
         else if(item.getItemId() == R.id.homeMenuHelp){
             Toast.makeText(this, "Help clicked", Toast.LENGTH_SHORT).show();

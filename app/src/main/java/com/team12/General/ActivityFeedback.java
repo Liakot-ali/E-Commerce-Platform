@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +30,12 @@ public class ActivityFeedback extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
         toolbar = findViewById(R.id.feedbackToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         msg = findViewById(R.id.feedbackMsg);
         btn = findViewById(R.id.feedbackBtn);
 
@@ -41,7 +47,7 @@ public class ActivityFeedback extends AppCompatActivity {
                     Toast.makeText(ActivityFeedback.this, "Give your experience about this app", Toast.LENGTH_SHORT).show();
                 }else{
                     DatabaseReference adminRef = FirebaseDatabase.getInstance().getReference("Admin").child("Feedback").child(FirebaseAuth.getInstance().getUid());
-                    adminRef.setValue(msg).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    adminRef.setValue(message).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
@@ -59,5 +65,14 @@ public class ActivityFeedback extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    //---------for back to previous activity-------------
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
