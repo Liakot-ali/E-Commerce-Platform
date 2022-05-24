@@ -46,6 +46,8 @@ public class ActivityReportSeller extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        userId = auth.getUid();
+
         toolbar = findViewById(R.id.reportSellerToolbar);
         //-------show back button in toolbar--------
         setSupportActionBar(toolbar);

@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/drawable/search_background.xml" value="0.27" />
+        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_about_us.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_approve_product_details.xml" value="0.2601851851851852" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_approve_product_list.xml" value="0.2601851851851852" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_admin_approve_seller_list.xml" value="0.2601851851851852" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_customer_address.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_customer_details.xml" value="0.27447916666666666" />
+        <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_feedback.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_home.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_item_home_myorder.xml" value="0.27447916666666666" />
         <entry key="..\:/HSTU Team Project/3-1 Software Engineering Project (Student E-commerce platform)/E-CommercePlatform/app/src/main/res/layout/activity_item_home_selling.xml" value="0.27447916666666666" />
