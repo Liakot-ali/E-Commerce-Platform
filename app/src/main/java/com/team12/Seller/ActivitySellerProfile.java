@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +50,9 @@ public class ActivitySellerProfile extends AppCompatActivity {
         Report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivitySellerProfile.this, "Under construction", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ActivitySellerProfile.this, ActivityReportSeller.class);
+                intent.putExtra("SellerId", sellerId);
+                startActivity(intent);
             }
         });
     }

@@ -70,16 +70,18 @@ public class ActivityMyProductDetails extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DatabaseReference myProductRef = database.getReference("Seller").child(String.valueOf(sellerId)).child("MyProduct").child(productId);
+
                         DatabaseReference productRef = database.getReference("Product").child(productId);
                         productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    myProductRef.removeValue();
-                                    Toast.makeText(ActivityMyProductDetails.this, "Your product is  successfully deleted", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ActivityMyProductDetails.this, ActivityMyProduct.class);
-                                    startActivity(intent);
-                                    finish();
+                                    if(myProductRef.removeValue().isSuccessful()) {
+                                        Toast.makeText(ActivityMyProductDetails.this, "Your product is  successfully deleted", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ActivityMyProductDetails.this, ActivityMyProduct.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }else{
                                     Toast.makeText(ActivityMyProductDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 }
