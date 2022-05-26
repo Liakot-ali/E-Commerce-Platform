@@ -220,7 +220,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         myProductBtn = findViewById(R.id.myProfileMyProductBtn);
         mySellingBtn = findViewById(R.id.myProfileMySellingBtn);
 
-        if (sellerId >= 10000) {
+        if (sellerId >= 1000000) {
             sellerLayout.setVisibility(View.VISIBLE);
         } else {
             sellerLayout.setVisibility(View.GONE);
