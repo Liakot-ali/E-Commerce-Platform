@@ -71,6 +71,8 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
                             adminRef.removeValue();
                             sellerRef.setValue(productId);
                             Intent intent = new Intent(AdminApproveProductsDetails.this, AdminApproveProductList.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
                             Toast.makeText(AdminApproveProductsDetails.this, "Product approved", Toast.LENGTH_SHORT).show();
@@ -93,6 +95,8 @@ public class AdminApproveProductsDetails extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(AdminApproveProductsDetails.this, "Product denyd", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AdminApproveProductsDetails.this, AdminApproveProductList.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();
                     }

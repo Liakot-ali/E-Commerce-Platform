@@ -156,6 +156,9 @@ public class ActivityPostProduct extends AppCompatActivity {
                                                                 productPrice.setText("");
                                                                 productDescription.setText("");
                                                                 productPicture.setImageResource(R.drawable.ic_product_demo_photo_24);
+
+                                                                productId = null;
+                                                                passCode = null;
                                                             }else{
                                                                 progressDialog.dismiss();
                                                                 Toast.makeText(ActivityPostProduct.this, "Something went wrong", Toast.LENGTH_SHORT).show();

@@ -48,7 +48,7 @@
 
                 <TextView
                     android:id="@+id/myProductDescription"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
@@ -70,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/ic_baseline_arrow_drop_down" />
 
