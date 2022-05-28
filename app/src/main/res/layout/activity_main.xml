@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/product_picture"
         android:layout_height="@dimen/product_picture"
-        android:src="@drawable/ic_search_24" />
+        android:src="@drawable/ic_app_icon" />
 
     <TextView
         android:id="@+id/textView5"
