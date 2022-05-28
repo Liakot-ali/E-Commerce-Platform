@@ -56,6 +56,12 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ActivityLogin.this, "Under constructioin", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override

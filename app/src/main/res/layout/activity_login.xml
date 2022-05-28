@@ -46,7 +46,7 @@
                     android:layout_width="@dimen/user_picture"
                     android:layout_height="@dimen/user_picture"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_app_icon"
+                    android:src="@drawable/ic_app_icon_50dp"
                     />
 
 
@@ -107,6 +107,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:buttonTint="@color/purple_500"
+                        android:checked="true"
                         android:text="Remember Me"
                         android:textColor="@color/black_gray"
                         android:textSize="@dimen/normal_text" />
@@ -117,6 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="right"
                         android:textColor="@color/red"
                         android:text="Forget Password?"

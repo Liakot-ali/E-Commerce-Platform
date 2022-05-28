@@ -40,7 +40,7 @@
                 android:layout_height="@dimen/user_picture"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/inner_pad"
-                android:src="@drawable/ic_app_icon"
+                android:src="@drawable/ic_app_icon_50dp"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
